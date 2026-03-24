@@ -1,6 +1,8 @@
 <?php
 
 require '../controllers/getNivel.php';
+require '../controllers/UserControll.php';
+verificarLogadoTipo();
 
 ?>
 
