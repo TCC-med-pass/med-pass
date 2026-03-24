@@ -2,6 +2,7 @@
 require_once '../controllers/UserControll.php';
 
 getUser();
+verificarLogadoTipo();
 
 ?>
 
@@ -16,6 +17,9 @@ getUser();
 </head>
 <body>
 <main>
+    <div class="erro">   <!-- fronte meher  +++++++++++++++++++++++++++++++++++++++++++ -->
+        <?php mensagemErro(); ?> 
+    </div>
         <div class="container-1">
             <!-- Botão para voltar pra página anterior :) -->
             <a href="btn_cadastro.php" class="botaoVoltar">&larr; Voltar</a>

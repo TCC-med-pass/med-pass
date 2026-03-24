@@ -1,9 +1,3 @@
-<?php
-require_once '../controllers/UserControll.php';
-
-verificarTipo(['paciente']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +6,7 @@ verificarTipo(['paciente']);
     <title>Document</title>
 </head>
 <body>
-   voce chegou ao arquivo do paciente
-   <br><br>
-   <a href="../controllers/logout.php">sair</a>
+    <h1>Acesso Negado</h1>
+    
 </body>
 </html>

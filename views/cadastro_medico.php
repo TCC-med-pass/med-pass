@@ -2,6 +2,7 @@
 require_once '../controllers/UserControll.php';
 
 getUser();
+verificarLogadoTipo();
 
 ?>
 <!DOCTYPE html>

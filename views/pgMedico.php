@@ -1,3 +1,7 @@
+<?php
+require_once '../controllers/UserControll.php';
+verificarTipo(['medico']);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,5 +11,7 @@
 </head>
 <body>
     voce chegou ao arquivo do medico 
+    <br><br>
+   <a href="../controllers/logout.php">sair</a>
 </body>
 </html>
