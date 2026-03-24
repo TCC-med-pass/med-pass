@@ -2,6 +2,7 @@ CREATE DATABASE med_pass;
 
 USE med_pass;
 
+
 CREATE TABLE usuarios(
     id int not null PRIMARY KEY auto_increment,
     nome VARCHAR (50) not null,
