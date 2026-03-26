@@ -3,6 +3,7 @@
 require_once '../controllers/UserControll.php';
 
 validateUser();
+verificarLogadoTipo();
 
 ?>
 
@@ -19,6 +20,9 @@ validateUser();
 </head>
 <body>
     <main>
+        <div class="erro">   <!-- front mexer  +++++++++++++++++++++++++++++++++++++++++++ -->
+        <?php mensagemErro(); ?> 
+    </div>
         <div class="container-1">
             <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass"></img>
             <h1>MedPass- Login</h1>
