@@ -69,11 +69,6 @@
     <div class="bottom-row">
       <div class="cards">
 
-        <div class="card active">
-          <i class="fa-solid fa-pills"></i>
-          <span class="card-label">Medicamentos<br>em Uso</span>
-        </div>
-
         <div class="card">
           <i class="fa-solid fa-phone-flip"></i>
           <span class="card-label">Contato de<br>Emergência</span>

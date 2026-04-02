@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MedPass – Receitas Médicas</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="receitas.css"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+  <div class="topbar">
+    <a href="#" class="topbar-icon">
+      <i class="fa-solid fa-house"></i>
+    </a>
+    <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
+    <a href="#" class="topbar-icon">
+      <i class="fa-solid fa-bars"></i>
+    </a>
+  </div>
+
+<!-- SUBHEADER -->
+<div class="subheader">
+  <a class="back-btn" href="#">
+    <i class="fa-solid fa-chevron-left"></i> Voltar
+  </a>
+  <div class="subheader-title">Receitas médicas</div>
+  <div class="subheader-spacer"></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-name">Dr. Guilherme Telles</div>
+      <div class="card-meta">
+        <div class="card-date-label">Data emissão:</div>
+        <div class="card-date-value">19/11/2025</div>
+        <div class="card-desc-label">Descrição:</div>
+        <div class="card-desc-value">Receita de uso contínuo para hipertensão</div>
+      </div>
+      <button class="card-btn">Abrir</button>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Dr. Bruno Zaia</div>
+      <div class="card-meta">
+        <div class="card-date-label">Data emissão:</div>
+        <div class="card-date-value">10/11/2025</div>
+        <div class="card-desc-label">Descrição:</div>
+        <div class="card-desc-value">Prescrisção de antibiótico – 7 dias</div>
+      </div>
+      <button class="card-btn">Abrir</button>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Dr. Gustavo Ceschim Britto</div>
+      <div class="card-meta">
+        <div class="card-date-label">Data emissão:</div>
+        <div class="card-date-value">09/10/2025</div>
+        <div class="card-desc-label">Descrição:</div>
+        <div class="card-desc-value">Controle glicêmico – revisão trimestral</div>
+      </div>
+      <button class="card-btn">Abrir</button>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Dra. Maria Castellani</div>
+      <div class="card-meta">
+        <div class="card-date-label">Data emissão:</div>
+        <div class="card-date-value">19/11/2025</div>
+        <div class="card-desc-label">Descrição:</div>
+        <div class="card-desc-value">Tratamento dermatológico – uso tópico</div>
+      </div>
+      <button class="card-btn">Abrir</button>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Dra. Maria Luiza Rael</div>
+      <div class="card-meta">
+        <div class="card-date-label">Data emissão:</div>
+        <div class="card-date-value">10/11/2025</div>
+        <div class="card-desc-label">Descrição:</div>
+        <div class="card-desc-value">Suplementação vitamínica – 30 dias</div>
+      </div>
+      <button class="card-btn">Abrir</button>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Dr. Ubaldo Neto Soito</div>
+      <div class="card-meta">
+        <div class="card-date-label">Data emissão:</div>
+        <div class="card-date-value">09/10/2025</div>
+        <div class="card-desc-label">Descrição:</div>
+        <div class="card-desc-value">Analgésico pós-procedimento cirúrgico</div>
+      </div>
+      <button class="card-btn">Abrir</button>
+    </div>
+
+  </div>
+
+<!-- BOTTOM ROW -->
+<div class="bottom-row">
+  <div class="nav-cards">
+    
+    <div class="nav-card active">
+      <i class="fa-solid fa-pills"></i>
+      <span class="nav-card-label">Medicamentos<br>em Uso</span>
+    
+    </div>
+    <div class="nav-card">
+      <i class="fa-solid fa-phone-flip"></i>
+      <span class="nav-card-label">Contato de<br>Emergência</span>
+    </div>
+
+    <div class="nav-card">
+      <i class="fa-solid fa-clock-rotate-left"></i>
+      <span class="nav-card-label">Histórico<br>Familiar</span>
+    </div>
+  </div>
+
+  <div class="nav-number-badge">
+    <p>Número da carterinha:</p>
+    <span>12345678-0</span>
+  </div>
+
+</div>
+</main>
+</body>
+</html>
