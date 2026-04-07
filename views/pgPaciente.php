@@ -1,6 +1,8 @@
 <?php
 require_once '../controllers/UserControll.php';
 
+getTelEmergencia();
+
 verificarTipo(['paciente']);
 ?>
 
@@ -148,6 +150,13 @@ verificarTipo(['paciente']);
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
+
+
+                            <form method="POST">
+                                <label>telefone de emergencia</label>
+                                <input type="text" name="telefone" placeholder="telefone de emergencia">
+                                <button type="submit">enviar</button>
+                            </form>
 
                         </div>
                     </div>

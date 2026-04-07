@@ -1,6 +1,7 @@
 <?php
 
-function setPaciente($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $telefone, $genero, $nivel, $bdate) {
+function setPaciente($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $telefone, $genero, $nivel, $bdate)
+{
 
     if (!empty($email)) {
 
@@ -13,13 +14,11 @@ function setPaciente($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $telef
 
             header("Location: login.php");
             exit();
-
         } else {
 
-            if (empty($nome) || empty($email) || empty($senha) || empty($bdate) || empty($cpf) || empty($telefone) || empty($genero) || empty($confirmar_senha)){
+            if (empty($nome) || empty($email) || empty($senha) || empty($bdate) || empty($cpf) || empty($telefone) || empty($genero) || empty($confirmar_senha)) {
 
-                 $_SESSION['erro'][] = "Preencha todos os campos.";
-
+                $_SESSION['erro'][] = "Preencha todos os campos.";
             } else {
 
                 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
@@ -56,7 +55,6 @@ function setPaciente($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $telef
 
                     header('Location: ../views/login.php');
                     exit();
-
                 } catch (Exception $e) {
 
                     $pdo->rollBack();
@@ -72,8 +70,9 @@ function setPaciente($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $telef
 
 
 
-function setMedico ($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $telefone, $especialidade, $genero, $nivel) {
-     if (!empty($email)) {
+function setMedico($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $telefone, $especialidade, $genero, $nivel)
+{
+    if (!empty($email)) {
 
         $sql = "SELECT * FROM usuarios WHERE email = ?";
         $stmt = $pdo->prepare($sql);
@@ -84,13 +83,11 @@ function setMedico ($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $
 
             header("Location: ../views/login.php");
             exit();
-
         } else {
 
             if (empty($nome) || empty($email) || empty($senha) || empty($cpf) || empty($crm) || empty($telefone) || empty($especialidade) || empty($genero) || $confirmar_senha !== $senha) {
 
-                 $_SESSION['erro'][] = "Campo vazio ou senha incoerente";
-
+                $_SESSION['erro'][] = "Campo vazio ou senha incoerente";
             } else {
 
                 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
@@ -127,7 +124,6 @@ function setMedico ($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $
 
                     header('Location: ../views/login.php');
                     exit();
-
                 } catch (Exception $e) {
 
                     $pdo->rollBack();
@@ -140,43 +136,56 @@ function setMedico ($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $
 
 
 
-function validar ($pdo, $senha, $cpf) {
+function validar($pdo, $senha, $cpf)
+{
 
     $sql = "SELECT senha, nivel, id FROM usuarios WHERE cpf = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$cpf]);
 
-   $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($usuario && password_verify($senha, $usuario['senha'])) {
-    
+
         $_SESSION['nivel'] = $usuario['nivel'];
         $_SESSION['id_usuario'] = $usuario['id'];
-    
+
         if ($usuario['nivel'] == 'medico') {
-    
+
             header("Location: ../views/pgMedico.php");
-        //echo 'deu certo!';
+            //echo 'deu certo!';
             exit();
-    
         } elseif ($usuario['nivel'] == 'paciente') {
-    
+
             header("Location: ../views/pgPaciente.php");
             exit();
-    
         }
-    
     } else {
 
-    $_SESSION['erro'][] = "Usuário ou senha incorretos!";
+        $_SESSION['erro'][] = "Usuário ou senha incorretos!";
     }
-
 }
 
 function getMedicamentoPaciente($pdo, $idPaciente)
-    {
-        $sql = "SELECT nome, dosagem, frequencia FROM medicamento_em_uso WHERE fk_paciente_id = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$idPaciente]);
-        return $stmt->fetchAll();
+{
+    $sql = "SELECT nome, dosagem, frequencia FROM medicamento_em_uso WHERE fk_paciente_id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idPaciente]);
+    return $stmt->fetchAll();
+}
+
+
+
+
+function setTelEmergencia($pdo, $telefone, $paciente_id)
+{
+    $sql = "UPDATE paciente SET contato_emergencia = ? WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$telefone, $paciente_id])) {
+        echo "Contato adicionado com sucesso!";
+    } else {
+        echo "Erro ao adicionar contato";
     }
+}
