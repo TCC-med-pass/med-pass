@@ -3,9 +3,6 @@
 require_once '../controllers/UserControll.php';
 
 
-session_start();
-$_SESSION['id_usuario'] = $paciente['id'];
-
 validateUser();
 verificarLogadoTipo();
 

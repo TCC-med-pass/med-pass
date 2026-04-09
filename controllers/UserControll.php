@@ -175,3 +175,10 @@ function getTelEmergencia()
         }
     }
 }
+
+function showTelEmergencia() {
+    global $pdo;
+    
+    $paciente_id = $_SESSION['id_usuario'];
+    $telefoneDeEmergencia = getTelEmergenciaDataBase($pdo, $paciente_id);
+}

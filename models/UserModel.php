@@ -189,3 +189,18 @@ function setTelEmergencia($pdo, $telefone, $paciente_id)
         echo "Erro ao adicionar contato";
     }
 }
+
+function getTelEmergenciaDataBase($pdo, $paciente_id) { // as outras funções dessa pagina podem seguir os mesmos padrões, apenas mudando os dados do banco e nome de variavel
+    $sql = "SELECT contato_emergencia FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+       $TelEmergencia = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $TelEmergencia['contato_emergencia']; // variavel que deve ser usada no front para mostrar o telefone
+    } else {
+        echo "Erro ao adicionar contato";
+    }
+
+}
