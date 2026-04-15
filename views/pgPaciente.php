@@ -1,9 +1,9 @@
 <?php
 require_once '../controllers/UserControll.php';
-
+verificarTipo(['paciente']);
 getTelEmergencia();
 
-verificarTipo(['paciente']);
+
 ?>
 
 

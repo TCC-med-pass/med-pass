@@ -1,5 +1,7 @@
 <?php
 require_once '../controllers/UserControll.php';
+require_once './components/UserComponents.php';
+verificarTipo(['paciente']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -47,7 +49,7 @@ require_once '../controllers/UserControll.php';
         </tr>
       </thead>
       <tbody>
-        <?php Medicamento();?>
+        <?php showMedicamento();?>
       </tbody>
     </table>
 

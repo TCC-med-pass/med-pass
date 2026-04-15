@@ -17,6 +17,10 @@ CREATE TABLE usuarios(
 CREATE TABLE paciente(
     id int not null PRIMARY KEY auto_increment,
     fk_usuario_id int,
+    alergias VARCHAR(255),
+    tipo_sanguineo VARCHAR(3),
+    numero_de_carteirinha INTEGER,
+    historico_familiar TEXT,
     data_nascimento DATE not null,
     rua VARCHAR (50) null,
     numero_casa VARCHAR (10) null,
@@ -59,6 +63,29 @@ CREATE TABLE medicamento_em_uso (
     fk_medico_id INT not null,
     fk_paciente_id INT not null
 );
+
+CREATE TABLE problema_de_saude (
+    ID_problema_de_saude int not null PRIMARY KEY auto_increment,
+    nome VARCHAR(100),
+    status VARCHAR(50),
+    tipo ENUM('grave','leve'),
+    fk_paciente INTEGER NOT NULL,
+    fk_medico INTEGER NOT NULL
+);
+
+ALTER TABLE problema_de_saude
+ADD CONSTRAINT fk_problema_paciente
+FOREIGN KEY (fk_paciente)
+REFERENCES paciente(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE problema_de_saude
+ADD CONSTRAINT fk_problema_medico
+FOREIGN KEY (fk_medico)
+REFERENCES medico(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
 
 ALTER TABLE arquivos
 ADD CONSTRAINT fk_arquivos_paciente

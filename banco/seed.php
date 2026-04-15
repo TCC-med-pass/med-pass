@@ -76,7 +76,7 @@ $conn->query($sql);
 $sql = "INSERT INTO arquivos
 (nome, caminho, descricao, anexo, tipo, data_emissao, data_validade, status, fk_paciente_id, fk_medico_id)
 VALUES
-('Exame de Sangue','/arquivos/exame1.pdf','Exame de rotina',NULL,'PDF','2025-01-10','2026-01-10','ativo',1,1),
+('Exame de Sangue','../../documento/Joyce_Ramos/receitaUm.pdf','Exame de rotina',NULL,'receitas','2025-01-10','2026-01-10','ativo',1,1),
 ('Raio X','/arquivos/raiox.pdf','Raio X do tórax',NULL,'PDF','2025-02-15','2026-02-15','ativo',2,2),
 ('Ultrassom','/arquivos/ultrassom.pdf','Ultrassom abdominal',NULL,'PDF','2025-03-20','2026-03-20','ativo',3,3),
 ('Tomografia','/arquivos/tomografia.pdf','Tomografia craniana',NULL,'PDF','2025-04-10','2026-04-10','ativo',4,1),

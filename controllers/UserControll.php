@@ -2,11 +2,12 @@
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+    $_SESSION['erro'] = [];
 }
 
-require '../models/UserModel.php';
-require '../config/conexao.php';
-require 'security.php';
+require __DIR__ . "/../models/UserModel.php";
+require __DIR__ . '/../config/conexao.php';
+require __DIR__ . '/security.php';
 
 // function verificarConexao(){
 
@@ -119,46 +120,11 @@ function validateUser()
     }
 }
 
-function Medicamento()
+function medicamento($id)
 {
     global $pdo;
-
-    $id = $_SESSION['id_usuario'];
-    $dado = getMedicamentoPaciente($pdo, $id);
-
-    if (empty($dado)) {
-        $dado = [[
-            "nome" => "Não tem medicamento",
-            "dosagem" => "--------",
-            "frequencia" => "--------"
-        ]];
-    }
-
-    foreach ($dado as $remedio) {
-        echo "<tr>";
-        echo "<td>" . htmlspecialchars($remedio['nome'], ENT_QUOTES, 'UTF-8') . "</td>";
-        echo "<td>" . htmlspecialchars($remedio['dosagem'], ENT_QUOTES, 'UTF-8') . "</td>";
-        echo "<td>" . htmlspecialchars($remedio['frequencia'], ENT_QUOTES, 'UTF-8') . "</td>";
-        echo "</tr>";
-    }
+    return getMedicamentoPaciente($pdo, $id);
 }
-
-function mensagemErro()
-{
-    global $pdo;
-    if (!empty($_SESSION['erro'])) {
-        echo "<ul>";
-
-        foreach ($_SESSION['erro'] as $erro) {
-            echo "<li>" . htmlspecialchars($erro, ENT_QUOTES, 'UTF-8') . "</li>";
-        }
-
-        echo "</ul>";
-        unset($_SESSION['erro']);
-    }
-}
-
-// function mensagemSucesso (){}
 
 
 function getTelEmergencia()
@@ -181,4 +147,36 @@ function showTelEmergencia() {
     
     $paciente_id = $_SESSION['id_usuario'];
     $telefoneDeEmergencia = getTelEmergenciaDataBase($pdo, $paciente_id);
+}
+
+function receitas($id)
+{
+    global $pdo;
+    return getReceitasMedicas($pdo, $id);
+
+}
+
+function arquivo(){
+    global $pdo;
+    $id = trim($_GET['arquivo']);
+    $dados = getArquivo($pdo, $id);
+    $arquivo = $dados['caminho'];
+
+// Segurança
+if (!file_exists($arquivo)) {
+    http_response_code(404);
+    die("Arquivo não encontrado.");
+}
+
+
+// Cabeçalhos corretos para exibir no navegador
+header("Content-Type: application/pdf");
+header("Content-Disposition: inline; filename=\"documento.pdf\"");
+header("Content-Length: " . filesize($arquivo));
+
+// Evita bloqueio em iframe
+header("X-Frame-Options: SAMEORIGIN");
+
+readfile($arquivo);
+exit;
 }

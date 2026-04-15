@@ -204,3 +204,18 @@ function getTelEmergenciaDataBase($pdo, $paciente_id) { // as outras funções d
     }
 
 }
+
+function getReceitasMedicas($pdo, $id){
+        $sql = "SELECT a.id_arquivos as id, a.descricao as descricao, a.data_emissao as data, usua.nome as medico FROM arquivos a LEFT JOIN medico me ON a.fk_medico_id = me.id LEFT JOIN usuarios usua ON me.fk_usuario_id = usua.id WHERE a.fk_paciente_id = ? and a.tipo = 'receitas' ORDER BY a.data_emissao;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
+
+function getArquivo($pdo, $idArquivo)
+{
+    $sql = "SELECT caminho FROM arquivos WHERE id_arquivos = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idArquivo]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
