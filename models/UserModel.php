@@ -190,27 +190,251 @@ function setTelEmergencia($pdo, $telefone, $paciente_id)
     }
 }
 
-function getTelEmergenciaDataBase($pdo, $paciente_id) { // as outras funções dessa pagina podem seguir os mesmos padrões, apenas mudando os dados do banco e nome de variavel
+function getTelEmergenciaDataBase($pdo, $paciente_id)
+{ // as outras funções dessa pagina podem seguir os mesmos padrões, apenas mudando os dados do banco e nome de variavel
     $sql = "SELECT contato_emergencia FROM paciente WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$paciente_id])) {
-       $TelEmergencia = $stmt->fetch(PDO::FETCH_ASSOC);
+        $TelEmergencia = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $TelEmergencia['contato_emergencia']; // variavel que deve ser usada no front para mostrar o telefone
-    } else {
-        echo "Erro ao adicionar contato";
+        return $TelEmergencia['contato_emergencia'];
     }
-
+    return null;
 }
 
-function getReceitasMedicas($pdo, $id){
-        $sql = "SELECT a.id_arquivos as id, a.descricao as descricao, a.data_emissao as data, usua.nome as medico FROM arquivos a LEFT JOIN medico me ON a.fk_medico_id = me.id LEFT JOIN usuarios usua ON me.fk_usuario_id = usua.id WHERE a.fk_paciente_id = ? and a.tipo = 'receitas' ORDER BY a.data_emissao;";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$id]);
-        return $stmt->fetchAll();
+function getNomeDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT nome FROM usuarios WHERE id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $nome = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $nome['nome'];
     }
+
+    return null;
+}
+
+function getCPFDataBase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT cpf FROM usuarios WHERE id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $cpf = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $cpf['cpf'];
+    }
+
+    return null;
+}
+
+function setAltura($pdo, $altura, $paciente_id)
+{
+    $sql = "UPDATE paciente SET altura = ? WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$altura, $paciente_id])) {
+        echo "Altura adicionada com sucesso!";
+    } else {
+        echo "Erro ao adicionar altura";
+    }
+}
+
+
+function getAlturaDataBase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT altura FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $altura = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $altura['altura'];
+    }
+
+    return null;
+}
+
+
+function setAlergia($pdo, $alergia, $paciente_id)
+{
+    $sql = "UPDATE paciente SET alergia = ? WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$alergia, $paciente_id])) {
+        echo "Alergia adicionada com sucesso!";
+    } else {
+        echo "Erro ao adicionar alergia";
+    }
+}
+
+function getAlergiaDataBase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT alergia FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $alergia = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $alergia['alergia'];
+    }
+
+    return null;
+}
+
+function setGenero($pdo, $genero, $paciente_id)
+{
+    $sql = "UPDATE usuarios SET genero = ? WHERE id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$genero, $paciente_id])) {
+        echo "Genero adicionado com sucesso!";
+    } else {
+        echo "Erro ao adicionar gênero";
+    }
+}
+
+function getGeneroDataBase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT genero FROM usuarios WHERE id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $genero = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $genero['genero'];
+    }
+
+    return null;
+}
+
+
+function  setSangue($pdo, $sangue, $paciente_id)
+{
+    $sql = "UPDATE paciente SET tipo_sanguineo = ? WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$sangue, $paciente_id])) {
+        echo "Sangue adicionado com sucesso!";
+    } else {
+        echo "Erro ao adicionar Sangue";
+    }
+}
+
+function getSangueDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT tipo_sanguineo FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $sangue = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $sangue['sangue'];
+    }
+
+    return null;
+}
+
+function setPeso($pdo, $peso, $paciente_id)
+{
+    $sql = "UPDATE paciente SET peso = ? WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$peso, $paciente_id])) {
+        echo "Peso adicionado com sucesso!";
+    } else {
+        echo "Erro ao adicionar Peso";
+    }
+}
+
+function getPesoDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT peso FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $peso = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $peso['peso'];
+    }
+
+    return null;
+}
+
+
+function getIdadeDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT idade FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $idade = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $idade['idade'];
+    }
+
+    return null;
+}
+
+function getDataNascDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT data_nascimento FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $data_nascimento = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $data_nascimento['data_nascimento'];
+    }
+
+    return null;
+}
+
+function getNumCarterinhaDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT numero_de_carteirinha FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $numero_de_carteirinha = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $numero_de_carteirinha['numero_de_carteirinha'];
+    }
+
+    return null;
+}
+
+
+function getReceitasMedicas($pdo, $id)
+{
+    $sql = "SELECT a.id_arquivos as id, a.descricao as descricao, a.data_emissao as data, usua.nome as medico FROM arquivos a LEFT JOIN medico me ON a.fk_medico_id = me.id LEFT JOIN usuarios usua ON me.fk_usuario_id = usua.id WHERE a.fk_paciente_id = ? and a.tipo = 'receitas' ORDER BY a.data_emissao;";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+    return $stmt->fetchAll();
+}
 
 function getArquivo($pdo, $idArquivo)
 {

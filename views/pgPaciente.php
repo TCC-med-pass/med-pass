@@ -1,7 +1,12 @@
 <?php
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
-getTelEmergencia();
+// salvarTelEmergencia(); deve ser acionada no submit
+// salvarAltura();  só deve ser acionada no submit
+// salvarAlergia(); só deve ser acionada no submit
+// salvarGenero(); só deve ser acionada no submit
+// salvarSangue(); só deve ser chamada no submit
+// salvarPeso(); só deve ser chamada no submit
 
 
 ?>
