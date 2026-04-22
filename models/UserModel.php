@@ -428,6 +428,36 @@ function getNumCarterinhaDataBase($pdo, $paciente_id)
 }
 
 
+
+function setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id)
+{
+    $sql = "UPDATE paciente SET historico_familiar = ? WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$historico_familiar, $paciente_id])) {
+        echo "Historico adicionado com sucesso!";
+    } else {
+        echo "Erro ao adicionar Histórico";
+    }
+}
+
+function getHistoricoFamiliarDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT historico_familiar FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $historico_familiar = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $historico_familiar['historico_familiar'];
+    }
+
+    return null;
+}
+
+
 function getReceitasMedicas($pdo, $id)
 {
     $sql = "SELECT a.id_arquivos as id, a.descricao as descricao, a.data_emissao as data, usua.nome as medico FROM arquivos a LEFT JOIN medico me ON a.fk_medico_id = me.id LEFT JOIN usuarios usua ON me.fk_usuario_id = usua.id WHERE a.fk_paciente_id = ? and a.tipo = 'receitas' ORDER BY a.data_emissao;";

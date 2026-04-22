@@ -7,6 +7,7 @@ verificarTipo(['paciente']);
 // salvarGenero(); só deve ser acionada no submit
 // salvarSangue(); só deve ser chamada no submit
 // salvarPeso(); só deve ser chamada no submit
+// salvarHistoricoFamiliar(); só deve ser chamada no submit
 
 
 ?>

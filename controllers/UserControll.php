@@ -367,6 +367,36 @@ function showNumCarterinha()
 $numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
 
 
+function salvarHistoricoFamiliar()
+{
+
+    global $pdo;
+    if (!isset($_SESSION['id_usuario'])) {
+        die("Usuário não autenticado");
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $historico_familiar = $_POST['historico_familiar'] ?? null;
+        $paciente_id = $_SESSION['id_usuario'];
+        if ($historico_familiar) {
+            setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id);
+        }
+    }
+}
+
+function showHistoricoFamiliar()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'];
+    $historico_familiar = getHistoricoFamiliarDataBase($pdo, $paciente_id);
+
+    return $historico_familiar;
+}
+
+$historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
+
+
+
 
 
 function receitas($id)

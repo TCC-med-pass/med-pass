@@ -3,7 +3,7 @@
 $host = "localhost";
 $db   = "med_pass";
 $user = "root";
-$pass = "";
+$pass = "1234";
 $charset = "utf8mb4";
 
 $conexao = "mysql:host=$host;dbname=$db;charset=$charset";
