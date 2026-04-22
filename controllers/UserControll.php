@@ -8,6 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require __DIR__ . "/../models/UserModel.php";
 require __DIR__ . '/../config/conexao.php';
 require __DIR__ . '/security.php';
+require_once __DIR__ . '/../servico/chamados/guardar_arquivo.php';
 
 // function verificarConexao(){
 
@@ -399,4 +400,129 @@ function arquivo()
 
     readfile($arquivo);
     exit;
+}
+function buscarPaciente($item)
+{
+    global $pdo;
+    if (isset($item) || $item !== '' || $item !== null) {
+        return getBusca($pdo, $item);
+    }
+    return;
+}
+function pacienteMedicos($id)
+{
+    global $pdo;
+    return getPacienteMedicos($pdo, $id);
+}
+
+function sessionPaciente()
+{
+    global $pdo;
+    $id = $_GET['paciente'] ?? '';
+    $_SESSION['id_paciente'] = $id;
+    $nome = getinformacaoPaciente($pdo, $id);
+    $_SESSION['nome_paciente'] = $nome['nome'] ?? 'paciente';
+}
+function informacaoMedica()
+{
+    global $pdo;
+
+    $usuarioId = (int)($_SESSION['id_usuario'] ?? 0);
+    if (!$usuarioId) {
+        unset($_SESSION['id_medico'], $_SESSION['nome_medico']);
+        return false;
+    }
+
+    $medico = getMedicoIdByUsuarioId($pdo, $_SESSION['id_usuario']);
+    if (!$medico || empty($medico['id'])) {
+        return false;
+    }
+
+    
+
+    return true;
+}
+function uploadArquivoI()
+{
+    global $pdo;
+
+    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+        return;
+    }
+
+    try {
+        $nome = sanitizar($_POST['nome'] ?? '', 'nome');
+        $descricao = sanitizar($_POST['descricao'] ?? '', 'texto');
+        $data_emissao = trim($_POST['data_emissao'] ?? '');
+        $data_validade = trim($_POST['data_validade'] ?? '');
+        $tipo = trim($_POST['tipo'] ?? '');
+        $usuarioMedicoId = (int)($_SESSION['id_usuario'] ?? 0);
+        $paciente = (int)($_SESSION['id_paciente'] ?? 0);
+
+        if (!$usuarioMedicoId || !$paciente) {
+            throw new RuntimeException('Sessão inválida. Faça login novamente.');
+        }
+
+        if ($nome === '' || $descricao === '' || $data_emissao === '' || $tipo === '') {
+            throw new RuntimeException('Preencha todos os campos obrigatórios.');
+        }
+
+        if (!isset($_FILES['arquivo'])) {
+            throw new RuntimeException('Arquivo não enviado.');
+        }
+
+        if (empty($_SESSION['id_medico']) && !informacaoMedica()) {
+            throw new RuntimeException('Médico não encontrado no sistema. Faça login novamente.');
+        }
+
+        $medico = (int)($_SESSION['id_medico'] ?? 0);
+        if (!$medico) {
+            throw new RuntimeException('Médico não encontrado no sistema. Faça login novamente.');
+        }
+
+
+        $pdo->beginTransaction();
+
+        $id = setArquivo($pdo, $nome, $descricao, $data_emissao, $data_validade, $tipo, 'ativo', $medico, $paciente);
+        if (!$id) {
+            throw new RuntimeException('Falha ao cadastrar arquivo no banco de dados.');
+        }
+        $id = (int)$id;
+
+        $nameArquivo = pathinfo($_FILES['arquivo']['name'] ?? '', PATHINFO_FILENAME);
+        if ($nameArquivo === '') {
+            $nameArquivo = 'documento-medico';
+        }
+
+        $patientName = explode(' ', trim($_SESSION['nome_paciente'] ?? 'paciente'))[0] ?? 'paciente';
+        $uploadService = new UploadService(__DIR__ . '/../documento');
+        $filePath = $uploadService->handleUpload(
+            $_FILES['arquivo'],
+            $patientName,
+            $paciente,
+            $nameArquivo,
+            $id
+        );
+
+
+        if (!updateArquivo($pdo, $id, $filePath)) {
+            throw new RuntimeException('Erro ao atualizar o caminho do arquivo no banco de dados.');
+        }
+
+        $pdo->commit();
+
+        $_SESSION['success'] = 'Documento médico enviado com sucesso.';
+        header('Location: ../views/medPaciente.php?paciente=' . $_SESSION['id_paciente']);
+        exit();
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        } elseif (isset($id) && is_int($id)) {
+            deleteArquivo($pdo, $id);
+        }
+
+        $_SESSION['erro'][] = $e->getMessage();
+        header('Location: ../views/adicionarDocumento.php');
+        exit();
+    }
 }
