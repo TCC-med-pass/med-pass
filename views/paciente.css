@@ -32,7 +32,7 @@ body {
 /* ── HEADER ── */
 .topbar {
   background: var(--teal);
-  padding: 2px 878px;
+  padding: 2px 78px;
   display: flex;
   align-items: center;
   justify-content: space-between;
