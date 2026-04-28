@@ -99,7 +99,7 @@ body {
 main {
   width: 100%;
   max-width: 740px;
-  padding: 28px 20px 40px;
+  padding: 40px 32px 56px;
 }
 
 /* ── SEARCH BAR ── */
@@ -153,12 +153,14 @@ main {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 
 /* ── PATIENT CARD ── */
 .card {
   border-radius: 14px;
+  display: block;
+  text-decoration: none;
   overflow: hidden;
   cursor: pointer;
   border: 2px solid transparent;
@@ -207,41 +209,4 @@ main {
   margin-top: 6px;
   font-weight: 800;
   font-size: 14px;
-}
-
-/* ── ADD CARD ── */
-.card-add {
-  border-radius: 14px;
-  border: 2.5px dashed var(--teal);
-  background: var(--white);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 130px;
-  transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-}
-
-.card-add:hover {
-  background: var(--teal-light);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-}
-
-.add-icon {
-  font-size: 38px;
-  color: var(--teal);
-  font-weight: 300;
-  line-height: 1;
-}
-
-.add-label {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--teal);
-  text-align: center;
-  line-height: 1.3;
 }

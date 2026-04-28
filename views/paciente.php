@@ -45,56 +45,50 @@
     <div class="grid">
 
       <!-- Felipe Cesco da Silva — Comorbidade grave -->
-      <div class="card grave">
-        <div class="card-name">Felipe Cesco da Cilva</div>
-        <div class="card-body">
-          <div><strong>Data nascimento:</strong> 10/11/2005</div>
-          <div class="card-severity">Comorbidade grave</div>
-        </div>
+    <a class="card grave" href="#">
+      <div class="card-name">Felipe Cesco da Cilva</div>
+      <div class="card-body">
+        <div><strong>Data nascimento:</strong> 10/11/2005</div>
+        <div class="card-severity">Comorbidade grave</div>
       </div>
+    </a>
 
       <!-- Carlos Belli — Comorbidade leve -->
-      <div class="card leve">
-        <div class="card-name">Carlos Belli</div>
-        <div class="card-body">
-          <div><strong>Data nascimento:</strong> 01/11/2003</div>
-          <div class="card-severity">Comorbidade leve</div>
-        </div>
+    <a class="card leve" href="#">
+      <div class="card-name">Carlos Belli</div>
+      <div class="card-body">
+        <div><strong>Data nascimento:</strong> 01/11/2003</div>
+        <div class="card-severity">Comorbidade leve</div>
       </div>
+    </a>
 
       <!-- Davi Campos — Comorbidade leve -->
-      <div class="card leve">
-        <div class="card-name">Davi Campos</div>
-        <div class="card-body">
-          <div><strong>Data nascimento:</strong> 10/01/2002</div>
-          <div class="card-severity">Comorbidade leve:</div>
-        </div>
+    <a class="card leve" href="#">
+      <div class="card-name">Davi Campos</div>
+      <div class="card-body">
+        <div><strong>Data nascimento:</strong> 10/01/2002</div>
+        <div class="card-severity">Comorbidade leve</div>
       </div>
+    </a>
 
       <!-- Carlos Matheus — Sem comorbidades -->
-      <div class="card sem">
-        <div class="card-name">Carlos Matheus</div>
-        <div class="card-body">
-          <div><strong>Data nascimento:</strong> 07/11/1990</div>
-          <div class="card-severity">Sem comorbidades</div>
-        </div>
+    <a class="card sem" href="#">
+      <div class="card-name">Carlos Matheus</div>
+      <div class="card-body">
+        <div><strong>Data nascimento:</strong> 07/11/1990</div>
+        <div class="card-severity">Sem comorbidades</div>
       </div>
+    </a>
 
       <!-- Ana Beatriz Pereira Costa — Comorbidade grave -->
-      <div class="card grave">
-        <div class="card-name">Ana Beatriz Pereira Costa</div>
-        <div class="card-body">
-          <div><strong>Data nascimento:</strong> 10/11/1989</div>
-          <div class="card-severity">Comorbidade grave</div>
-        </div>
+    <a class="card grave" href="#">
+      <div class="card-name">Ana Beatriz Pereira Costa</div>
+      <div class="card-body">
+        <div><strong>Data nascimento:</strong> 10/11/1989</div>
+        <div class="card-severity">Comorbidade grave</div>
       </div>
-
-      <!-- Adicionar novo paciente -->
-      <div class="card-add">
-        <span class="add-icon">+</span>
-        <span class="add-label">Adicionar<br>novo Paciente</span>
-      </div>
-
+    </a>
+    
     </div>
   </main>
 
