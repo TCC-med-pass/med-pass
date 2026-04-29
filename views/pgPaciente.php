@@ -75,33 +75,41 @@ verificarTipo(['paciente']);
                             <div class="campo">
                                 <p style="color: white;"><strong>Nome:</strong></p>
                                 <p class="texto">Ana Beatriz Pereira Costa</p> <!-- Nome no banco -->
-                                <input class="input hidden" type="text" value="Ana Beatriz Pereira Costa"> <!-- Tem que fazer algum jeito do valor desse input ser o mesmo do nome -->
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="Ana Beatriz Pereira Costa"> <!-- Tem que fazer algum jeito do valor desse input ser o mesmo do nome -->
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>CPF:</strong></p>
                                 <p class="texto">123.456.789-00</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="123.456.789-00">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="123.456.789-00">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Altura:</strong></p>
                                 <p class="texto">1,70m</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="1,70">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="1,70">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Alergia:</strong></p>
                                 <p class="texto">Amendoim</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="Amendoim">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="Amendoim">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
                         </div>
 
@@ -110,25 +118,31 @@ verificarTipo(['paciente']);
                             <div class="campo">
                                 <p style="color: white;"><strong>Sexo:</strong></p>
                                 <p class="texto">Feminino</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="Feminino">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="Feminino">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
                             
                             <div class="campo">
                                 <p style="color: white;"><strong>Sangue:</strong></p>
                                 <p class="texto">A+</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="A+">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="A+">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Peso:</strong></p>
                                 <p class="texto">65kg</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="65kg">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="65kg">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
                         </div>
 
@@ -143,25 +157,32 @@ verificarTipo(['paciente']);
                             <div class="campo">
                                 <p style="color: white;"><strong>Nascimento:</strong></p>
                                 <p class="texto">11/05/1995</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="date" value="1995-05-11">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="date" value="1995-05-11">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>N Carteirinha:</strong></p>
                                 <p class="texto">12345678-0</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="12345678-0">
-                                <button class="editar">🖉</button>
-                                <button class="salvar hidden">✔</button>
+                                <form method="post">
+                                    <input class="input hidden" type="text" value="12345678-0">
+                                    <button class="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
                             </div>
 
-
-                            <form method="POST">
-                                <label>telefone de emergencia</label>
-                                <input type="text" name="telefone" placeholder="telefone de emergencia">
-                                <button type="submit">enviar</button>
-                            </form>
+                            <div class="campo">
+                                <p style="color: white;"><strong>Num. Telefone</strong></p>
+                                <p class="texto">(11)22222-3333</p>
+                                <form method="post">
+                                    <input class="input hidden" type="text" name="telefone" value="(11)22222-3333"><!-- Minha ideia é de algum jeito, acho q em js, pegar o valor pelo p e jogar no value -->
+                                    <button type="editar">🖉</button>
+                                    <button class="salvar hidden">✔</button>
+                                </form>
+                            </div>
 
                         </div>
                     </div>
@@ -179,6 +200,7 @@ verificarTipo(['paciente']);
         </div>
     </main>
 
-    <script src="./scripts/menu.js"></script>
+    <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/scriptsPaciente.js"></script>
 </body>
 </html>

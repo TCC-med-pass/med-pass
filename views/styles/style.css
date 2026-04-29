@@ -419,3 +419,12 @@ body {
   width: 20vw;
   height: 20vh;
 }
+
+.erro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #e63e3e;
+  border-radius: 20px;
+  background-color: #ff6565;
+}
