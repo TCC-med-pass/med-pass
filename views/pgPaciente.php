@@ -10,6 +10,20 @@ verificarTipo(['paciente']);
 // salvarHistoricoFamiliar(); só deve ser chamada no submit
 
 
+$telefoneDeEmergencia = showTelEmergencia(); // variavel que deve ser usada no front para mostrar o Telefone
+$nomePciente = showNome(); // variavel que deve ser usada no front para mostrar o Nome
+$cpf = showCPF(); // variavel que deve ser usada no front para mostrar o CPF
+$altura = showAltura(); // variavel que deve ser usada no front para mostrar a altura
+$alergia = showAlergia(); // variavel que deve ser usada no front para mostrar a alergia
+$genero = showGenero(); // variavel que deve ser usada no front para mostrar o genero
+$sangue = showSangue(); // variavel que deve ser usada no front para mostrar o sangue
+$peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
+// $idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
+$data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
+$numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
+$historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
+
+
 ?>
 
 

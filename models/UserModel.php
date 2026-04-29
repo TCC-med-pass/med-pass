@@ -281,18 +281,14 @@ function setAlergia($pdo, $alergia, $paciente_id)
 
 function getAlergiaDataBase($pdo, $paciente_id)
 {
-
-    $sql = "SELECT alergia FROM paciente WHERE fk_usuario_id = ?";
+    $sql = "SELECT alergias FROM paciente WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);
 
-    if ($stmt->execute([$paciente_id])) {
-        $alergia = $stmt->fetch(PDO::FETCH_ASSOC);
+    $alergia = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $alergia['alergia'];
-    }
-
-    return null;
+    return $alergia['alergias'] ?? null;
 }
 
 function setGenero($pdo, $genero, $paciente_id)
@@ -347,7 +343,7 @@ function getSangueDataBase($pdo, $paciente_id)
     if ($stmt->execute([$paciente_id])) {
         $sangue = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $sangue['sangue'];
+        return $sangue['tipo_sanguineo'];
     }
 
     return null;

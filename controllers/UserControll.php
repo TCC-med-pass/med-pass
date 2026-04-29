@@ -147,13 +147,14 @@ function showTelEmergencia()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $telefoneDeEmergencia = getTelEmergenciaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $telefoneDeEmergencia;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getTelEmergenciaDataBase($pdo, $paciente_id);
 }
-
-$telefoneDeEmergencia = showTelEmergencia(); // variavel que deve ser usada no front para mostrar o Telefone
 
 
 
@@ -161,25 +162,30 @@ function showNome()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $nomePaciente = getNomeDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $nomePaciente;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getNomeDataBase($pdo, $paciente_id);
 }
 
-$nomePciente = showNome(); // variavel que deve ser usada no front para mostrar o Nome
 
 function showCPF()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $cpf = getCPFDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $cpf;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getCPFDataBase($pdo, $paciente_id);
 }
 
-$cpf = showCPF(); // variavel que deve ser usada no front para mostrar o CPF
+
 
 
 
@@ -202,13 +208,14 @@ function showAltura()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $altura = getAlturaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $altura;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getAlturaDataBase($pdo, $paciente_id);
 }
-
-$altura = showAltura(); // variavel que deve ser usada no front para mostrar a altura
 
 
 
@@ -231,13 +238,16 @@ function showAlergia()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $alergia = getAlergiaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $alergia;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getAlergiaDataBase($pdo, $paciente_id);
 }
 
-$alergia = showAlergia(); // variavel que deve ser usada no front para mostrar a alergia
+
 
 
 
@@ -260,13 +270,15 @@ function showGenero()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $genero = getGeneroDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $genero;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getGeneroDataBase($pdo, $paciente_id);
 }
 
-$genero = showGenero(); // variavel que deve ser usada no front para mostrar o genero
 
 
 function salvarSangue()
@@ -288,13 +300,16 @@ function showSangue()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $sangue = getSangueDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $sangue;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getSangueDataBase($pdo, $paciente_id);
 }
 
-$sangue = showSangue(); // variavel que deve ser usada no front para mostrar o sangue
+
 
 
 function salvarPeso()
@@ -318,39 +333,45 @@ function showPeso()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $peso = getPesoDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $peso;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getPesoDataBase($pdo, $paciente_id);
 }
 
-$peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
 
 
 function showIdade()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $idade = getIdadeDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $idade;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getIdadeDataBase($pdo, $paciente_id);
 }
-
-$idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
 
 
 function showDataNasc()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $data_nascimento = getDataNascDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $data_nascimento;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getDataNascDataBase($pdo, $paciente_id);
 }
 
-$data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
+
 
 
 
@@ -358,13 +379,15 @@ function showNumCarterinha()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $numero_de_carteirinha = getNumCarterinhaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $numero_de_carteirinha;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getNumCarterinhaDataBase($pdo, $paciente_id);
 }
 
-$numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
 
 
 function salvarHistoricoFamiliar()
@@ -387,13 +410,14 @@ function showHistoricoFamiliar()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $historico_familiar = getHistoricoFamiliarDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $historico_familiar;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getHistoricoFamiliarDataBase($pdo, $paciente_id);
 }
-
-$historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
 
 
 
