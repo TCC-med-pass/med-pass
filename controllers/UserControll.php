@@ -134,7 +134,7 @@ function salvarTelEmergencia()
     if (!isset($_SESSION['id_usuario'])) {
         die("Usuário não autenticado");
     }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['tel_emergencia'] ?? '') === 'salvar') {
         $telefone = $_POST['telefone'] ?? null;
         $paciente_id = $_SESSION['id_usuario'];
         if ($telefone) {

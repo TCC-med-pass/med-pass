@@ -1,7 +1,7 @@
 <?php
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
-// salvarTelEmergencia(); deve ser acionada no submit
+
 // salvarAltura();  só deve ser acionada no submit
 // salvarAlergia(); só deve ser acionada no submit
 // salvarGenero(); só deve ser acionada no submit
@@ -58,7 +58,7 @@ $historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no
 
     <nav id="sidebar">
         <div class="contSidebar">
-            <h1>Ana Beatriz Pereira Costa</h1> <!-- nome do usuário: back tem q jogar aqui -->
+            <h1><?php echo $nomePciente ?></h1> 
         </div>
 
         <a href="" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
@@ -86,35 +86,36 @@ $historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no
                     <div class="contTexto">
                         <!-- grid pra fazer as colunas com as informações -->
                         <div class="coluna">
+                            <form method="POST">
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nome:</strong></p>
-                                <p class="texto">Ana Beatriz Pereira Costa</p> <!-- Nome no banco -->
-                                <input class="input hidden" type="text" value="Ana Beatriz Pereira Costa"> <!-- Tem que fazer algum jeito do valor desse input ser o mesmo do nome -->
+                                <p class="texto"><?php echo $nomePciente ?></p> <!-- Nome no banco -->
+                                <input class="input hidden" type="text" value="" placeholder="Seu Nome aqui..."> <!-- Tem que fazer algum jeito do valor desse input ser o mesmo do nome -->
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>CPF:</strong></p>
-                                <p class="texto">123.456.789-00</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="123.456.789-00">
+                                <p class="texto"><?php echo $cpf ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="" placeholder="Ex: xxx.xxx.xxx-xx">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Altura:</strong></p>
-                                <p class="texto">1,70m</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="1,70">
+                                <p class="texto"><?php echo $altura ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="" placeholder="Ex: 1,80">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Alergia:</strong></p>
-                                <p class="texto">Amendoim</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="Amendoim">
+                                <p class="texto"><?php echo $alergia ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="" placeholder="Ex: Amendoim">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
@@ -124,24 +125,24 @@ $historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Sexo:</strong></p>
-                                <p class="texto">Feminino</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="Feminino">
+                                <p class="texto"><?php echo $genero ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="" placeholder="Ex: Masculino">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
                             
                             <div class="campo">
                                 <p style="color: white;"><strong>Sangue:</strong></p>
-                                <p class="texto">A+</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="A+">
+                                <p class="texto"><?php echo $sangue ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="" placeholder="Ex: A+">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Peso:</strong></p>
-                                <p class="texto">65kg</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="65kg">
+                                <p class="texto"><?php echo $peso ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="" placeholder="Ex: 80Kg">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
@@ -151,32 +152,35 @@ $historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no
                             
                             <div class="campo">
                                 <p style="color: white;"><strong>Idade:</strong></p>
-                                <p class="texto idade">30</p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
+                                <p class="texto idade">TESTE</p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
                                 <span></span> <!-- ta aq so pro flex jogar o 30 no meio -->
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nascimento:</strong></p>
-                                <p class="texto">11/05/1995</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="date" value="1995-05-11">
+                                <p class="texto"><?php echo $data_nascimento ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="date" value="" placeholder="Ex: 00/00/0000">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>N Carteirinha:</strong></p>
-                                <p class="texto">12345678-0</p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="12345678-0">
+                                <p class="texto"><?php echo $numero_de_carteirinha ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="">
                                 <button class="editar">🖉</button>
                                 <button class="salvar hidden">✔</button>
                             </div>
 
 
-                            <form method="POST">
-                                <label>telefone de emergencia</label>
-                                <input type="text" name="telefone" placeholder="telefone de emergencia">
-                                <button type="submit">enviar</button>
-                            </form>
+                              <div class="campo">
+                                <p style="color: white;"><strong>Telefone de Emergencia:</strong></p>
+                                <p class="texto"><?php echo $telefoneDeEmergencia ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <input class="input hidden" type="text" value="" placeholder="Ex: (**) *****-****">
+                                <button class="editar">🖉</button>
+                                <button class="salvar hidden" type="submit" name="tel_emergencia" value="salvar">✔</button>
+                            </div>
+                        </form>
 
                         </div>
                     </div>
