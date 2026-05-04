@@ -1,0 +1,313 @@
+/* ── RESET ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --teal: #1a8f85;
+  --teal-dark: #146f67;
+  --teal-light: #e8f5f4;
+  --red: #c0392b;
+  --red-dark: #a93226;
+  --green: #27ae60;
+  --green-dark: #1e8449;
+  --white: #ffffff;
+  --gray-bg: #f0f0f0;
+  --gray-border: #ccc;
+  --text-dark: #1a1a1a;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPBAR (igual receitas) ── */
+.topbar {
+    background: var(--teal);
+    padding: 2px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topbar-icon {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+.topbar-icon:hover {
+  opacity: 0.8;
+}
+
+.logo-img {
+  height: 120px;
+ width: auto;
+ object-fit: contain;
+}
+
+/* ── SUBHEADER (igual receitas) ── */
+.subheader {
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 48px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.back-btn {
+  color: #007b7b;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.back-btn:hover {
+  opacity: 0.75;
+}
+
+.subheader-title {
+  flex: 1;
+  text-align: center;
+  color: #007b7b;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.subheader-spacer {
+  /* espelha a largura do back-btn para centralizar o título */
+  width: 70px;
+}
+
+/* ── MAIN ── */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 24px;
+  gap: 24px;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── CARD DO FORMULÁRIO ── */
+.card {
+  background: #d6d6d6;
+  border-radius: 12px;
+  padding: 24px 22px 28px;
+  border: 2px solid #007b7b;
+}
+
+.card h2 {
+  text-align: center;
+  color: #007b7b;
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+/* ── GRID ── */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+/* ── LABELS ── */
+label {
+  color: #007b7b;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* ── INPUTS ── */
+input[type="text"],
+textarea,
+select {
+  background: white;
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: #333;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #007b7b;
+}
+
+/* ── SELECT ── */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23007b7b' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-color: white;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+/* ── TEXTAREA ── */
+textarea {
+  resize: none;
+}
+
+/* ── UPLOAD ── */
+.upload-box {
+  background: white;
+  border-radius: 6px;
+  border: 2px dashed #aaa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 16px;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.upload-box:hover {
+  border-color: #007b7b;
+  background: #f0fafa;
+}
+
+.upload-icon {
+  font-size: 32px;
+  color: #007b7b;
+}
+
+.upload-box span {
+  color: #007b7b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ── BUTTONS ── */
+.btn-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 18px;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 30px;
+  padding: 11px 36px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  font-family: inherit;
+  background: #007b7b;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* ── BOTTOM ROW (igual receitas) ── */
+.bottom-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.bottom-spacer {
+  flex: 1;
+}
+
+/* ── PATIENT BADGE (bottom-right) ── */
+.patient-badge {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: var(--red);
+  color: var(--white);
+  padding: 20px 28px;
+  border-top-left-radius: 18px;
+  min-width: 260px;
+  max-width: 340px;
+  box-shadow: -4px -4px 20px rgba(0,0,0,0.18);
+}
+ 
+.badge-label {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+ 
+.badge-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+ 
+.badge-severity {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.action-card {
+  text-decoration: none;
+}
+
+#sidebar {
+    position: fixed;
+    top: 15vh;
+    right: -0; /* responsivo */
+    width: 25vw;
+    height: calc(100vh - 15vh);
+    background: #007977;
+    padding: 5px;
+    transition: transform 0.3s ease;
+
+    transform: translateX(100%); /* escondido */
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+}
