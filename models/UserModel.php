@@ -184,9 +184,9 @@ function setTelEmergencia($pdo, $telefone, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$telefone, $paciente_id])) {
-        echo "Contato adicionado com sucesso!";
+        echo "Contato de Emergencia adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar contato";
+        echo "Erro ao adicionar Contato de Emergencia";
     }
 }
 
@@ -268,7 +268,7 @@ function getAlturaDataBase($pdo, $paciente_id)
 
 function setAlergia($pdo, $alergia, $paciente_id)
 {
-    $sql = "UPDATE paciente SET alergia = ? WHERE fk_usuario_id = ?";
+    $sql = "UPDATE paciente SET alergias = ? WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
