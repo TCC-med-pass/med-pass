@@ -469,3 +469,68 @@ function getArquivo($pdo, $idArquivo)
     $stmt->execute([$idArquivo]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+
+function  getProblemaLeveDataBase($pdo, $paciente_id) {
+    
+    $sql = 
+    "SELECT paciente.id, problema_de_saude.*
+    FROM paciente inner join usuarios on usuarios.id = paciente.fk_usuario_id
+                  inner join problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+    WHERE usuarios.id = ?
+    and problema_de_saude.status = 'leve' ";
+    
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $problema_de_saude= $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $problema_de_saude['problema_de_saude'];
+    }
+
+
+}
+
+function  getProblemaMedioDataBase($pdo, $paciente_id) {
+    
+    $sql = 
+    "SELECT paciente.id, problema_de_saude.*
+    FROM paciente inner join usuarios on usuarios.id = paciente.fk_usuario_id
+                  inner join problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+    WHERE usuarios.id = ?
+    and problema_de_saude.status = 'medio' ";
+    
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $problema_de_saude= $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $problema_de_saude['problema_de_saude'];
+    }
+
+
+}
+
+
+function  getProblemaGraveDataBase($pdo, $paciente_id) {
+    
+    $sql = 
+    "SELECT paciente.id, problema_de_saude.*
+    FROM paciente INNER JOIN usuarios ON usuarios.id = paciente.fk_usuario_id
+                  INNER JOIN problema_de_saude ON paciente.id = problema_de_saude.fk_paciente
+    WHERE usuarios.id = ?
+    AND problema_de_saude.status = 'grave'";
+    
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $problema_de_saude= $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $problema_de_saude['problema_de_saude'];
+    }
+
+
+}

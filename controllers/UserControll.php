@@ -454,3 +454,45 @@ function arquivo()
     readfile($arquivo);
     exit;
 }
+
+
+
+
+function showProblemaLeve()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getProblemaLeveDataBase($pdo, $paciente_id);
+}
+
+function showProblemaMedio()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getProblemaMedioDataBase($pdo, $paciente_id);
+}
+
+function showProblemaGrave()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getProblemaGraveDataBase($pdo, $paciente_id);
+}

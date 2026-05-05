@@ -32,6 +32,9 @@ $peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
 $data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
 $numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
 $historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
+$problemaLeve =  showProblemaLeve(); // variavel que deve ser usada no front para mostrar os problemas leve de saude
+$problemaMedio = showProblemaMedio(); // // variavel que deve ser usada no front para mostrar os problemas medios de saude 
+$problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front para mostrar os problemas graves de saude
 
 
 ?>
