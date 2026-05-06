@@ -2,8 +2,7 @@
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
-
-
+$variaveldeteste = 0;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
