@@ -184,9 +184,9 @@ function setTelEmergencia($pdo, $telefone, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$telefone, $paciente_id])) {
-        echo "Contato de Emergencia adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Contato de Emergencia adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar Contato de Emergencia";
+        $_SESSION['erro'][] = "Erro ao adicionar Contato de Emergencia";
     }
 }
 
@@ -242,9 +242,9 @@ function setAltura($pdo, $altura, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$altura, $paciente_id])) {
-        echo "Altura adicionada com sucesso!";
+        $_SESSION['sucesso'] = "Altura adicionada com sucesso!";
     } else {
-        echo "Erro ao adicionar altura";
+        $_SESSION['erro'][] = "Erro ao adicionar altura";
     }
 }
 
@@ -273,9 +273,9 @@ function setAlergia($pdo, $alergia, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$alergia, $paciente_id])) {
-        echo "Alergia adicionada com sucesso!";
+        $_SESSION['sucesso'] = "Alergia adicionada com sucesso!";
     } else {
-        echo "Erro ao adicionar alergia";
+        $_SESSION['erro'][] = "Erro ao adicionar alergia";
     }
 }
 
@@ -298,9 +298,9 @@ function setGenero($pdo, $genero, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$genero, $paciente_id])) {
-        echo "Genero adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Genero adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar gênero";
+        $_SESSION['erro'][] = "Erro ao adicionar gênero";
     }
 }
 
@@ -328,9 +328,9 @@ function  setSangue($pdo, $sangue, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$sangue, $paciente_id])) {
-        echo "Sangue adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Sangue adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar Sangue";
+        $_SESSION['erro'][] = "Erro ao adicionar Sangue";
     }
 }
 
@@ -356,9 +356,9 @@ function setPeso($pdo, $peso, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$peso, $paciente_id])) {
-        echo "Peso adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Peso adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar Peso";
+        $_SESSION['erro'][] = "Erro ao adicionar Peso";
     }
 }
 
@@ -432,9 +432,9 @@ function setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$historico_familiar, $paciente_id])) {
-        echo "Historico adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Historico adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar Histórico";
+        $_SESSION['erro'] = "Erro ao adicionar Histórico";
     }
 }
 
