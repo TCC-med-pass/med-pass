@@ -198,7 +198,7 @@ function salvarAltura()
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $altura = $_POST['altura'] ?? null;
         $paciente_id = $_SESSION['id_usuario'];
-        if ($altura) {
+        if ($altura !== null && $altura !== '') {
             setAltura($pdo, $altura, $paciente_id);
         }
     }
