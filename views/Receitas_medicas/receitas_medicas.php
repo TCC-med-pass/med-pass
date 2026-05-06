@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MedPass – Receitas Médicas</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="receitas.css"/>
+  <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
+  <link rel="stylesheet" href="./receitas_medicas.css"/>
 </head>
 <body>
 
@@ -125,6 +126,7 @@
     <p>Número da carterinha:</p>
     <span>12345678-0</span>
   </div>
+
 </div>
 </main>
 </body>
