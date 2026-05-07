@@ -1,8 +1,6 @@
 <?php
 require_once '../controllers/UserControll.php';
-require_once './components/UserComponents.php';
 verificarTipo(['medico']);
-informacaoMedica();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
