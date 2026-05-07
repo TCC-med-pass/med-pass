@@ -106,7 +106,7 @@ $numero_de_carteirinha = showNumCarterinha();
 
         <section class="cards">
             <div class="card">
-                <h3><?php echo $nomeMedico ?></h3> <!-- nome do medico/paciente dependendo da tela -->
+                <h3>TESTE</h3> <!-- nome do medico/paciente dependendo da tela -->
                 <p><strong>Data emissão: </strong> data aqui</p> <!-- data da emissão (tem em todos) -->
 
                 <button>Abrir</button>
