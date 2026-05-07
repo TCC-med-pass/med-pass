@@ -235,3 +235,40 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 </body>
 
 </html>
+
+
+
+<!-- EXWEMPLO DO BOTÃO PASSANDO POR URL
+ 
+<form action="pagina.php" method="GET">
+    <button type="submit" name="titulo" value="Consultas">
+        Abrir página
+    </button>
+</form>
+
+
+
+
+NA PAGINA QUE ABRIR
+
+
+
+$titulo = $_GET['titulo'];
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+
+    <h1><?php echo $titulo; ?></h1>
+
+</body>
+</html>
+
+
+
+-->
