@@ -206,7 +206,22 @@ function getTelEmergenciaDataBase($pdo, $paciente_id)
 
 function getNomeDataBase($pdo, $paciente_id)
 {
-    $sql = "SELECT nome FROM usuarios WHERE id = ?";
+    $sql = "SELECT nome FROM usuarios WHERE id = ? AND nivel = 'paciente' ";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $nome = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $nome['nome'];
+    }
+
+    return null;
+}
+
+function getNomeMedicoDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT nome FROM usuarios WHERE id = ? AND nivel = 'medico' "; // pedir codigo sql para a dileine
 
     $stmt = $pdo->prepare($sql);
 
@@ -387,7 +402,7 @@ function getPesoDataBase($pdo, $paciente_id)
 
 function getIdadeDataBase($pdo, $paciente_id)
 {
-    $sql = "SELECT idade FROM paciente WHERE fk_usuario_id = ?";
+    $sql = "SELECT TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade FROM paciente WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
@@ -402,7 +417,7 @@ function getIdadeDataBase($pdo, $paciente_id)
 
 function getDataNascDataBase($pdo, $paciente_id)
 {
-    $sql = "SELECT TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade FROM paciente WHERE fk_usuario_id = ?";
+    $sql = "SELECT data_nascimento FROM paciente WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
@@ -552,6 +567,105 @@ function  getProblemaGraveDataBase($pdo, $paciente_id)
 
         if ($problema_de_saude) {
             return $problema_de_saude['problema_de_saude'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
+
+function getDataEmissaoProntuarioDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT data_emissao FROM arquivos WHERE tipo = 'prontuário' AND fk_paciente_id = ?";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $data_emissao = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($data_emissao) {
+            return $data_emissao['data_emissao'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
+
+function getDataEmissaoCirurgiaDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT data_emissao FROM arquivos WHERE tipo = 'cirurgia' AND fk_paciente_id = ?";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $data_emissao = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($data_emissao) {
+            return $data_emissao['data_emissao'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
+function getDataEmissaoExamesDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT data_emissao FROM arquivos WHERE tipo = 'exames' AND fk_paciente_id = ?";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $data_emissao = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($data_emissao) {
+            return $data_emissao['data_emissao'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
+
+function getDataEmissaoAtestadoDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT data_emissao FROM arquivos WHERE tipo = 'atestado' AND fk_paciente_id = ?";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $data_emissao = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($data_emissao) {
+            return $data_emissao['data_emissao'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
+
+function getDataEmissaoLaudoDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT data_emissao FROM arquivos WHERE tipo = 'laudo' AND fk_paciente_id = ?";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $data_emissao = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($data_emissao) {
+            return $data_emissao['data_emissao'];
         } else {
             return null;
         }

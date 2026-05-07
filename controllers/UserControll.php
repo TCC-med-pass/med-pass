@@ -172,6 +172,20 @@ function showNome()
 }
 
 
+function showNomeMedico()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getNomeMedicoDataBase($pdo, $paciente_id);
+}
+
+
 function showCPF()
 {
     global $pdo;
@@ -495,4 +509,70 @@ function showProblemaGrave()
     }
 
     return getProblemaGraveDataBase($pdo, $paciente_id);
+}
+
+
+function showDataEmissaoProntuario()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getDataEmissaoProntuarioDataBase($pdo, $paciente_id);
+}
+
+function showDataEmissaoCirurgia()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getDataEmissaoCirurgiaDataBase($pdo, $paciente_id);
+}
+
+function showDataEmissaoExames()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getDataEmissaoExamesDataBase($pdo, $paciente_id);
+}
+
+function showDataEmissaoAtestado()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getDataEmissaoAtestadoDataBase($pdo, $paciente_id);
+}
+
+function showDataEmissaoLaudo()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getDataEmissaoLaudoDataBase($pdo, $paciente_id);
 }
