@@ -307,7 +307,14 @@ function setGenero($pdo, $genero, $paciente_id)
 function getGeneroDataBase($pdo, $paciente_id)
 {
 
-    $sql = "SELECT genero FROM usuarios WHERE id = ?";
+    $sql = "SELECT 
+                CASE
+                    WHEN genero = 'M' THEN 'Masculino'
+                    WHEN genero = 'F' THEN 'Feminino'
+                    ELSE 'Indefinido'
+                END AS Genero
+            FROM usuarios
+            WHERE id = ?";
 
     $stmt = $pdo->prepare($sql);
 
@@ -395,7 +402,7 @@ function getIdadeDataBase($pdo, $paciente_id)
 
 function getDataNascDataBase($pdo, $paciente_id)
 {
-    $sql = "SELECT data_nascimento FROM paciente WHERE fk_usuario_id = ?";
+    $sql = "SELECT TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade FROM paciente WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
