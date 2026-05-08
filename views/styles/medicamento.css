@@ -1,180 +1,3 @@
-/* import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@400;700&display=swap');
-
-/* Elementos globais */
-* {
-    font-family: "Aleo", serif;
-    font-optical-sizing: auto;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    min-height: 100vh;
-}
-
-main {
-    width: 100%;
-    min-height: 100vh;
-    background: url('../pictures/fundo.svg') no-repeat center center/cover;
-    /* centralizar o .container */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container-1 {
-    position: relative; /* Permite elemento filho em posição absoluta */
-    /* centraliza o conteúdo */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    min-height: 70vh;
-    width: 65%;
-    padding: 20px;
-    border: 3px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-form {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #007977;
-    color: #FFF;
-    text-decoration: none;
-    text-align: center;
-    border: none;
-    margin-bottom: 30px;
-    border-radius: 999px;
-    width: 50%;
-    height: 60px;
-    font-size: x-large;
-    transition: background-color 0.3s ease;
-}
-
-.btn:visited {
-    color: #FFF;
-}
-
-.btn:hover {
-    background-color: #095a59;
-    cursor: pointer;
-}
-
-.ajuda {
-  color: #007977;
-  text-decoration: none;
-}
-
-.ajuda:visited {
-  color: #0c9492;
-}
-
-img {
-    width: 200px;
-    height: auto;
-}
-
-strong {
-    color: #0F6664;
-    font-size: large;
-}
-
-label {
-    margin-bottom: 5px;
-}
-
-input {
-    width: 50%;
-    height: 50px;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    font-size: large;
-    margin-bottom: 20px;
-}
-
-.btnEntrar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #007977;
-    color: #FFF;
-    text-decoration: none;
-    text-align: center;
-    border: none;
-    border-radius: 999px;
-    width: 30%;
-    height: 60px;
-    font-size: x-large;
-    transition: background-color 0.3s ease;
-}
-
-.botaoVoltar {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    text-decoration: none;
-    color: #007977;
-    font-weight: bold;
-    background: rgba(255,255,255,0.8);
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.btnEntrar:hover {
-    background-color: #095a59;
-    cursor: pointer;
-}
-
-/* css da parte do cadastro de paciente e médico */
-
-.form-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;   /* duas colunas iguais */
-    gap: 20px 30px;                   /* espaçamento entre colunas e linhas */
-    align-items: start; 
-}
-
-.coluna {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;                        /* espaço entre cada label‑input */
-}
-
-.coluna input,
-.coluna select {
-    width: 100%;                      /* ocupam toda a largura da coluna */
-}
-
-select {
-    width: 50%;
-    height: 50px;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    font-size: large;
-}
-
-form p {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -415,7 +238,164 @@ body {
   letter-spacing: 1px;
 }
 
-.btnMenu {
-  width: 20vw;
-  height: 20vh;
+
+
+
+/* ── Cole no final do seu medicamento_uso.css ── */
+
+/* Coluna de ações */
+.med-table thead tr th:last-child {
+  width: 110px;
+  border-right: none;
+}
+
+.td-acoes {
+  text-align: center !important;
+  white-space: nowrap;
+  padding: 10px 12px !important;
+}
+
+/* Tag abrir */
+.tag-abrir {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 3px 11px;
+  border-radius: 20px;
+  margin-right: 6px;
+  transition: opacity .15s, transform .1s;
+}
+.tag-abrir:hover {
+  opacity: .8;
+  transform: scale(1.05);
+}
+
+/* Botão lixeira */
+.btn-lixeira {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--teal);
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background .15s, color .15s;
+  vertical-align: middle;
+}
+.btn-lixeira:hover {
+  background: #ffeeee;
+  color: #cc0000;
+}
+
+/* Botão adicionar */
+.btn-adicionar {
+  width: 100%;
+  border: 2.5px dashed var(--teal);
+  background: transparent;
+  border-radius: 10px;
+  color: var(--teal);
+  font-size: 15px;
+  font-weight: 800;
+  font-style: italic;
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background .15s;
+  font-family: inherit;
+  margin-top: -260px; /* compensa o gap: 300px do .content */
+}
+.btn-adicionar:hover {
+  background: var(--teal-light);
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 26px;
+  width: 90%;
+  max-width: 460px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+}
+.modal h3 {
+  color: var(--teal);
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+.modal-field label {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 13px;
+}
+.modal-field input,
+.modal-field textarea {
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .2s;
+  resize: none;
+}
+.modal-field input:focus,
+.modal-field textarea:focus {
+  border-color: var(--teal);
+}
+.modal-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.modal-btns button {
+  border-radius: 30px;
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity .15s;
+}
+.modal-btns button[type="button"] {
+  border: 2px solid var(--teal);
+  background: #fff;
+  color: var(--teal);
+}
+.modal-btns button[type="button"]:hover {
+  background: var(--teal-light);
+}
+.modal-btns button[type="submit"] {
+  border: none;
+  background: var(--teal);
+  color: #fff;
+}
+.modal-btns button[type="submit"]:hover {
+  opacity: .85;
 }

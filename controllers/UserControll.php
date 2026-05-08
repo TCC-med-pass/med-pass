@@ -8,6 +8,8 @@ if (session_status() === PHP_SESSION_NONE) {
 require __DIR__ . "/../models/UserModel.php";
 require __DIR__ . '/../config/conexao.php';
 require __DIR__ . '/security.php';
+require_once __DIR__ . '/../servico/chamados/guardar_arquivo.php';
+require_once __DIR__ . '/../servico/chamados/enviar_email.php';
 
 // function verificarConexao(){
 
@@ -70,6 +72,7 @@ function getUser()
 
             validarSenha($senha);
             confirmarSenha($senha, $confirmar_senha);
+            validarCPF($cpf);
 
 
             if (empty($_SESSION['erro'])) {
@@ -94,6 +97,7 @@ function getUser()
 
             validarSenha($senha);
             confirmarSenha($senha, $confirmar_senha);
+            validarCPF($cpf);
 
             if (empty($_SESSION['erro'])) {
                 setMedico($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $telefone, $especialidade, $genero, $nivel);
@@ -120,10 +124,18 @@ function validateUser()
     }
 }
 
-function medicamento($id)
+function medicamento($id, $tipo)
 {
     global $pdo;
-    return getMedicamentoPaciente($pdo, $id);
+    if($tipo === 'paciente'){
+        return getMedicamentoPaciente($pdo, $id);
+    }elseif ($tipo === 'medico') {
+        return getMedicamentoMedico($pdo, $id);
+    }
+    else {
+        $_SESSION['erro'][] = "usuário não encontrado";
+    }
+    
 }
 
 
@@ -434,14 +446,14 @@ function arquivo()
     global $pdo;
     $id = trim($_GET['arquivo']);
     $dados = getArquivo($pdo, $id);
-    $arquivo = $dados['caminho'];
+    $caminhoRelativo = str_replace('\\', '/', $dados['caminho']);
+    $arquivo = realpath(__DIR__ . '/../documento/' . $caminhoRelativo);
 
     // Segurança
-    if (!file_exists($arquivo)) {
+    if (!$arquivo || !file_exists($arquivo)) {
         http_response_code(404);
-        die("Arquivo não encontrado.");
+        $_SESSION['erro'][] = "Arquivo não encontrado.";
     }
-
 
     // Cabeçalhos corretos para exibir no navegador
     header("Content-Type: application/pdf");
@@ -495,4 +507,217 @@ function showProblemaGrave()
     }
 
     return getProblemaGraveDataBase($pdo, $paciente_id);
+}
+
+function buscarPaciente($item)
+{
+    global $pdo;
+    if (isset($item) || $item !== '' || $item !== null) {
+        return getBusca($pdo, $item);
+    }
+    return;
+}
+function pacienteMedicos($id)
+{
+    global $pdo;
+    return getPacienteMedicos($pdo, $id);
+}
+
+function sessionPaciente()
+{
+    global $pdo;
+    $id = $_GET['paciente'] ?? '';
+    $_SESSION['id_paciente'] = $id;
+    $nome = getinformacaoPaciente($pdo, $id);
+    $_SESSION['nome_paciente'] = $nome['nome'] ?? 'paciente';
+}
+function informacaoMedica()
+{
+    global $pdo;
+
+    $usuarioId = (int)($_SESSION['id_usuario'] ?? 0);
+    if (!$usuarioId) {
+        unset($_SESSION['id_medico'], $_SESSION['nome_medico']);
+        return false;
+    }
+
+    $medico = getMedicoIdByUsuarioId($pdo, $_SESSION['id_usuario']);
+    if (!$medico || empty($medico['id'])) {
+        return false;
+    }
+
+    
+
+    return true;
+}
+function uploadArquivoI()
+{
+    global $pdo;
+
+    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+        return;
+    }
+
+    try {
+        $nome = sanitizar($_POST['nome'] ?? '', 'texto');
+        $descricao = sanitizar($_POST['descricao'] ?? '', 'texto');
+        $data_emissao = trim($_POST['data_emissao'] ?? '');
+        $data_validade = trim($_POST['data_validade'] ?? '');
+        $tipo = trim($_POST['tipo'] ?? '');
+        $usuarioMedicoId = (int)($_SESSION['id_usuario'] ?? 0);
+        $paciente = (int)($_SESSION['id_paciente'] ?? 0);
+
+        if (!$usuarioMedicoId || !$paciente) {
+            throw new RuntimeException('Sessão inválida. Faça login novamente.');
+        }
+
+        if ($nome === '' || $descricao === '' || $data_emissao === '' || $tipo === '') {
+            throw new RuntimeException('Preencha todos os campos obrigatórios.');
+        }
+
+        if (!isset($_FILES['arquivo'])) {
+            throw new RuntimeException('Arquivo não enviado.');
+        }
+
+        if (empty($_SESSION['id_medico']) && !informacaoMedica()) {
+            throw new RuntimeException('Médico não encontrado no sistema. Faça login novamente.');
+        }
+
+        $medico = (int)($_SESSION['id_medico'] ?? 0);
+        if (!$medico) {
+            throw new RuntimeException('Médico não encontrado no sistema. Faça login novamente.');
+        }
+
+
+        $pdo->beginTransaction();
+
+        $id = setArquivo($pdo, $nome, $descricao, $data_emissao, $data_validade, $tipo, 'ativo', $medico, $paciente);
+        if (!$id) {
+            throw new RuntimeException('Falha ao cadastrar arquivo no banco de dados.');
+        }
+        $id = (int)$id;
+
+        $nameArquivo = pathinfo($_FILES['arquivo']['name'] ?? '', PATHINFO_FILENAME);
+        if ($nameArquivo === '') {
+            $nameArquivo = 'documento-medico';
+        }
+
+        $patientName = explode(' ', trim($_SESSION['nome_paciente'] ?? 'paciente'))[0] ?? 'paciente';
+        $uploadService = new UploadService(__DIR__ . '/../documento');
+        $filePath = $uploadService->handleUpload(
+            $_FILES['arquivo'],
+            $patientName,
+            $paciente,
+            $nameArquivo,
+            $id
+        );
+
+
+        if (!updateArquivo($pdo, $id, $filePath)) {
+            throw new RuntimeException('Erro ao atualizar o caminho do arquivo no banco de dados.');
+        }
+
+        $pdo->commit();
+
+        $_SESSION['success'] = 'Documento médico enviado com sucesso.';
+        header('Location: ../views/medPaciente.php?paciente=' . $_SESSION['id_paciente']);
+        exit();
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        } elseif (isset($id) && is_int($id)) {
+            deleteArquivo($pdo, $id);
+        }
+
+        $_SESSION['erro'][] = $e->getMessage();
+        header('Location: ../views/adicionarDocumento.php');
+        exit();
+    }
+}
+
+function mudarSenha(){
+    global $pdo;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
+    $usuario = getinformacaoUsuario($pdo, $cpf);
+    $novaSenha = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+    $hash = password_hash($novaSenha, PASSWORD_DEFAULT);
+    $resultado = updateUsuario($pdo, $usuario['id'], $hash);
+    if ($resultado === true) {
+        $_SESSION['sucesso'] = "Um email de recuperação de senha foi enviado para o seu endereço de email cadastrado.";
+    }
+    enviarEmail($usuario['email'], $novaSenha);
+    }
+    
+
+}
+
+function repositorio($id, $tipo){
+    global $pdo;
+    return getRepositorio($pdo, $id, $tipo);
+}
+
+function excluirPorId(){
+    global $pdo;
+    $id = $_GET['id'] ?? '';
+    $nivel = $_SESSION['nivel'] ?? '';
+
+    if ($nivel !== 'medico'){
+        $_SESSION['erro'][] = "Nivel não permitido.";
+        return false;
+    }
+    $dado = deletePorId($pdo, $id);
+
+    if($dado){
+        header("Location: ../views/medicamento_uso.php");
+        exit();
+    }
+
+
+}
+function MedicamentoUso(){
+    global $pdo;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nome = sanitizar($_POST['nome'] ?? '', 'texto');
+        $dosagem = trim($_POST['dosagem'] ?? '');
+        $dataInicio = trim($_POST['inicio'] ?? '');
+        $dataFim = trim($_POST['fim'] ?? '');
+        $observacao = sanitizar($_POST['obs'] ?? '', 'texto');
+        $frequencia = trim($_POST['frequencia'] ?? '');
+        $pacienteId =($_SESSION['id_paciente'] ?? 0);
+        $medicoId = ($_SESSION['id_medico'] ?? 0);
+
+        if (!$pacienteId || !$medicoId) {
+            $_SESSION['erro'][] = "Sessão inválida. Faça login novamente.";
+            return;
+        }
+
+        if ($nome === '' || $dosagem === '' || $frequencia === '') {
+            $_SESSION['erro'][] = "Preencha todos os campos obrigatórios.";
+            return;
+        }
+
+        $dado = setMedicamentoUso($pdo, $nome, $dosagem, $frequencia,$dataInicio, $dataFim, $observacao, $medicoId, $pacienteId);
+        if($dado){
+            header("Location: ../views/medicamento_uso.php");
+            exit();
+        }
+    }
+}
+function mostrarMedicamentoUso($id){
+    global $pdo;
+    if (!is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        return false;
+    }
+    return getInformacaoMedicamentoUso($pdo, $id);
+}
+
+function mostrarProblemaSaude($id){
+    global $pdo;
+    if (!is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        return false;
+    }
+    return getProblemaSaude($pdo, $id);
 }
