@@ -1,0 +1,25 @@
+.erro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 45px;
+    width: 70%;
+    background-color: #ff4949;
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    padding: 6px;
+}
+
+.sucesso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 45px;
+    width: 70%;
+    background-color: #71df5b;
+    border: 2px solid #21b603;
+    border-radius: 12px;
+    padding: 6px;
+}

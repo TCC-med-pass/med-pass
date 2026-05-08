@@ -134,11 +134,13 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                             <div class="campo">
                                 <p style="color: white;"><strong>Nome:</strong></p>
                                 <p class="texto"><?php echo $nomePciente ?></p> <!-- Nome no banco -->
+                                <span></span>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>CPF:</strong></p>
                                 <p class="texto"><?php echo $cpf ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <span></span>
                             </div>
 
                             <form method="POST">
@@ -217,6 +219,10 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                     </button>
                                 </div>
                             </form>
+
+                            <div class="campo">
+                                <span></span>
+                            </div>
                         </div>
 
                         <div class="coluna">
@@ -230,7 +236,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                             <div class="campo">
                                 <p style="color: white;"><strong>Nascimento:</strong></p>
                                 <p class="texto"><?php echo $data_nascimento ?></p> <!-- Mesma coisa pra todos os campos -->
-
+                                <span></span>
                             </div>
 
                             <div class="campo">
@@ -258,6 +264,38 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
                         </div>
                     </div>
+
+                    <div class="tabela-expandida">
+                        <h2>Doenças e comorbidades</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Comorbidade</th>
+                                    <th>Grau de Urgência</th>
+                                    <th>Observações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>doenca1</td> <!-- Aq o back coloca as informações na tabela -->
+                                    <td><p class="leve">Leve</p></td> <!-- Vou deixar feito a estilização de uma classe leve, medio e grave, mudando a cor do texto de acordo com o grau da doença -->
+                                    <td>obs.</td>
+                                </tr>
+                                <tr>
+                                    <td>doenca2</td>
+                                    <td><p class="medio">Médio</p></td>
+                                    <td>obs.</td>
+                                </tr>
+                                <tr>
+                                    <td>doenca3</td>
+                                    <td><p class="grave">Grave</p></td>
+                                    <td>obs.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="btnExpandir" type="button">Expandir</button>
                 </div>
             </div>
 

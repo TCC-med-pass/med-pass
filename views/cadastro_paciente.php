@@ -13,20 +13,22 @@ verificarLogadoTipo();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="./styles/style.css">
+     <link rel="stylesheet" href="./styles/erros.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <title>MedPass- Cadastro paciente</title>
 </head>
 <body>
 <main>
-    <div class="erro">   <!-- fronte meher  +++++++++++++++++++++++++++++++++++++++++++ -->
-        <?php mensagemErro(); ?> 
-    </div>
         <div class="container-1">
             <!-- Botão para voltar pra página anterior :) -->
             <a href="btn_cadastro.php" class="botaoVoltar">&larr; Voltar</a>
     
             <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass"></img>
             <h1>Cadastro de Paciente</h1>
+
+            <?php mensagemErro(); ?> 
+
             <form method="post" class="form-grid">
                 <!-- Divisão em colunas pra conseguir fazer igual no protótipo -->
                 <div class="coluna">
@@ -37,10 +39,22 @@ verificarLogadoTipo();
                     <input type="email" name="email" placeholder="Digite seu e-mail aqui" required>
     
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" placeholder="Digite sua senha" required>
+                    <div class="campoSenha">
+                        <input type="password" name="senha" placeholder="Digite aqui sua senha" id="senha" required>
+                        <button type="button" class="mostrarSenha" data-target="senha">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
     
                     <label for="confirmar_senha">Confirmar Senha</label>
-                    <input type="password" name="confirmar_senha" placeholder="Confirmar sua senha" required>
+                    <div class="campoSenha">
+                        <input type="password" name="confirmar_senha" placeholder="Confirme sua senha" id="confirmar_senha" required>
+                        <button type="button" class="mostrarSenha" data-target="confirmar_senha">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    
+                    
                     <p>Já possui uma conta? <strong><a href="#" class="ajuda">Faça login aqui</a></strong></p>
                     <p>Precisa de ajuda? <strong><a href="#" class="ajuda">Clique aqui!</a></strong></p>
                 </div>
@@ -68,6 +82,7 @@ verificarLogadoTipo();
             </form>
         </div>
     </main>
+    <script src="./scripts/mostrarSenha.js"></script>
 </body>
 </html>
 

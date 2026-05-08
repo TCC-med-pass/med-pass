@@ -71,7 +71,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Toggle do botão expandir
+    function toggleCardSaude() {
+        const btnExpandir = document.querySelector(".btnExpandir");
+        if (!btnExpandir) return;
+
+        const cardSaude = btnExpandir.closest(".cardSaude");
+        if (!cardSaude) return;
+
+        const toggle = () => {
+            const isExpanded = cardSaude.classList.toggle("expandido");
+            btnExpandir.textContent = isExpanded ? "Recolher" : "Expandir";
+        };
+
+        btnExpandir.addEventListener("click", toggle);
+        window.toggleCardSaude = toggle;
+    }
+
     // Chamando tudo
     editableCampos();
     atualizarIdadeInicial();
+    toggleCardSaude();
 });

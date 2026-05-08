@@ -25,8 +25,8 @@ function showMedicamento(){
 
 function mensagemErro()
 {
-    global $pdo;
     if (!empty($_SESSION['erro'])) {
+        echo "<div class='erro'>";
         echo "<ul>";
 
         foreach ($_SESSION['erro'] as $erro) {
@@ -34,6 +34,7 @@ function mensagemErro()
         }
 
         echo "</ul>";
+        echo "</div>";
         unset($_SESSION['erro']);
     }
 }
