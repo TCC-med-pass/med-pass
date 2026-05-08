@@ -168,7 +168,7 @@ function validar($pdo, $senha, $cpf)
 
 function getMedicamentoPaciente($pdo, $idPaciente)
 {
-    $sql = "SELECT nome, dosagem, frequencia FROM medicamento_em_uso WHERE fk_paciente_id = ?";
+    $sql = "SELECT medicamento_em_uso.id_medicamento as id, medicamento_em_uso.nome, medicamento_em_uso.dosagem, medicamento_em_uso.frequencia FROM medicamento_em_uso LEFT JOIN paciente on paciente.id = medicamento_em_uso.fk_paciente_id LEFT JOIN usuarios on paciente.fk_usuario_id=usuarios.id WHERE usuarios.id = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idPaciente]);
     return $stmt->fetchAll();
@@ -184,9 +184,9 @@ function setTelEmergencia($pdo, $telefone, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$telefone, $paciente_id])) {
-        echo "Contato adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Contato de Emergencia adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar contato";
+        $_SESSION['erro'][] = "Erro ao adicionar Contato de Emergencia";
     }
 }
 
@@ -242,9 +242,9 @@ function setAltura($pdo, $altura, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$altura, $paciente_id])) {
-        echo "Altura adicionada com sucesso!";
+        $_SESSION['sucesso'] = "Altura adicionada com sucesso!";
     } else {
-        echo "Erro ao adicionar altura";
+        $_SESSION['erro'][] = "Erro ao adicionar altura";
     }
 }
 
@@ -268,31 +268,27 @@ function getAlturaDataBase($pdo, $paciente_id)
 
 function setAlergia($pdo, $alergia, $paciente_id)
 {
-    $sql = "UPDATE paciente SET alergia = ? WHERE fk_usuario_id = ?";
+    $sql = "UPDATE paciente SET alergias = ? WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$alergia, $paciente_id])) {
-        echo "Alergia adicionada com sucesso!";
+        $_SESSION['sucesso'] = "Alergia adicionada com sucesso!";
     } else {
-        echo "Erro ao adicionar alergia";
+        $_SESSION['erro'][] = "Erro ao adicionar alergia";
     }
 }
 
 function getAlergiaDataBase($pdo, $paciente_id)
 {
-
-    $sql = "SELECT alergia FROM paciente WHERE fk_usuario_id = ?";
+    $sql = "SELECT alergias FROM paciente WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);
 
-    if ($stmt->execute([$paciente_id])) {
-        $alergia = $stmt->fetch(PDO::FETCH_ASSOC);
+    $alergia = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $alergia['alergia'];
-    }
-
-    return null;
+    return $alergia['alergias'] ?? null;
 }
 
 function setGenero($pdo, $genero, $paciente_id)
@@ -302,9 +298,9 @@ function setGenero($pdo, $genero, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$genero, $paciente_id])) {
-        echo "Genero adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Genero adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar gênero";
+        $_SESSION['erro'][] = "Erro ao adicionar gênero";
     }
 }
 
@@ -332,9 +328,9 @@ function  setSangue($pdo, $sangue, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$sangue, $paciente_id])) {
-        echo "Sangue adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Sangue adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar Sangue";
+        $_SESSION['erro'][] = "Erro ao adicionar Sangue";
     }
 }
 
@@ -347,7 +343,7 @@ function getSangueDataBase($pdo, $paciente_id)
     if ($stmt->execute([$paciente_id])) {
         $sangue = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $sangue['sangue'];
+        return $sangue['tipo_sanguineo'];
     }
 
     return null;
@@ -360,9 +356,9 @@ function setPeso($pdo, $peso, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$peso, $paciente_id])) {
-        echo "Peso adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Peso adicionado com sucesso!";
     } else {
-        echo "Erro ao adicionar Peso";
+        $_SESSION['erro'][] = "Erro ao adicionar Peso";
     }
 }
 
@@ -428,9 +424,39 @@ function getNumCarterinhaDataBase($pdo, $paciente_id)
 }
 
 
+
+function setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id)
+{
+    $sql = "UPDATE paciente SET historico_familiar = ? WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$historico_familiar, $paciente_id])) {
+        $_SESSION['sucesso'] = "Historico adicionado com sucesso!";
+    } else {
+        $_SESSION['erro'] = "Erro ao adicionar Histórico";
+    }
+}
+
+function getHistoricoFamiliarDataBase($pdo, $paciente_id)
+{
+    $sql = "SELECT historico_familiar FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $historico_familiar = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $historico_familiar['historico_familiar'];
+    }
+
+    return null;
+}
+
+
 function getReceitasMedicas($pdo, $id)
 {
-    $sql = "SELECT a.id_arquivos as id, a.descricao as descricao, a.data_emissao as data, usua.nome as medico FROM arquivos a LEFT JOIN medico me ON a.fk_medico_id = me.id LEFT JOIN usuarios usua ON me.fk_usuario_id = usua.id WHERE a.fk_paciente_id = ? and a.tipo = 'receitas' ORDER BY a.data_emissao;";
+    $sql = "SELECT a.id_arquivos as id, a.descricao AS descricao, a.data_emissao as data, (SELECT u.nome FROM medico m INNER JOIN usuarios u ON m.fk_usuario_id = u.id WHERE m.id = a.fk_medico_id) AS medico FROM arquivos a WHERE a.fk_paciente_id = ( SELECT p.id FROM paciente p WHERE p.fk_usuario_id = ? ) AND a.tipo = 'receitas' ORDER BY a.data_emissao";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
     return $stmt->fetchAll();
@@ -444,6 +470,91 @@ function getArquivo($pdo, $idArquivo)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+<<<<<<< HEAD
+=======
+
+function  getProblemaLeveDataBase($pdo, $paciente_id)
+{
+
+    $sql =
+        "SELECT paciente.id, problema_de_saude.*
+    FROM paciente inner join usuarios on usuarios.id = paciente.fk_usuario_id
+                  inner join problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+    WHERE usuarios.id = ?
+    and problema_de_saude.status = 'leve' ";
+
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $problema_de_saude = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($problema_de_saude) {
+            return $problema_de_saude['problema_de_saude'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
+function  getProblemaMedioDataBase($pdo, $paciente_id)
+{
+
+    $sql =
+        "SELECT paciente.id, problema_de_saude.*
+    FROM paciente inner join usuarios on usuarios.id = paciente.fk_usuario_id
+                  inner join problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+    WHERE usuarios.id = ?
+    and problema_de_saude.status = 'medio' ";
+
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $problema_de_saude = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($problema_de_saude) {
+            return $problema_de_saude['problema_de_saude'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
+
+function  getProblemaGraveDataBase($pdo, $paciente_id)
+{
+
+    $sql =
+        "SELECT paciente.id, problema_de_saude.*
+    FROM paciente INNER JOIN usuarios ON usuarios.id = paciente.fk_usuario_id
+                  INNER JOIN problema_de_saude ON paciente.id = problema_de_saude.fk_paciente
+    WHERE usuarios.id = ?
+    AND problema_de_saude.status = 'grave'";
+
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id])) {
+        $problema_de_saude = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($problema_de_saude) {
+            return $problema_de_saude['problema_de_saude'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+>>>>>>> main
 function getPacienteMedicos($pdo, $idMedico)
 {
     $sql = "SELECT DADOSPACIENTE.nome,
@@ -451,6 +562,7 @@ DADOSPACIENTE.data_nascimento,
 DADOSPACIENTE.tipo,
 DADOSPACIENTE.numero_de_carteirinha,
 DADOSPACIENTE.id
+<<<<<<< HEAD
 FROM medico INNER JOIN usuarios on medico.fk_usuario_id = usuarios.id
             INNER JOIN (SELECT problema_de_saude.fk_medico, usuarios.nome, paciente.data_nascimento, paciente.id, paciente.numero_de_carteirinha,
                         MAX(CASE
@@ -461,6 +573,17 @@ FROM medico INNER JOIN usuarios on medico.fk_usuario_id = usuarios.id
                             END) as tipo
                         FROM usuarios INNER JOIN paciente on usuarios.id = paciente.fk_usuario_id
                                       INNER JOIN problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+=======
+FROM medico LEFT JOIN usuarios on medico.fk_usuario_id = usuarios.id
+            LEFT JOIN (SELECT problema_de_saude.fk_medico, usuarios.nome, paciente.data_nascimento, paciente.id, paciente.numero_de_carteirinha,
+                        MAX(CASE
+                            WHEN problema_de_saude.tipo = 'grave' THEN 3
+                            WHEN problema_de_saude.tipo = 'medio' THEN 2
+                            WHEN problema_de_saude.tipo = 'leve' THEN 1
+                            END) as tipo
+                        FROM usuarios LEFT JOIN paciente on usuarios.id = paciente.fk_usuario_id
+                                      LEFT JOIN problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+>>>>>>> main
                         GROUP BY problema_de_saude.fk_medico, usuarios.nome, paciente.data_nascimento, paciente.numero_de_carteirinha,paciente.id) as DADOSPACIENTE
                         on DADOSPACIENTE.fk_medico = medico.id
 WHERE usuarios.id = ?
@@ -470,6 +593,7 @@ ORDER BY DADOSPACIENTE.nome";
     return $stmt->fetchAll();
 }
 
+<<<<<<< HEAD
 function getBusca($pdo, $item){
 $pesquisa = "%$item%";
     $sql ="SELECT paciente.id as id, usuarios.nome as nome, paciente.data_nascimento as data_nascimento, paciente.numero_de_carteirinha as numero_de_carteirinha,  MAX(CASE
@@ -480,6 +604,18 @@ $pesquisa = "%$item%";
                             END) as tipo
 FROM paciente INNER JOIN usuarios on paciente.fk_usuario_id = usuarios.id
 			  INNER JOIN problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+=======
+function getBusca($pdo, $item)
+{
+    $pesquisa = "%$item%";
+    $sql = "SELECT paciente.id as id, usuarios.nome as nome, paciente.data_nascimento as data_nascimento, paciente.numero_de_carteirinha as numero_de_carteirinha,  MAX(CASE
+                            WHEN problema_de_saude.tipo = 'grave' THEN 3
+                            WHEN problema_de_saude.tipo = 'medio' THEN 2
+                            WHEN problema_de_saude.tipo = 'leve' THEN 1
+                            END) as tipo
+FROM paciente LEFT JOIN usuarios on paciente.fk_usuario_id = usuarios.id
+			  LEFT JOIN problema_de_saude on paciente.id = problema_de_saude.fk_paciente
+>>>>>>> main
               WHERE (usuarios.nome LIKE ?
                      OR paciente.numero_de_carteirinha LIKE ?)
               GROUP BY  paciente.id, usuarios.nome, paciente.data_nascimento, paciente.numero_de_carteirinha
@@ -507,6 +643,7 @@ function getMedicoIdByUsuarioId($pdo, $usuarioId)
     return null;
 }
 
+<<<<<<< HEAD
 function setArquivo($pdo, $nome, $descricao, $data_emissao, $data_validade, $tipo, $status, $medico, $paciente){
     try{
     if (empty($data_validade)) {
@@ -529,17 +666,48 @@ return $id;
 }
 
 function getinformacaoPaciente($pdo, $id){
+=======
+function setArquivo($pdo, $nome, $descricao, $data_emissao, $data_validade, $tipo, $status, $medico, $paciente)
+{
+    try {
+        if (empty($data_validade)) {
+            $data_validade = $data_emissao;
+        }
+
+        $sql = "INSERT INTO arquivos (nome, caminho, descricao, data_emissao, data_validade, tipo, status, fk_medico_id, fk_paciente_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $sucesso = $stmt->execute([$nome, '', $descricao, $data_emissao, $data_validade, $tipo, $status, $medico, $paciente]);
+        if (!$sucesso) {
+            throw new Exception("Erro ao cadastrar arquivo.");
+        }
+        $id = $pdo->lastInsertId();
+        return $id;
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = "Erro ao cadastrar arquivo: " . $e->getMessage();
+        return false;
+    }
+}
+
+function getinformacaoPaciente($pdo, $id)
+{
+>>>>>>> main
     $sql = "SELECT usuarios.nome as nome FROM paciente INNER JOIN usuarios on paciente.fk_usuario_id = usuarios.id WHERE paciente.id = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
     return $stmt->fetch();
 }
 
+<<<<<<< HEAD
 function updateArquivo($pdo, $id, $caminho){
+=======
+function updateArquivo($pdo, $id, $caminho)
+{
+>>>>>>> main
     if (!$id || !is_numeric($id)) {
         $_SESSION['erro'][] = "ID inválido.";
         exit;
     }
+<<<<<<< HEAD
     try{
         $sql = "UPDATE arquivos SET caminho = ? WHERE  id_arquivos = ? ";
     $stmt = $pdo->prepare($sql);
@@ -549,22 +717,149 @@ function updateArquivo($pdo, $id, $caminho){
     }
     return true;
     }catch(Exception $e){
+=======
+    try {
+        $sql = "UPDATE arquivos SET caminho = ? WHERE  id_arquivos = ? ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$caminho, $id]);
+        if ($stmt->rowCount() === 0) {
+            throw new Exception("Acesso negado ou aula não encontrada.");
+        }
+        return true;
+    } catch (Exception $e) {
+>>>>>>> main
         $_SESSION['erro'][] = $e->getMessage();
         return false;
     }
 }
 
+<<<<<<< HEAD
 function deleteArquivo($pdo, $id){
     try {
          $stmt = $pdo->prepare("DELETE FROM arquivos WHERE id_arquivos = ?");
+=======
+function deleteArquivo($pdo, $id)
+{
+    try {
+        $stmt = $pdo->prepare("DELETE FROM arquivos WHERE id_arquivos = ?");
+>>>>>>> main
         $stmt->execute([$id]);
 
         if ($stmt->rowCount() === 0) {
             throw new Exception("Arquivo não encontrado.");
         }
         return true;
+<<<<<<< HEAD
     }catch (Exception $e) {
+=======
+    } catch (Exception $e) {
+>>>>>>> main
         $_SESSION['erro'][] = $e->getMessage();
         return false;
     }
 }
+<<<<<<< HEAD
+=======
+
+function getinformacaoUsuario($pdo, $cpf)
+{
+    $sql = "SELECT id, email FROM usuarios WHERE cpf = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$cpf]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$usuario) {
+        $_SESSION['erro'][] = "CPF não encontrado.";
+        return false;
+    }
+    return $usuario;
+}
+
+function updateUsuario($pdo, $id, $senha)
+{
+    if (!$id || !is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        exit;
+    }
+    try {
+        $sql = "UPDATE usuarios SET senha=? WHERE id=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$senha, $id]);
+        if ($stmt->rowCount() > 0) {
+            return true;
+        } else {
+            throw new Exception('Usuário não encontrado ou senha igual.');
+        }
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = "Erro ao atualizar senha: " . $e->getMessage();
+        return false;
+    }
+}
+
+function getRepositorio($pdo, $id, $tipo)
+{
+    $sql = "SELECT a.id_arquivos as id, a.nome AS nome, a.descricao AS descricao, a.data_emissao as data FROM arquivos a WHERE a.fk_paciente_id = ? AND a.tipo = ? ORDER BY a.data_emissao";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id, $tipo]);
+    return $stmt->fetchAll();
+}
+
+function getMedicamentoMedico($pdo, $idPaciente)
+{
+    $sql = "SELECT id_medicamento as id, nome, dosagem, frequencia FROM medicamento_em_uso WHERE fk_paciente_id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idPaciente]);
+    return $stmt->fetchAll();
+}
+
+function deletePorId($pdo, $id){
+    if (!is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        return false;
+    }
+    try {
+        $stmt = $pdo->prepare("DELETE FROM medicamento_em_uso WHERE id_medicamento = ?");
+        $stmt->execute([$id]);
+
+        if ($stmt->rowCount() === 0) {
+            throw new Exception("Arquivo não encontrado.");
+        }
+        return true;
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = $e->getMessage();
+        return false;
+    }
+
+}
+
+function  setMedicamentoUso($pdo, $nome, $dosagem, $frequencia,$dataInicio, $dataFim, $observacao, $medicoId, $pacienteId){
+    if (!is_numeric($medicoId) || !is_numeric($pacienteId)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        return false;
+    }
+    try{
+        $sql = "INSERT INTO medicamento_em_uso (nome, dosagem, frequencia, data_inicio, data_fim, observacao, fk_medico_id, fk_paciente_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$nome, $dosagem, $frequencia, $dataInicio, $dataFim, $observacao, $medicoId, $pacienteId]);
+        return true;
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = "Erro ao cadastrar medicamento em uso: " . $e->getMessage();
+        return false;
+    }
+}
+
+function getInformacaoMedicamentoUso($pdo, $id)
+{
+    $sql = "SELECT uso.nome as nome, uso.dosagem as dosagem, uso.frequencia as frequencia, uso.data_inicio as dataInicio, uso.data_fim as dataFim, uso.observacao as observacao, usu.nome as medico from medicamento_em_uso uso INNER JOIN medico medi on uso.fk_medico_id = medi.id INNER JOIN usuarios usu on medi.fk_usuario_id = usu.id WHERE uso.id_medicamento = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+    return $stmt->fetchAll();
+}
+
+function getProblemaSaude($pdo, $id){
+    $sql = "SELECT id_problema_de_saude, nome, status, tipo, data FROM problema_de_saude WHERE fk_paciente = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+    return $stmt->fetchAll();
+}
+>>>>>>> main

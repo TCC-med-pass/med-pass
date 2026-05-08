@@ -4,7 +4,10 @@ require_once '../controllers/UserControll.php';
 require_once './components/UserComponents.php';
 
 
-validateUser();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    validateUser();
+}
+
 verificarLogadoTipo();
 
 ?>

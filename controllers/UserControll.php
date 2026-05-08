@@ -9,6 +9,10 @@ require __DIR__ . "/../models/UserModel.php";
 require __DIR__ . '/../config/conexao.php';
 require __DIR__ . '/security.php';
 require_once __DIR__ . '/../servico/chamados/guardar_arquivo.php';
+<<<<<<< HEAD
+=======
+require_once __DIR__ . '/../servico/chamados/enviar_email.php';
+>>>>>>> main
 
 // function verificarConexao(){
 
@@ -71,6 +75,7 @@ function getUser()
 
             validarSenha($senha);
             confirmarSenha($senha, $confirmar_senha);
+            validarCPF($cpf);
 
 
             if (empty($_SESSION['erro'])) {
@@ -95,6 +100,7 @@ function getUser()
 
             validarSenha($senha);
             confirmarSenha($senha, $confirmar_senha);
+            validarCPF($cpf);
 
             if (empty($_SESSION['erro'])) {
                 setMedico($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $telefone, $especialidade, $genero, $nivel);
@@ -121,10 +127,18 @@ function validateUser()
     }
 }
 
-function medicamento($id)
+function medicamento($id, $tipo)
 {
     global $pdo;
-    return getMedicamentoPaciente($pdo, $id);
+    if($tipo === 'paciente'){
+        return getMedicamentoPaciente($pdo, $id);
+    }elseif ($tipo === 'medico') {
+        return getMedicamentoMedico($pdo, $id);
+    }
+    else {
+        $_SESSION['erro'][] = "usuário não encontrado";
+    }
+    
 }
 
 
@@ -135,7 +149,7 @@ function salvarTelEmergencia()
     if (!isset($_SESSION['id_usuario'])) {
         die("Usuário não autenticado");
     }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['tel_emergencia'] ?? '') === 'salvar') {
         $telefone = $_POST['telefone'] ?? null;
         $paciente_id = $_SESSION['id_usuario'];
         if ($telefone) {
@@ -148,13 +162,14 @@ function showTelEmergencia()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $telefoneDeEmergencia = getTelEmergenciaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $telefoneDeEmergencia;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getTelEmergenciaDataBase($pdo, $paciente_id);
 }
-
-$telefoneDeEmergencia = showTelEmergencia(); // variavel que deve ser usada no front para mostrar o Telefone
 
 
 
@@ -162,25 +177,30 @@ function showNome()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $nomePaciente = getNomeDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $nomePaciente;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getNomeDataBase($pdo, $paciente_id);
 }
 
-$nomePciente = showNome(); // variavel que deve ser usada no front para mostrar o Nome
 
 function showCPF()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $cpf = getCPFDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $cpf;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getCPFDataBase($pdo, $paciente_id);
 }
 
-$cpf = showCPF(); // variavel que deve ser usada no front para mostrar o CPF
+
 
 
 
@@ -193,7 +213,7 @@ function salvarAltura()
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $altura = $_POST['altura'] ?? null;
         $paciente_id = $_SESSION['id_usuario'];
-        if ($altura) {
+        if ($altura !== null && $altura !== '') {
             setAltura($pdo, $altura, $paciente_id);
         }
     }
@@ -203,13 +223,14 @@ function showAltura()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $altura = getAlturaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $altura;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getAlturaDataBase($pdo, $paciente_id);
 }
-
-$altura = showAltura(); // variavel que deve ser usada no front para mostrar a altura
 
 
 
@@ -232,13 +253,16 @@ function showAlergia()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $alergia = getAlergiaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $alergia;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getAlergiaDataBase($pdo, $paciente_id);
 }
 
-$alergia = showAlergia(); // variavel que deve ser usada no front para mostrar a alergia
+
 
 
 
@@ -261,13 +285,15 @@ function showGenero()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $genero = getGeneroDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $genero;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getGeneroDataBase($pdo, $paciente_id);
 }
 
-$genero = showGenero(); // variavel que deve ser usada no front para mostrar o genero
 
 
 function salvarSangue()
@@ -289,13 +315,16 @@ function showSangue()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $sangue = getSangueDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $sangue;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getSangueDataBase($pdo, $paciente_id);
 }
 
-$sangue = showSangue(); // variavel que deve ser usada no front para mostrar o sangue
+
 
 
 function salvarPeso()
@@ -319,39 +348,45 @@ function showPeso()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $peso = getPesoDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $peso;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getPesoDataBase($pdo, $paciente_id);
 }
 
-$peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
 
 
 function showIdade()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $idade = getIdadeDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $idade;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getIdadeDataBase($pdo, $paciente_id);
 }
-
-$idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
 
 
 function showDataNasc()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $data_nascimento = getDataNascDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $data_nascimento;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getDataNascDataBase($pdo, $paciente_id);
 }
 
-$data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
+
 
 
 
@@ -359,13 +394,46 @@ function showNumCarterinha()
 {
     global $pdo;
 
-    $paciente_id = $_SESSION['id_usuario'];
-    $numero_de_carteirinha = getNumCarterinhaDataBase($pdo, $paciente_id);
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
 
-    return $numero_de_carteirinha;
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getNumCarterinhaDataBase($pdo, $paciente_id);
 }
 
-$numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
+
+
+function salvarHistoricoFamiliar()
+{
+
+    global $pdo;
+    if (!isset($_SESSION['id_usuario'])) {
+        die("Usuário não autenticado");
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $historico_familiar = $_POST['historico_familiar'] ?? null;
+        $paciente_id = $_SESSION['id_usuario'];
+        if ($historico_familiar) {
+            setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id);
+        }
+    }
+}
+
+function showHistoricoFamiliar()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getHistoricoFamiliarDataBase($pdo, $paciente_id);
+}
+
 
 
 
@@ -381,14 +449,14 @@ function arquivo()
     global $pdo;
     $id = trim($_GET['arquivo']);
     $dados = getArquivo($pdo, $id);
-    $arquivo = $dados['caminho'];
+    $caminhoRelativo = str_replace('\\', '/', $dados['caminho']);
+    $arquivo = realpath(__DIR__ . '/../documento/' . $caminhoRelativo);
 
     // Segurança
-    if (!file_exists($arquivo)) {
+    if (!$arquivo || !file_exists($arquivo)) {
         http_response_code(404);
-        die("Arquivo não encontrado.");
+        $_SESSION['erro'][] = "Arquivo não encontrado.";
     }
-
 
     // Cabeçalhos corretos para exibir no navegador
     header("Content-Type: application/pdf");
@@ -401,6 +469,52 @@ function arquivo()
     readfile($arquivo);
     exit;
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+function showProblemaLeve()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getProblemaLeveDataBase($pdo, $paciente_id);
+}
+
+function showProblemaMedio()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getProblemaMedioDataBase($pdo, $paciente_id);
+}
+
+function showProblemaGrave()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getProblemaGraveDataBase($pdo, $paciente_id);
+}
+
+>>>>>>> main
 function buscarPaciente($item)
 {
     global $pdo;
@@ -451,7 +565,11 @@ function uploadArquivoI()
     }
 
     try {
+<<<<<<< HEAD
         $nome = sanitizar($_POST['nome'] ?? '', 'nome');
+=======
+        $nome = sanitizar($_POST['nome'] ?? '', 'texto');
+>>>>>>> main
         $descricao = sanitizar($_POST['descricao'] ?? '', 'texto');
         $data_emissao = trim($_POST['data_emissao'] ?? '');
         $data_validade = trim($_POST['data_validade'] ?? '');
@@ -526,3 +644,93 @@ function uploadArquivoI()
         exit();
     }
 }
+<<<<<<< HEAD
+=======
+
+function mudarSenha(){
+    global $pdo;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
+    $usuario = getinformacaoUsuario($pdo, $cpf);
+    $novaSenha = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+    $hash = password_hash($novaSenha, PASSWORD_DEFAULT);
+    $resultado = updateUsuario($pdo, $usuario['id'], $hash);
+    if ($resultado === true) {
+        $_SESSION['sucesso'] = "Um email de recuperação de senha foi enviado para o seu endereço de email cadastrado.";
+    }
+    enviarEmail($usuario['email'], $novaSenha);
+    }
+    
+
+}
+
+function repositorio($id, $tipo){
+    global $pdo;
+    return getRepositorio($pdo, $id, $tipo);
+}
+
+function excluirPorId(){
+    global $pdo;
+    $id = $_GET['id'] ?? '';
+    $nivel = $_SESSION['nivel'] ?? '';
+
+    if ($nivel !== 'medico'){
+        $_SESSION['erro'][] = "Nivel não permitido.";
+        return false;
+    }
+    $dado = deletePorId($pdo, $id);
+
+    if($dado){
+        header("Location: ../views/medicamento_uso.php");
+        exit();
+    }
+
+
+}
+function MedicamentoUso(){
+    global $pdo;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nome = sanitizar($_POST['nome'] ?? '', 'texto');
+        $dosagem = trim($_POST['dosagem'] ?? '');
+        $dataInicio = trim($_POST['inicio'] ?? '');
+        $dataFim = trim($_POST['fim'] ?? '');
+        $observacao = sanitizar($_POST['obs'] ?? '', 'texto');
+        $frequencia = trim($_POST['frequencia'] ?? '');
+        $pacienteId =($_SESSION['id_paciente'] ?? 0);
+        $medicoId = ($_SESSION['id_medico'] ?? 0);
+
+        if (!$pacienteId || !$medicoId) {
+            $_SESSION['erro'][] = "Sessão inválida. Faça login novamente.";
+            return;
+        }
+
+        if ($nome === '' || $dosagem === '' || $frequencia === '') {
+            $_SESSION['erro'][] = "Preencha todos os campos obrigatórios.";
+            return;
+        }
+
+        $dado = setMedicamentoUso($pdo, $nome, $dosagem, $frequencia,$dataInicio, $dataFim, $observacao, $medicoId, $pacienteId);
+        if($dado){
+            header("Location: ../views/medicamento_uso.php");
+            exit();
+        }
+    }
+}
+function mostrarMedicamentoUso($id){
+    global $pdo;
+    if (!is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        return false;
+    }
+    return getInformacaoMedicamentoUso($pdo, $id);
+}
+
+function mostrarProblemaSaude($id){
+    global $pdo;
+    if (!is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        return false;
+    }
+    return getProblemaSaude($pdo, $id);
+}
+>>>>>>> main
