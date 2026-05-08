@@ -114,6 +114,6 @@
 
   </main>
 
-  <script src="novo-prontuario.js"></script>
+  <script src="novo_prontuario.js"></script>
 </body>
 </html>
