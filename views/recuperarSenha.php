@@ -21,12 +21,13 @@ require_once './components/UserComponents.php';
             <h1>MedPass- Recuperar Senha</h1>
 
             <?php mensagemSucesso(); ?>
+            <?php mensagemErro(); ?>
             
             <form method="post">
                 <label for="cpf">CPF</label>
                 <input name="cpf" type="text" placeholder='Digite seu CPF aqui. Não utilize "." e "-"' required> <!-- Troquei os campos cpf de todos os arquivos de text pra number pro cara nao conseguir colocar letra no campo (se precisar troca de volta pra text) -->
 
-                <button type="submit" class="btn" style="margin-top: 20px;">Redefinir minha senha</button>
+                <button type="submit" class="btn" style="margin-top: 20px;">Enviar código de recuperação</button>
             </form>
         </div>
     </main>

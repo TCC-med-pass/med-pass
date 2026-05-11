@@ -39,6 +39,14 @@ function mensagemErro()
     }
 }
 
+function mensagemSucesso() {
+    if(!empty($_SESSION['sucesso'])) {
+        echo "<div class='sucesso'>";
+        echo "<p>" . $_SESSION['sucesso'] . "</p>";
+        echo "</div>";
+    }
+}
+
 function showReceitas(){
     $id = $_SESSION['id_usuario'];
     $dado = receitas($id);

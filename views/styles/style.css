@@ -427,6 +427,11 @@ body {
   height: 50px; /* Mesma altura do input */
 }
 
+.campoSenha80 {
+  width: 80%;
+  margin: 0 auto 20px;
+}
+
 .campoSenhaLogin {
   position: relative;
   width: 50%;
