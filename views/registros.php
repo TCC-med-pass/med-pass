@@ -25,7 +25,6 @@ if ($titulo == 'Prontuário') {
 $titulo = showTitulo();
 $data_emissao =  showDataEmissao();
 $nomePciente = showNome();
-$nomeMedico = showNomeMedico();
 $numero_de_carteirinha = showNumCarterinha();
 
 
