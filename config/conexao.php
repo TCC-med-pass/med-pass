@@ -3,7 +3,7 @@
 $host = "localhost";
 $db   = "med_pass";
 $user = "root";
-$pass = "root";
+$pass = "";
 $charset = "utf8mb4";
 
 $conexao = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -14,10 +14,6 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
-
 } catch (PDOException $e) {
     die("Erro na conexão: " . $e->getMessage());
 }
-
-?>

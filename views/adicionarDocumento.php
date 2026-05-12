@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novo Prontuário – MedPass</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
+    <link rel="stylesheet" href="./styles/adicionarDocument.css" />
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <a href="#" class="topbar-icon">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
+        <a href="#" class="topbar-icon">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+    </div>
+
+    <!-- SUBHEADER -->
+    <div class="subheader">
+        <a class="back-btn" href="#" id="btnVoltar">
+            <i class="fa-solid fa-chevron-left"></i> Voltar
+        </a>
+        <div class="subheader-title">Novo Prontuário</div>
+        <div class="subheader-spacer"></div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- FORM CARD -->
+        <div class="card">
+            <h2>Novo Prontuário</h2>
+
+            <form id="formProntuario" method="post" enctype="multipart/form-data" novalidate>
+
+                <div class="row">
+                    <div class="field">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Nome do prontuário" />
+                    </div>
+                    <!-- <div class="field">
+            <label for="status">Status:</label>
+            <input type="text" id="status" name="status" placeholder="Status" />
+          </div> -->
+                </div>
+
+                <div class="row">
+                    <div class="field">
+                        <label for="dataEmissao">Data Emissão:</label>
+                        <input type="text" id="dataEmissao" name="dataEmissao" placeholder="00/00/0000" maxlength="10" />
+                    </div>
+                    <div class="field">
+                        <label for="dataValidade">Data Validade:</label>
+                        <input type="text" id="dataValidade" name="dataValidade" placeholder="00/00/0000" maxlength="10" />
+                    </div>
+                </div>
+
+                <!-- CAMPO TIPO (CAIXA DE SELEÇÃO) -->
+                <div class="row">
+                    <div class="field full">
+                        <label for="tipo">Tipo:</label>
+                        <select id="tipo" name="tipo">
+                            <option value="" disabled selected>Selecione o tipo</option>
+                            <option value="consulta">Consulta</option>
+                            <option value="exame">Exame</option>
+                            <option value="laudo">Laudo</option>
+                            <option value="receita">Receita</option>
+                            <option value="internacao">Internação</option>
+                            <option value="cirurgia">Cirurgia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="field full">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" name="descricao" rows="4" placeholder="Descrição do prontuário"></textarea>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Arquivo:</label>
+                    <div class="upload-box" id="uploadBox">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                        <span id="uploadLabel">Anexar Documentos Médicos</span>
+                        <input type="file" id="arquivo" name="arquivo" accept=".pdf,.jpg,.jpeg,.png" hidden />
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-cancel" id="btnCancelar">Cancelar</button>
+                    <button type="submit" class="btn btn-send">Enviar</button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- BOTTOM ROW -->
+        <div class="bottom-row">
+            <div class="bottom-spacer"></div>
+
+            <!-- ── PATIENT BADGE ── -->
+            <div class="patient-badge">
+                <div class="badge-label">Paciente:</div>
+                <div class="badge-name">Ana Beatriz Pereira Costa</div>
+                <div class="badge-severity">Comorbidade grave</div>
+            </div>
+
+    </main>
+
+    <script src="adicionarDocument.js"></script>
+</body>
+
+</html>

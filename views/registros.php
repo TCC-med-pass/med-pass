@@ -4,27 +4,26 @@
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
-$titulo = $_GET['titulo'] ?? 'Home'; // deixei 'Home' como padrao caso a variavel estiver vazia
+/*$titulo = $_GET['titulo'] ?? 'Home'; // deixei 'Home' como padrao caso a variavel estiver vazia
 
 
 
 if ($titulo == 'Prontuário') {
     $data_emissao = showDataEmissaoProntuario();
-}elseif ($titulo == 'Cirurgia') {
+} elseif ($titulo == 'Cirurgia') {
     $data_emissao = showDataEmissaoCirurgia();
-}elseif ($titulo == 'Exames') {
+} elseif ($titulo == 'Exames') {
     $data_emissao = showDataEmissaoExames();
-}elseif ($titulo == 'Atestados/Declaração') {
+} elseif ($titulo == 'Atestados/Declaração') {
     $data_emissao = showDataEmissaoAtestado();
-}elseif ($titulo == 'Laudo Médico') {
+} elseif ($titulo == 'Laudo Médico') {
     $data_emissao = showDataEmissaoLaudo();
-}
+}*/
 
 
 
-
-
-
+$titulo = showTitulo();
+$data_emissao =  showDataEmissao();
 $nomePciente = showNome();
 $nomeMedico = showNomeMedico();
 $numero_de_carteirinha = showNumCarterinha();
@@ -107,7 +106,7 @@ $numero_de_carteirinha = showNumCarterinha();
         <section class="cards">
             <div class="card">
                 <h3>TESTE</h3> <!-- nome do medico/paciente dependendo da tela -->
-                <p><strong>Data emissão: </strong> data aqui</p> <!-- data da emissão (tem em todos) -->
+                <p><strong>Data emissão: </strong> <?php $data_emissao ?></p> <!-- data da emissão (tem em todos) -->
 
                 <button>Abrir</button>
             </div>
