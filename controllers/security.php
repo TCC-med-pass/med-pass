@@ -40,8 +40,6 @@ function sanitizar(string $dado, string $tipo = 'texto'): string
 
     return $dado;
 }
-
-
 function validarSenha(string $senha): void
 {
     if (strlen($senha) < 6)
