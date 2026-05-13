@@ -17,7 +17,7 @@ body {
 main {
     width: 100%;
     min-height: 100vh;
-    background: url('../views/pictures/fundo.svg') no-repeat center center/cover;
+    background: url('../pictures/fundo.svg') no-repeat center center/cover;
     /* centralizar o .container */
     display: flex;
     align-items: center;

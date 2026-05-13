@@ -2,18 +2,31 @@
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['tel_emergencia'] ?? '') === 'salvar') {
- salvarTelEmergencia();
-}elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['Altura'] ?? '') === 'salvar'){
-    salvarAltura();
-}elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['Alergia'] ?? '') === 'salvar'){
-    salvarAlergia();
-}elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['Genero'] ?? '') === 'salvar'){
-    salvarGenero();
-}elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['Peso'] ?? '') === 'salvar'){
-    salvarPeso();
-}
+$variaveldeteste = 0;
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (isset($_POST['tel_emergencia'])) {
+        salvarTelEmergencia();
+    }
+
+    if (isset($_POST['Altura'])) {
+        salvarAltura();
+    }
+
+    if (isset($_POST['Alergia'])) {
+        salvarAlergia();
+    }
+
+    if (isset($_POST['Genero'])) {
+        salvarGenero();
+    }
+
+    if (isset($_POST['Peso'])) {
+        salvarPeso();
+    }
+}
 
 
 
@@ -28,7 +41,7 @@ $alergia = showAlergia(); // variavel que deve ser usada no front para mostrar a
 $genero = showGenero(); // variavel que deve ser usada no front para mostrar o genero
 $sangue = showSangue(); // variavel que deve ser usada no front para mostrar o sangue
 $peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
-// $idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
+$idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
 $data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
 $numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
 $historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
@@ -42,6 +55,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,6 +63,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <title>Página do Paciente- Início</title>
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -71,18 +86,22 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
     <nav id="sidebar">
         <div class="contSidebar">
-            <h1><?php echo $nomePciente ?></h1> 
+            <h1><?php echo $nomePciente ?></h1>
         </div>
 
-        <a href="" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-        <a href="" class="opcao">Cirurgia</a>
-        <a href="" class="opcao">Exames</a>
-        <a href="" class="opcao">Atestados/Declaração</a>
-        <a href="" class="opcao">Laudo Médico</a>
+        <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+        <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+        <a href="registros.php?titulo=exames" class="opcao">Exames</a>
+        <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+        <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
 
         <div class="contSidebar">
-            <a href="" class="config"><h3>Ajuda</h3></a>
-            <a href="" class="config"><h3>Configurações</h3></a>
+            <a href="" class="config">
+                <h3>Ajuda</h3>
+            </a>
+            <a href="" class="config">
+                <h3>Configurações</h3>
+            </a>
         </div>
     </nav>
 
@@ -99,7 +118,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                     <div class="contTexto">
                         <!-- grid pra fazer as colunas com as informações -->
                         <div class="coluna">
-                            <form method="POST">
+
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nome:</strong></p>
@@ -111,89 +130,96 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                 <p class="texto"><?php echo $cpf ?></p> <!-- Mesma coisa pra todos os campos -->
                             </div>
 
-                            <div class="campo">
-                                <p style="color: white;"><strong>Altura:</strong></p>
-                                <p class="texto"><?php echo $altura ?></p> <!-- Mesma coisa pra todos os campos -->
-                                <input name="altura" class="input hidden" type="text" value="" placeholder="Ex: 1,80">
-                                <button type="button" class="editar">🖉</button>
-                                <button class="salvar hidden"  type="submit" name="Altura" value="salvar">✔</button>
-                            </div>
+                            <form method="POST">
+                                <div class="campo">
+                                    <p style="color: white;"><strong>Altura:</strong></p>
+                                    <p class="texto"><?php echo $altura ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <input name="altura" class="input hidden" type="text" placeholder="Ex: 1,80" required>
+                                    <button type="button" class="editar">🖉</button>
+                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">✔</button>
+                                </div>
+                            </form>
 
-                            <div class="campo">
-                                <p style="color: white;"><strong>Alergia:</strong></p>
-                                <p class="texto"><?php echo $alergia ?></p> <!-- Mesma coisa pra todos os campos -->
-                                <input name="alergia" class="input hidden" type="text" value="" placeholder="Ex: Amendoim">
-                                <button type="button" class="editar">🖉</button>
-                                <button class="salvar hidden"  type="submit" name="Alergia" value="salvar">✔</button>
-                            </div>
+                            <form method="POST">
+                                <div class="campo">
+                                    <p style="color: white;"><strong>Alergia:</strong></p>
+                                    <p class="texto"><?php echo $alergia ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <input name="alergia" class="input hidden" type="text" placeholder="Ex: Amendoim">
+                                    <button type="button" class="editar">🖉</button>
+                                    <button class="salvar hidden" type="submit" name="Alergia" value="salvar">✔</button>
+                                </div>
+                            </form>
                         </div>
 
                         <div class="coluna">
+                            <form method="POST">
+                                <div class="campo">
+                                    <p style="color: white;"><strong>Gênero:</strong></p>
+                                    <p class="texto"><?php echo $genero ?></p> <!-- Mesma coisa pra todos os campos -->
 
-                            <div class="campo">
-                                <p style="color: white;"><strong>Gênero:</strong></p>
-                                <p class="texto"><?php echo $genero ?></p> <!-- Mesma coisa pra todos os campos -->
-                                
-                                 <select  class="input hidden" name="genero" required>
-                                    <option value="">Selecione seu gênero</option>
-                                    <option value="m">Masculino</option>
-                                    <option value="f">Feminino</option>
-                                    <option value="i">Indefinido</option>
-                                </select>
-                                <button class="editar" type="button">🖉</button>
-                                <button class="salvar hidden"  type="submit" name="Genero" value="salvar">✔</button>
-                            </div>
-                            
+                                    <select class="input hidden" name="genero" required>
+                                        <option value="">Selecione seu gênero</option>
+                                        <option value="m">Masculino</option>
+                                        <option value="f">Feminino</option>
+                                        <option value="i">Indefinido</option>
+                                    </select>
+                                    <button class="editar" type="button">🖉</button>
+                                    <button class="salvar hidden" type="submit" name="Genero" value="salvar">✔</button>
+                                </div>
+                            </form>
+
                             <div class="campo">
                                 <p style="color: white;"><strong>Sangue:</strong></p>
                                 <p class="texto"><?php echo $sangue ?></p> <!-- Mesma coisa pra todos os campos -->
-                                
-                            </div>
 
-                            <div class="campo">
-                                <p style="color: white;"><strong>Peso:</strong></p>
-                                <p class="texto"><?php echo $peso ?></p> <!-- Mesma coisa pra todos os campos -->
-                                <input class="input hidden" type="text" value="" name="peso" placeholder="Ex: 80Kg">
-                                <button type="button" class="editar">🖉</button>
-                                <button class="salvar hidden"  type="submit" name="Peso" value="salvar">✔</button>
                             </div>
+                            <form method="POST">
+                                <div class="campo">
+                                    <p style="color: white;"><strong>Peso:</strong></p>
+                                    <p class="texto"><?php echo $peso ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <input class="input hidden" type="text" value="" name="peso" placeholder="Ex: 80Kg">
+                                    <button type="button" class="editar">🖉</button>
+                                    <button class="salvar hidden" type="submit" name="Peso" value="salvar">✔</button>
+                                </div>
+                            </form>
                         </div>
 
                         <div class="coluna">
-                            
+
                             <div class="campo">
                                 <p style="color: white;"><strong>Idade:</strong></p>
-                                <p class="texto idade">TESTE</p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
+                                <p class="texto idade"><?php echo $idade ?></p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
                                 <span></span> <!-- ta aq so pro flex jogar o 30 no meio -->
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nascimento:</strong></p>
                                 <p class="texto"><?php echo $data_nascimento ?></p> <!-- Mesma coisa pra todos os campos -->
-                
+
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>N Carteirinha:</strong></p>
                                 <p class="texto"><?php echo $numero_de_carteirinha ?></p> <!-- Mesma coisa pra todos os campos -->
-                               
+
                             </div>
 
+                            <form method="POST">
+                                <div class="campo">
+                                    <p style="color: white;"><strong>Telefone de Emergencia:</strong></p>
+                                    <p class="texto"><?php echo $telefoneDeEmergencia ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <input name="telefone" class="input hidden" type="text" value="" placeholder="Ex: (**) *****-****">
+                                    <button type="button" class="editar">🖉</button>
+                                    <button class="salvar hidden" type="submit" name="tel_emergencia" value="salvar">✔</button>
+                                </div>
+                            </form>
 
-                              <div class="campo">
-                                <p style="color: white;"><strong>Telefone de Emergencia:</strong></p>
-                                <p class="texto"><?php echo $telefoneDeEmergencia ?></p> <!-- Mesma coisa pra todos os campos -->
-                                <input name="telefone" class="input hidden" type="text" value="" placeholder="Ex: (**) *****-****">
-                                <button type="button" class="editar">🖉</button>
-                                <button class="salvar hidden" type="submit" name="tel_emergencia" value="salvar">✔</button>
-                            </div>
-                        </form>
 
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="parte">
                 <div class="gridBtn">
                     <a href=""><button class="btnMenu">Medicamento em Uso</button></a>
@@ -207,4 +233,5 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
     <script src="./scripts/menu.js"></script>
 </body>
+
 </html>
