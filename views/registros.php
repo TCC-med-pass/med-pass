@@ -4,21 +4,7 @@
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
-/*$titulo = $_GET['titulo'] ?? 'Home'; // deixei 'Home' como padrao caso a variavel estiver vazia
 
-
-
-if ($titulo == 'Prontuário') {
-    $data_emissao = showDataEmissaoProntuario();
-} elseif ($titulo == 'Cirurgia') {
-    $data_emissao = showDataEmissaoCirurgia();
-} elseif ($titulo == 'Exames') {
-    $data_emissao = showDataEmissaoExames();
-} elseif ($titulo == 'Atestados/Declaração') {
-    $data_emissao = showDataEmissaoAtestado();
-} elseif ($titulo == 'Laudo Médico') {
-    $data_emissao = showDataEmissaoLaudo();
-}*/
 
 
 
