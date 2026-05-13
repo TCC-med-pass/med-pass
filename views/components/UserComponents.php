@@ -1,18 +1,18 @@
 <?php
-//require_once '../../controllers/UserControll.php';
 
-function showMedicamento(){
 
-if ($_SESSION['nivel'] === 'paciente') {
-    $id = $_SESSION['id_usuario'];
-     
-} elseif ($_SESSION['nivel'] === 'medico') {
-    $id = $_SESSION['id_paciente'];
-} {
-    $_SESSION['erro'][] = "usuário não encontrado";
-}
+function showMedicamento()
+{
 
-$tipo = $_SESSION['nivel'];
+    if ($_SESSION['nivel'] === 'paciente') {
+        $id = $_SESSION['id_usuario'];
+    } elseif ($_SESSION['nivel'] === 'medico') {
+        $id = $_SESSION['id_paciente'];
+    } {
+        $_SESSION['erro'][] = "usuário não encontrado";
+    }
+
+    $tipo = $_SESSION['nivel'];
     $dado = medicamento($id, $tipo);
 
     if (empty($dado)) {
@@ -21,19 +21,18 @@ $tipo = $_SESSION['nivel'];
             "dosagem" => "--------",
             "frequencia" => "--------",
             "id" => 0
-            
-        ]];
 
+        ]];
     }
     $delete = '';
 
     foreach ($dado as $remedio) {
-        if($tipo === 'medico'){
-            $delete= "<button class='btn-lixeira' onclick='confirmarExclusao(" . htmlspecialchars($remedio['id'], ENT_QUOTES, 'UTF-8') . ")' title='Remover'>
+        if ($tipo === 'medico') {
+            $delete = "<button class='btn-lixeira' onclick='confirmarExclusao(" . htmlspecialchars($remedio['id'], ENT_QUOTES, 'UTF-8') . ")' title='Remover'>
     <i class='fa-solid fa-trash'></i>
 </button>";
         }
-        if($remedio['id'] === 0){
+        if ($remedio['id'] === 0) {
             $mostrar = '--------';
         } else {
             $mostrar = "<a  href='informacao.php?medicamento=" . htmlspecialchars($remedio['id'], ENT_QUOTES, 'UTF-8') . "' class='tag-abrir'>detalhes</a>  $delete ";
@@ -42,7 +41,7 @@ $tipo = $_SESSION['nivel'];
         <td>" . htmlspecialchars($remedio['nome'], ENT_QUOTES, 'UTF-8') . "</td>
         <td>" . htmlspecialchars($remedio['dosagem'], ENT_QUOTES, 'UTF-8') . "</td>
          <td>" . htmlspecialchars($remedio['frequencia'], ENT_QUOTES, 'UTF-8') . "</td>
-         <td class='td-acoes'>". $mostrar . "
+         <td class='td-acoes'>" . $mostrar . "
          </tr>";
     }
 }
@@ -69,7 +68,8 @@ function mensagemSucesso()
     }
 }
 
-function showReceitas(){
+function showReceitas()
+{
     $id = $_SESSION['id_usuario'];
     $dado = receitas($id);
 
@@ -88,19 +88,20 @@ function showReceitas(){
       </a>
     </div>";
     }
-
 }
 
-function arquivoIframe(){
+function arquivoIframe()
+{
     if (isset($_GET['arquivo'])) {
         $id = trim($_GET['arquivo']);
         echo "<iframe src='../servico/chamados/user_arquivo.php?arquivo=$id' alt='Mostrando documento médico em PDF'></iframe>";
     } else {
-         $_SESSION['erro'][] = "Arquivo não informado";
+        $_SESSION['erro'][] = "Arquivo não informado";
     }
 }
 
-function showRepositorio(){
+function showRepositorio()
+{
     $id = $_SESSION['id_paciente'] ?? '';
     $tipo = $_GET['tipo'] ?? '';
     $mensagem = $_GET['mensagem'] ?? '';
@@ -135,11 +136,12 @@ function showRepositorio(){
 </div>";
     }
 }
-function showInformacaoMedicamentoUso(){
+function showInformacaoMedicamentoUso()
+{
     $id = $_GET['medicamento'];
     $dado = mostrarMedicamentoUso($id);
 
-    if($dado === false){
+    if ($dado === false) {
         $_SESSION['erro'][] = "Informação do medicamento não encontrada.";
         return;
     }
@@ -177,10 +179,74 @@ function showInformacaoMedicamentoUso(){
       </div>";
     }
 }
-function showProblemaSaude(){
+function showProblemaSaude()
+{
     $id = $_SESSION['id_paciente'] ?? '';
     $dado = mostrarProblemaSaude($id);
 
     // foreach ($dado as $problema) {
     // }
+}
+
+
+function showDataEmissao()
+{
+
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+    $tipo = $_GET['titulo'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    return getDataEmissaoDataBase($pdo, $paciente_id, $tipo);
+}
+
+function showNomeMedico()
+{
+
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+    $tipo = $_GET['titulo'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getNomeMedicoDataBase($pdo, $paciente_id, $tipo);
+}
+
+
+
+
+function renderCard()
+{
+    $nomes_medicos = showNomeMedico();
+    $datas_emissao = showDataEmissao();
+
+    if (!$nomes_medicos || !$datas_emissao) {
+        return;
+    }
+
+    foreach ($nomes_medicos as $index => $nome_medico) {
+
+        $data_emissao = $datas_emissao[$index];
+
+        echo '
+            <div class="card">
+                <h3>' . $nome_medico . '</h3>
+
+                <p>
+                    <strong>Data emissão: </strong>
+                    ' . $data_emissao . '
+                </p>
+
+                <button>Abrir</button>
+            </div>
+        ';
+    }
 }

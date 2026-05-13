@@ -722,21 +722,7 @@ function mostrarProblemaSaude($id)
     return getProblemaSaude($pdo, $id);
 }
 
-function showDataEmissao()
-{
 
-    global $pdo;
-
-    $paciente_id = $_SESSION['id_usuario'] ?? null;
-    $tipo = $_GET['titulo'] ?? null;
-
-    if (!$paciente_id) {
-        return null;
-    }
-
-
-    getDataEmissaoDataBase($pdo, $paciente_id, $tipo);
-}
 
 
 function showTitulo()

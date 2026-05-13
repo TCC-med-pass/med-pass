@@ -817,3 +817,30 @@ function getDataEmissaoDataBase($pdo, $paciente_id, $tipo)
 
     return null;
 }
+
+
+function getNomeMedicoDataBase($pdo, $paciente_id, $tipo)
+{
+    $sql = "SELECT usuarios.nome AS nome_medico
+            FROM usuarios 
+            INNER JOIN medico ON usuarios.id = medico.id 
+            INNER JOIN arquivos ON medico.id = arquivos.fk_medico_id 
+            WHERE arquivos.fk_paciente_id = ? 
+            AND usuarios.nivel = 'medico'
+            AND arquivos.tipo = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id, $tipo])) {
+
+        $nome_medico = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($nome_medico) {
+            return $nome_medico['nome_medico'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}

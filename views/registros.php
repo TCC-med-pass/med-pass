@@ -1,6 +1,7 @@
 <?php
 // Oq tinha na pagina do paciente que dava pra usar pra mostrar as informações eu coloquei
 
+require_once './components/UserComponents.php';
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
@@ -9,6 +10,7 @@ verificarTipo(['paciente']);
 
 
 $titulo = showTitulo();
+$nome_medico = showNomeMedico();
 $data_emissao =  showDataEmissao();
 $nomePciente = showNome();
 $numero_de_carteirinha = showNumCarterinha();
@@ -102,38 +104,10 @@ $numero_de_carteirinha = showNumCarterinha();
 
 
         <section class="cards">
-            <div class="card">
-                <h3>TESTE</h3> <!-- nome do medico/paciente dependendo da tela -->
-                <p><strong>Data emissão: </strong> <?php $data_emissao ?></p> <!-- data da emissão (tem em todos) -->
+            <?php renderCard() ?>
 
-                <button>Abrir</button>
-            </div>
 
-            <div class="card">
-                <h3>TESTE</h3>
-                <p><strong>Data emissão: </strong> data aqui</p>
-
-                <button>Abrir</button>
-            </div>
-
-            <div class="card">
-                <h3>TESTE</h3>
-                <p><strong>Data emissão: </strong> data aqui</p>
-
-                <button>Abrir</button>
-            </div>
-
-            <div class="card">
-                <h3>TESTE</h3>
-                <p><strong>Data emissão: </strong> data aqui</p>
-                <button>Abrir</button>
-            </div>
-
-            <div class="card">
-                <h3>TESTE</h3>
-                <p><strong>Data emissão: </strong> data aqui</p>
-
-                <button>Abrir</button>
+            <button>Abrir</button>
             </div>
         </section>
 
