@@ -307,14 +307,21 @@ function setGenero($pdo, $genero, $paciente_id)
 function getGeneroDataBase($pdo, $paciente_id)
 {
 
-    $sql = "SELECT genero FROM usuarios WHERE id = ?";
+    $sql = "SELECT 
+    CASE genero
+        WHEN 'M' THEN 'Masculino'
+        WHEN 'F' THEN 'Feminino'
+        ELSE 'Indefinido'
+        END AS Genero
+    FROM usuarios
+    WHERE id = ?";
 
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$paciente_id])) {
         $genero = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $genero['genero'];
+        return $genero['Genero'];
     }
 
     return null;
@@ -380,7 +387,9 @@ function getPesoDataBase($pdo, $paciente_id)
 
 function getIdadeDataBase($pdo, $paciente_id)
 {
-    $sql = "SELECT idade FROM paciente WHERE fk_usuario_id = ?";
+    $sql = "SELECT TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
+            FROM paciente
+            WHERE fk_usuario_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
@@ -730,7 +739,8 @@ function getMedicamentoMedico($pdo, $idPaciente)
     return $stmt->fetchAll();
 }
 
-function deletePorId($pdo, $id){
+function deletePorId($pdo, $id)
+{
     if (!is_numeric($id)) {
         $_SESSION['erro'][] = "ID inválido.";
         return false;
@@ -747,15 +757,15 @@ function deletePorId($pdo, $id){
         $_SESSION['erro'][] = $e->getMessage();
         return false;
     }
-
 }
 
-function  setMedicamentoUso($pdo, $nome, $dosagem, $frequencia,$dataInicio, $dataFim, $observacao, $medicoId, $pacienteId){
+function  setMedicamentoUso($pdo, $nome, $dosagem, $frequencia, $dataInicio, $dataFim, $observacao, $medicoId, $pacienteId)
+{
     if (!is_numeric($medicoId) || !is_numeric($pacienteId)) {
         $_SESSION['erro'][] = "ID inválido.";
         return false;
     }
-    try{
+    try {
         $sql = "INSERT INTO medicamento_em_uso (nome, dosagem, frequencia, data_inicio, data_fim, observacao, fk_medico_id, fk_paciente_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nome, $dosagem, $frequencia, $dataInicio, $dataFim, $observacao, $medicoId, $pacienteId]);
@@ -774,9 +784,36 @@ function getInformacaoMedicamentoUso($pdo, $id)
     return $stmt->fetchAll();
 }
 
-function getProblemaSaude($pdo, $id){
+function getProblemaSaude($pdo, $id)
+{
     $sql = "SELECT id_problema_de_saude, nome, status, tipo, data FROM problema_de_saude WHERE fk_paciente = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
     return $stmt->fetchAll();
+}
+
+
+function getDataEmissaoDataBase($pdo, $paciente_id, $tipo)
+{
+    $sql = "SELECT arquivos.data_emissao, usuarios.nome 
+            FROM usuarios 
+            INNER JOIN medico ON usuarios.id = medico.id 
+            INNER JOIN arquivos ON medico.id = arquivos.fk_medico_id 
+            WHERE arquivos.fk_paciente_id = ? 
+            AND usuarios.nivel = 'medico' 
+            AND arquivos.tipo = ?";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id, $tipo])) {
+        $data_emissao = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($data_emissao) {
+            return $data_emissao['data_emissao'];
+        } else {
+            return null;
+        }
+    }
+
+    return null;
 }

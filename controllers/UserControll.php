@@ -127,15 +127,13 @@ function validateUser()
 function medicamento($id, $tipo)
 {
     global $pdo;
-    if($tipo === 'paciente'){
+    if ($tipo === 'paciente') {
         return getMedicamentoPaciente($pdo, $id);
-    }elseif ($tipo === 'medico') {
+    } elseif ($tipo === 'medico') {
         return getMedicamentoMedico($pdo, $id);
-    }
-    else {
+    } else {
         $_SESSION['erro'][] = "usuário não encontrado";
     }
-    
 }
 
 
@@ -546,7 +544,7 @@ function informacaoMedica()
         return false;
     }
 
-    
+
 
     return true;
 }
@@ -635,47 +633,47 @@ function uploadArquivoI()
     }
 }
 
-function mudarSenha(){
+function mudarSenha()
+{
     global $pdo;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
-    $usuario = getinformacaoUsuario($pdo, $cpf);
-    $novaSenha = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-    $hash = password_hash($novaSenha, PASSWORD_DEFAULT);
-    $resultado = updateUsuario($pdo, $usuario['id'], $hash);
-    if ($resultado === true) {
-        $_SESSION['sucesso'] = "Um email de recuperação de senha foi enviado para o seu endereço de email cadastrado.";
+        $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
+        $usuario = getinformacaoUsuario($pdo, $cpf);
+        $novaSenha = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        $hash = password_hash($novaSenha, PASSWORD_DEFAULT);
+        $resultado = updateUsuario($pdo, $usuario['id'], $hash);
+        if ($resultado === true) {
+            $_SESSION['sucesso'] = "Um email de recuperação de senha foi enviado para o seu endereço de email cadastrado.";
+        }
+        enviarEmail($usuario['email'], $novaSenha);
     }
-    enviarEmail($usuario['email'], $novaSenha);
-    }
-    
-
 }
 
-function repositorio($id, $tipo){
+function repositorio($id, $tipo)
+{
     global $pdo;
     return getRepositorio($pdo, $id, $tipo);
 }
 
-function excluirPorId(){
+function excluirPorId()
+{
     global $pdo;
     $id = $_GET['id'] ?? '';
     $nivel = $_SESSION['nivel'] ?? '';
 
-    if ($nivel !== 'medico'){
+    if ($nivel !== 'medico') {
         $_SESSION['erro'][] = "Nivel não permitido.";
         return false;
     }
     $dado = deletePorId($pdo, $id);
 
-    if($dado){
+    if ($dado) {
         header("Location: ../views/medicamento_uso.php");
         exit();
     }
-
-
 }
-function MedicamentoUso(){
+function MedicamentoUso()
+{
     global $pdo;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = sanitizar($_POST['nome'] ?? '', 'texto');
@@ -684,7 +682,7 @@ function MedicamentoUso(){
         $dataFim = trim($_POST['fim'] ?? '');
         $observacao = sanitizar($_POST['obs'] ?? '', 'texto');
         $frequencia = trim($_POST['frequencia'] ?? '');
-        $pacienteId =($_SESSION['id_paciente'] ?? 0);
+        $pacienteId = ($_SESSION['id_paciente'] ?? 0);
         $medicoId = ($_SESSION['id_medico'] ?? 0);
 
         if (!$pacienteId || !$medicoId) {
@@ -697,14 +695,15 @@ function MedicamentoUso(){
             return;
         }
 
-        $dado = setMedicamentoUso($pdo, $nome, $dosagem, $frequencia,$dataInicio, $dataFim, $observacao, $medicoId, $pacienteId);
-        if($dado){
+        $dado = setMedicamentoUso($pdo, $nome, $dosagem, $frequencia, $dataInicio, $dataFim, $observacao, $medicoId, $pacienteId);
+        if ($dado) {
             header("Location: ../views/medicamento_uso.php");
             exit();
         }
     }
 }
-function mostrarMedicamentoUso($id){
+function mostrarMedicamentoUso($id)
+{
     global $pdo;
     if (!is_numeric($id)) {
         $_SESSION['erro'][] = "ID inválido.";
@@ -713,11 +712,36 @@ function mostrarMedicamentoUso($id){
     return getInformacaoMedicamentoUso($pdo, $id);
 }
 
-function mostrarProblemaSaude($id){
+function mostrarProblemaSaude($id)
+{
     global $pdo;
     if (!is_numeric($id)) {
         $_SESSION['erro'][] = "ID inválido.";
         return false;
     }
     return getProblemaSaude($pdo, $id);
+}
+
+function showDataEmissao()
+{
+
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+    $tipo = $_GET['titulo'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    getDataEmissaoDataBase($pdo, $paciente_id, $tipo);
+}
+
+
+function showTitulo()
+{
+    $titulo = $_GET['titulo'] ?? null;
+
+    return $titulo;
 }

@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@400;700&display=swap');
+
+/* Elementos globais */
+* {
+    font-family: "Aleo", serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+header {
+    width: 100%;
+    height: 15vh;
+    background-color: #007977;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: auto;
+}
+
+.btnCasa {
+    font-size: 33px;
+}
+
+
+/* menu hamburger */
+
+.menu-icon {
+    font-size: 33px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.menu-icon:hover {
+    color: #ccc;
+}
+
+/* sidebar */
+
+#sidebar {
+    position: fixed;
+    top: 15vh;
+    right: -0; /* responsivo */
+    width: 25vw;
+    height: calc(100vh - 15vh);
+    background: #007977;
+    padding: 5px;
+    transition: transform 0.3s ease;
+
+    transform: translateX(100%); /* escondido */
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+/* Quando aberto */
+#sidebar.active {
+    transform: translateX(0); /* aparece */
+}
+
+#sidebar a {
+    display: block;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+#sidebar h1, h3 {
+    color: #007977;
+}
+
+.contSidebar {
+    width: 100%;
+    min-height: 10vh;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.config {
+    color: black;
+}
+
+.opcao {
+    color: white;
+}
+
+header i {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+header i:hover {
+    color: #dfdfdf;
+}
+
+
+ /* conteudo */
+main {
+    min-height: calc(100vh - 15vh);
+}
+
+.topoPagina {
+    width: 100%;
+    min-height: 70px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 3px solid #019c9a;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.btnVoltar {
+    position: absolute;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #007977;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px;
+}
+
+.card {
+    background-color: #007977;
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 180px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card h3 {
+    color: white;
+}
+
+.card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 999px;
+    background-color: white;
+    color: #007977;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #dfdfdf;
+    transform: scale(1.02);
+}
+
+.carteirinha {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 250px;
+    height: 90px;
+    background-color: #007977;
+    color: white;
+    border-top-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: 0.3s ease;
+}
+
+.carteirinha.descer {
+    bottom: -120px;
+}

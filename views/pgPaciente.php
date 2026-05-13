@@ -41,7 +41,7 @@ $alergia = showAlergia(); // variavel que deve ser usada no front para mostrar a
 $genero = showGenero(); // variavel que deve ser usada no front para mostrar o genero
 $sangue = showSangue(); // variavel que deve ser usada no front para mostrar o sangue
 $peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
-// $idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
+$idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
 $data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
 $numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
 $historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
@@ -89,11 +89,11 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
             <h1><?php echo $nomePciente ?></h1>
         </div>
 
-        <a href="" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-        <a href="" class="opcao">Cirurgia</a>
-        <a href="" class="opcao">Exames</a>
-        <a href="" class="opcao">Atestados/Declaração</a>
-        <a href="" class="opcao">Laudo Médico</a>
+        <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+        <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+        <a href="registros.php?titulo=exames" class="opcao">Exames</a>
+        <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+        <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
 
         <div class="contSidebar">
             <a href="" class="config">
@@ -188,7 +188,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Idade:</strong></p>
-                                <p class="texto idade">TESTE</p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
+                                <p class="texto idade"><?php echo $idade ?></p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
                                 <span></span> <!-- ta aq so pro flex jogar o 30 no meio -->
                             </div>
 
