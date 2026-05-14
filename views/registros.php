@@ -36,7 +36,7 @@ $datas_emissoes =  showDataEmissao();
 
 
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <a href="#">
                 <i class="fa-solid fa-house btnCasa"></i>
@@ -108,8 +108,8 @@ $datas_emissoes =  showDataEmissao();
 
 
         <section class="cards">
-           
-            <?php renderCard( $datas_emissoes, $nomes_medicos) ?>
+
+            <?php renderCard($datas_emissoes, $nomes_medicos) ?>
 
         </section>
 
@@ -120,6 +120,7 @@ $datas_emissoes =  showDataEmissao();
     </main>
 
     <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/esconderHeader.js"></script>
 </body>
 
 </html>

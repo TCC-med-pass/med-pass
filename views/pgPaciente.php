@@ -66,7 +66,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <a href="#">
                 <i class="fa-solid fa-house btnCasa"></i>
@@ -300,6 +300,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
     <script src="./scripts/menu.js"></script>
     <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/esconderHeader.js"></script>
 </body>
 
 </html>
