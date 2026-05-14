@@ -60,6 +60,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/paciente.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <title>Página do Paciente- Início</title>
 </head>
@@ -68,7 +69,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
     <header>
         <div class="container">
             <a href="#">
-                <img src="https://i.postimg.cc/y8hmkJ4J/casa.png" alt="Botão de Início" class="btnCasa">
+                <i class="fa-solid fa-house btnCasa"></i>
             </a>
         </div>
         <div class="container">
@@ -76,11 +77,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
         </div>
         <div class="container">
             <!--Menu hamburguer-->
-            <div class="menu-icon" class="menu-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <i class="fa-solid fa-bars menu-icon"></i>
         </div>
     </header>
 
@@ -122,31 +119,45 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nome:</strong></p>
-                                <p class="texto"><?php echo $nomePciente ?></p> <!-- Nome no banco -->
+                                <p class="texto"><?php echo $nomePciente ?></p>
+                                <span></span>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>CPF:</strong></p>
-                                <p class="texto"><?php echo $cpf ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <p class="texto"><?php echo $cpf ?></p>
+                                <span></span>
                             </div>
 
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Altura:</strong></p>
-                                    <p class="texto"><?php echo $altura ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <p class="texto"><?php echo $altura ?></p>
                                     <input name="altura" class="input hidden" type="text" placeholder="Ex: 1,80" required>
-                                    <button type="button" class="editar">🖉</button>
-                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">✔</button>
+
+                                    <button type="button" class="editar">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+
+                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
                                 </div>
                             </form>
 
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Alergia:</strong></p>
-                                    <p class="texto"><?php echo $alergia ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <p class="texto"><?php echo $alergia ?></p>
                                     <input name="alergia" class="input hidden" type="text" placeholder="Ex: Amendoim">
-                                    <button type="button" class="editar">🖉</button>
-                                    <button class="salvar hidden" type="submit" name="Alergia" value="salvar">✔</button>
+
+                                    <button type="button" class="editar">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+
+                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -155,7 +166,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Gênero:</strong></p>
-                                    <p class="texto"><?php echo $genero ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <p class="texto"><?php echo $genero ?></p>
 
                                     <select class="input hidden" name="genero" required>
                                         <option value="">Selecione seu gênero</option>
@@ -163,23 +174,35 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                         <option value="f">Feminino</option>
                                         <option value="i">Indefinido</option>
                                     </select>
-                                    <button class="editar" type="button">🖉</button>
-                                    <button class="salvar hidden" type="submit" name="Genero" value="salvar">✔</button>
+
+                                    <button type="button" class="editar">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+
+                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
                                 </div>
                             </form>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Sangue:</strong></p>
-                                <p class="texto"><?php echo $sangue ?></p> <!-- Mesma coisa pra todos os campos -->
-
+                                <p class="texto"><?php echo $sangue ?></p>
+                                <span></span>
                             </div>
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Peso:</strong></p>
-                                    <p class="texto"><?php echo $peso ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <p class="texto"><?php echo $peso ?></p>
                                     <input class="input hidden" type="text" value="" name="peso" placeholder="Ex: 80Kg">
-                                    <button type="button" class="editar">🖉</button>
-                                    <button class="salvar hidden" type="submit" name="Peso" value="salvar">✔</button>
+
+                                    <button type="button" class="editar">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+
+                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -188,42 +211,86 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Idade:</strong></p>
-                                <p class="texto idade"><?php echo $idade ?></p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
+                                <p class="texto idade"><?php echo $idade ?></p>
                                 <span></span> <!-- ta aq so pro flex jogar o 30 no meio -->
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nascimento:</strong></p>
-                                <p class="texto"><?php echo $data_nascimento ?></p> <!-- Mesma coisa pra todos os campos -->
-
+                                <p class="texto"><?php echo $data_nascimento ?></p>
+                                <span></span>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>N Carteirinha:</strong></p>
-                                <p class="texto"><?php echo $numero_de_carteirinha ?></p> <!-- Mesma coisa pra todos os campos -->
-
+                                <p class="texto"><?php echo $numero_de_carteirinha ?></p>
+                                <span></span>
                             </div>
 
                             <form method="POST">
                                 <div class="campo">
-                                    <p style="color: white;"><strong>Telefone de Emergencia:</strong></p>
-                                    <p class="texto"><?php echo $telefoneDeEmergencia ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <p style="color: white;"><strong>Tel. de Emergencia:</strong></p>
+                                    <p class="texto"><?php echo $telefoneDeEmergencia ?></p>
                                     <input name="telefone" class="input hidden" type="text" value="" placeholder="Ex: (**) *****-****">
-                                    <button type="button" class="editar">🖉</button>
-                                    <button class="salvar hidden" type="submit" name="tel_emergencia" value="salvar">✔</button>
+
+                                    <button type="button" class="editar">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+
+                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                        <i class="fa-solid fa-check"></i>
+                                    </button>
                                 </div>
                             </form>
 
 
                         </div>
                     </div>
+
+                    <!-- Tabela expandida -->
+                    <div class="tabela-expandida">
+                        <h2>Doenças e comorbidades</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Comorbidade</th>
+                                    <th>Grau de Urgência</th>
+                                    <th>Observações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>doenca1</td> <!-- Aq o back coloca as informações na tabela -->
+                                    <td>
+                                        <p class="leve">Leve</p>
+                                    </td> <!-- Vou deixar feito a estilização de uma classe leve, medio e grave, mudando a cor do texto de acordo com o grau da doença -->
+                                    <td>obs.</td>
+                                </tr>
+                                <tr>
+                                    <td>doenca2</td>
+                                    <td>
+                                        <p class="medio">Médio</p>
+                                    </td>
+                                    <td>obs.</td>
+                                </tr>
+                                <tr>
+                                    <td>doenca3</td>
+                                    <td>
+                                        <p class="grave">Grave</p>
+                                    </td>
+                                    <td>obs.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="btnExpandir" type="button">Expandir</button>
                 </div>
             </div>
 
             <div class="parte">
                 <div class="gridBtn">
                     <a href=""><button class="btnMenu">Medicamento em Uso</button></a>
-                    <a href=""><button class="btnMenu">Contato de Emergência</button></a>
                     <a href=""><button class="btnMenu">Receita Médica</button></a>
                     <a href=""><button class="btnMenu">Histório Familiar</button></a>
                 </div>
@@ -232,6 +299,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
     </main>
 
     <script src="./scripts/menu.js"></script>
+    <script src="./scripts/sidebar.js"></script>
 </body>
 
 </html>

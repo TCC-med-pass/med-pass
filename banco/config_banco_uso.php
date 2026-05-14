@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $user = "root";
-$password = "root";
+$password = "";
 $banco = "med_pass";
 
 // $host = "sql.freedb.tech";

@@ -32,30 +32,21 @@ header {
 }
 
 .btnCasa {
-    width: 55px;
-    height: auto;
+    font-size: 33px;
 }
 
 
 /* menu hamburger */
 
 .menu-icon {
-    width: 35px;
+    font-size: 33px;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.menu-icon span {
-    display: block;
-    height: 4px;
-    background: white;
-    margin: 6px 0;
-    border-radius: 2px;
+    transition: color 0.3s ease;
 }
 
 /* Hover */
-.menu-icon:hover span {
-    background: #ccc;
+.menu-icon:hover {
+    color: #ccc;
 }
 
 /* sidebar */
@@ -114,6 +105,11 @@ header {
 
 .opcao {
     color: white;
+    transition: color 0.3s ease;
+}
+
+.opcao:hover {
+    color: #ccc;
 }
 
 
@@ -134,12 +130,60 @@ main {
 }
 
 .cardSaude {
+    font-size: 18px;
     width: 100%;
-    min-height: 100%;
+    max-height: 650px;
+    min-height: 500px;
+    overflow: hidden;
     border-radius: 30px;
     background-color: #007977;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    transition: max-height 0.45s ease, padding 0.45s ease, box-shadow 0.45s ease;
+}
+
+.cardSaude.expandido {
+    max-height: 1400px;
+}
+
+.cardSaude .contTexto {
+    padding: 20px;
+}
+
+.btnExpandir {
+    width: 70%;
+    min-width: 180px;
+    align-self: center;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 24px;
+    margin: 20px 0 20px;
+    background-color: white;
+    font-size: 18px;
+    color: #006361;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.cardSaude.expandido .contTexto {
+    padding: 40px;
+}
+
+.cardSaude .coluna {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px 60px;
+    gap: 20px;
+}
+
+.cardSaude.expandido .coluna {
+    gap: 30px;
 }
 
 .titulo {
@@ -157,12 +201,8 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
-    height: 100%;
-}
-
-.coluna {
-    height: 100%;
-    padding: 20px 100px;
+    flex: 1;
+    padding: 20px;
 }
 
 .campo {
@@ -179,6 +219,10 @@ main {
 
 .input {
     padding: 5px;
+    border: none;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
@@ -209,6 +253,87 @@ main {
 
 .gridBtn {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+}
+
+.editar, .salvar {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+i {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+i:hover {
+    color: #dfdfdf;
+}
+
+.contBtn {
+    width: 100%;
+    padding: 20px;
+}
+
+.btnExpandir:hover {
+    background-color: #ccc;
+}
+
+.tabela-expandida {
+    max-height: 0;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px 0;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease, padding 0.35s ease;
+}
+
+.cardSaude.expandido .tabela-expandida {
+    max-height: 800px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    padding: 0 20px 20px;
+}
+
+.tabela-expandida table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.tabela-expandida thead {
+    background: #005853;
+}
+
+.tabela-expandida th {
+    color: white;
+    font-size: medium;
+    padding: 5px;
+}
+
+.tabela-expandida td {
+    padding: 12px 14px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 0.95rem;
+    color: #222;
+}
+
+.tabela-expandida tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cardSaude h2 {
+    margin-bottom: 20px;
+    color: white;
 }

@@ -1,18 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    // Função do menu hamburger
-    function toggleSidebar() {
-        const icon = document.querySelector(".menu-icon");
-        const sidebar = document.getElementById("sidebar");
-
-        if (!icon || !sidebar) return;
-
-        icon.addEventListener("click", () => {
-            icon.classList.toggle("active");
-            sidebar.classList.toggle("active");
-        });
-    }
-
     // Função para calcular idade
     function calcularIdade(dataNascimento) {
         const hoje = new Date();
@@ -75,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 🔹 Atualizar idade ao carregar a página
+    // Atualizar idade ao carregar a página
     function atualizarIdadeInicial() {
         const inputData = document.querySelector('input[type="date"]');
         const campoIdade = document.querySelector(".idade");
@@ -85,9 +71,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 🔹 Chamando tudo
-    toggleSidebar();
+    // Toggle do botão expandir
+    function toggleCardSaude() {
+        const btnExpandir = document.querySelector(".btnExpandir");
+        if (!btnExpandir) return;
+
+        const cardSaude = btnExpandir.closest(".cardSaude");
+        if (!cardSaude) return;
+
+        const toggle = () => {
+            const isExpanded = cardSaude.classList.toggle("expandido");
+            btnExpandir.textContent = isExpanded ? "Recolher" : "Expandir";
+        };
+
+        btnExpandir.addEventListener("click", toggle);
+        window.toggleCardSaude = toggle;
+    }
+
+    // Chamando tudo
     editableCampos();
     atualizarIdadeInicial();
-
+    toggleCardSaude();
 });
