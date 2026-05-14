@@ -796,11 +796,13 @@ function getProblemaSaude($pdo, $id)
 function getDataEmissaoDataBase($pdo, $paciente_id, $tipo)
 {
     $sql = "SELECT arquivos.data_emissao
-            FROM usuarios 
-            INNER JOIN medico ON usuarios.id = medico.id 
-            INNER JOIN arquivos ON medico.id = arquivos.fk_medico_id 
-            WHERE arquivos.fk_paciente_id = ? 
-            AND usuarios.nivel = 'medico' 
+            FROM usuarios
+            INNER JOIN medico 
+                ON usuarios.id = medico.fk_usuario_id
+            INNER JOIN arquivos 
+                ON medico.id = arquivos.fk_medico_id
+            WHERE arquivos.fk_paciente_id = ?
+            AND usuarios.nivel = 'medico'
             AND arquivos.tipo = ?";
 
     $stmt = $pdo->prepare($sql);
@@ -816,10 +818,12 @@ function getDataEmissaoDataBase($pdo, $paciente_id, $tipo)
 function getNomeMedicoDataBase($pdo, $paciente_id, $tipo)
 {
     $sql = "SELECT usuarios.nome AS nome_medico
-            FROM usuarios 
-            INNER JOIN medico ON usuarios.id = medico.id 
-            INNER JOIN arquivos ON medico.id = arquivos.fk_medico_id 
-            WHERE arquivos.fk_paciente_id = ? 
+            FROM usuarios
+            INNER JOIN medico 
+                ON usuarios.id = medico.fk_usuario_id
+            INNER JOIN arquivos 
+                ON medico.id = arquivos.fk_medico_id
+            WHERE arquivos.fk_paciente_id = ?
             AND usuarios.nivel = 'medico'
             AND arquivos.tipo = ?";
 

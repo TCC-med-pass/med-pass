@@ -91,7 +91,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
         <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
         <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
-        <a href="registros.php?titulo=exames" class="opcao">Exames</a>
+        <a href="registros.php?titulo=exame" class="opcao">Exames</a>
         <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
         <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
 
