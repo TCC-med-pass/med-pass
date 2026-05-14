@@ -795,29 +795,23 @@ function getProblemaSaude($pdo, $id)
 
 function getDataEmissaoDataBase($pdo, $paciente_id, $tipo)
 {
-    $sql = "SELECT arquivos.data_emissao, usuarios.nome 
+    $sql = "SELECT arquivos.data_emissao
             FROM usuarios 
             INNER JOIN medico ON usuarios.id = medico.id 
             INNER JOIN arquivos ON medico.id = arquivos.fk_medico_id 
             WHERE arquivos.fk_paciente_id = ? 
             AND usuarios.nivel = 'medico' 
             AND arquivos.tipo = ?";
+
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$paciente_id, $tipo])) {
-        $data_emissao = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-        if ($data_emissao) {
-            return $data_emissao['data_emissao'];
-        } else {
-            return null;
-        }
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    return null;
+    return [];
 }
-
 
 function getNomeMedicoDataBase($pdo, $paciente_id, $tipo)
 {
@@ -833,14 +827,8 @@ function getNomeMedicoDataBase($pdo, $paciente_id, $tipo)
 
     if ($stmt->execute([$paciente_id, $tipo])) {
 
-        $nome_medico = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($nome_medico) {
-            return $nome_medico['nome_medico'];
-        } else {
-            return null;
-        }
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    return null;
+    return [];
 }

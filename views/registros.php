@@ -10,10 +10,14 @@ verificarTipo(['paciente']);
 
 
 $titulo = showTitulo();
-$nome_medico = showNomeMedico();
-$data_emissao =  showDataEmissao();
+
 $nomePciente = showNome();
 $numero_de_carteirinha = showNumCarterinha();
+
+
+$nomes_medicos = showNomeMedico();
+$datas_emissoes =  showDataEmissao();
+
 
 
 ?>
@@ -104,11 +108,9 @@ $numero_de_carteirinha = showNumCarterinha();
 
 
         <section class="cards">
-            <?php renderCard() ?>
+           
+            <?php renderCard( $datas_emissoes, $nomes_medicos) ?>
 
-
-            <button>Abrir</button>
-            </div>
         </section>
 
         <div class="carteirinha" id="carteirinha"> <!-- pra fazer a carteirinha descer qnd o sidebar abre PRECISA ter o id "carteirinha"!! -->

@@ -731,3 +731,36 @@ function showTitulo()
 
     return $titulo;
 }
+
+
+
+function showDataEmissao()
+{
+
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+    $tipo = $_GET['titulo'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    return getDataEmissaoDataBase($pdo, $paciente_id, $tipo);
+}
+
+function showNomeMedico()
+{
+
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+    $tipo = $_GET['titulo'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+    return getNomeMedicoDataBase($pdo, $paciente_id, $tipo);
+}

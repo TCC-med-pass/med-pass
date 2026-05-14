@@ -189,52 +189,18 @@ function showProblemaSaude()
 }
 
 
-function showDataEmissao()
+
+
+
+function renderCard($datas_emissoes, $nomes_medicos)
 {
-
-    global $pdo;
-
-    $paciente_id = $_SESSION['id_usuario'] ?? null;
-    $tipo = $_GET['titulo'] ?? null;
-
-    if (!$paciente_id) {
-        return null;
-    }
-
-
-    return getDataEmissaoDataBase($pdo, $paciente_id, $tipo);
-}
-
-function showNomeMedico()
-{
-
-    global $pdo;
-
-    $paciente_id = $_SESSION['id_usuario'] ?? null;
-    $tipo = $_GET['titulo'] ?? null;
-
-    if (!$paciente_id) {
-        return null;
-    }
-
-    return getNomeMedicoDataBase($pdo, $paciente_id, $tipo);
-}
-
-
-
-
-function renderCard()
-{
-    $nomes_medicos = showNomeMedico();
-    $datas_emissao = showDataEmissao();
-
-    if (!$nomes_medicos || !$datas_emissao) {
+    if (!$nomes_medicos || !$datas_emissoes) {
         return;
     }
 
     foreach ($nomes_medicos as $index => $nome_medico) {
 
-        $data_emissao = $datas_emissao[$index];
+        $data_emissao = $datas_emissoes[$index];
 
         echo '
             <div class="card">
