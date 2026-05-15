@@ -204,12 +204,14 @@ function renderCard($datas_emissoes, $nomes_medicos)
 
         echo '
             <div class="card">
-                <h3>' . $nome_medico . '</h3>
-
-                <p>
-                    <strong>Data emissão: </strong>
+                <h2>
+                    <strong>Médico: </strong> 
+                    ' . $nome_medico . '   
+                </h2>  
+                <h3>
+                    <strong>Data: </strong>
                     ' . $data_emissao . '
-                </p>
+                </h3>
 
                 <button>Abrir</button>
             </div>

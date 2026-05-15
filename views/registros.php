@@ -38,7 +38,7 @@ $datas_emissoes =  showDataEmissao();
 <body>
     <header id="header">
         <div class="container">
-            <a href="#">
+            <a href="pgPaciente.php">
                 <i class="fa-solid fa-house btnCasa"></i>
             </a>
         </div>
