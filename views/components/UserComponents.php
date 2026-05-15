@@ -216,3 +216,47 @@ function renderCard($datas_emissoes, $nomes_medicos)
         ';
     }
 }
+
+
+function renderTable($problemaLeve, $problemaMedio, $problemaGrave)
+{
+    $html = '
+    <table>
+        <thead>
+            <tr>
+                <th>Doenças Leves</th>
+                <th>Doenças Médias</th>
+                <th>Doenças Graves</th>
+            </tr>
+        </thead>
+        <tbody>
+    ';
+
+    $max = max(
+        count($problemaLeve),
+        count($problemaMedio),
+        count($problemaGrave)
+    );
+
+    for ($i = 0; $i < $max; $i++) {
+
+        $leve  = $problemaLeve[$i]['nome'] ?? '';
+        $medio = $problemaMedio[$i]['nome'] ?? '';
+        $grave = $problemaGrave[$i]['nome'] ?? '';
+
+        $html .= '
+            <tr>
+                <td>' . $leve . '</td>
+                <td>' . $medio . '</td>
+                <td>' . $grave . '</td>
+            </tr>
+        ';
+    }
+
+    $html .= '
+        </tbody>
+    </table>
+    ';
+
+    return $html;
+}

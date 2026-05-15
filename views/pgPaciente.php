@@ -1,4 +1,5 @@
 <?php
+require_once './components/UserComponents.php';
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
@@ -33,21 +34,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // salvarHistoricoFamiliar(); só deve ser chamada no submit
 
 
-$telefoneDeEmergencia = showTelEmergencia(); // variavel que deve ser usada no front para mostrar o Telefone
-$nomePciente = showNome(); // variavel que deve ser usada no front para mostrar o Nome
-$cpf = showCPF(); // variavel que deve ser usada no front para mostrar o CPF
-$altura = showAltura(); // variavel que deve ser usada no front para mostrar a altura
-$alergia = showAlergia(); // variavel que deve ser usada no front para mostrar a alergia
-$genero = showGenero(); // variavel que deve ser usada no front para mostrar o genero
-$sangue = showSangue(); // variavel que deve ser usada no front para mostrar o sangue
-$peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
-$idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
-$data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
-$numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
-$historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
-$problemaLeve =  showProblemaLeve(); // variavel que deve ser usada no front para mostrar os problemas leve de saude
-$problemaMedio = showProblemaMedio(); // // variavel que deve ser usada no front para mostrar os problemas medios de saude 
-$problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front para mostrar os problemas graves de saude
+$telefoneDeEmergencia = showTelEmergencia();
+$nomePciente = showNome();
+$cpf = showCPF();
+$altura = showAltura();
+$alergia = showAlergia();
+$genero = showGenero();
+$sangue = showSangue();
+$peso = showPeso();
+$idade = showIdade();
+$data_nascimento = showDataNasc();
+$numero_de_carteirinha = showNumCarterinha();
+$historico_familiar = showHistoricoFamiliar();
+
+$problemaLeve =  showProblemaLeve();
+$problemaMedio = showProblemaMedio();
+$problemaGrave = showProblemaGrave();
 
 
 ?>
@@ -155,7 +157,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                         <i class="fa-solid fa-pencil"></i>
                                     </button>
 
-                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                    <button class="salvar hidden" type="submit" name="Alergia" value="salvar">
                                         <i class="fa-solid fa-check"></i>
                                     </button>
                                 </div>
@@ -179,7 +181,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                         <i class="fa-solid fa-pencil"></i>
                                     </button>
 
-                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                    <button class="salvar hidden" type="submit" name="Genero" value="salvar">
                                         <i class="fa-solid fa-check"></i>
                                     </button>
                                 </div>
@@ -200,7 +202,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                         <i class="fa-solid fa-pencil"></i>
                                     </button>
 
-                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                    <button class="salvar hidden" type="submit" name="Peso" value="salvar">
                                         <i class="fa-solid fa-check"></i>
                                     </button>
                                 </div>
@@ -237,7 +239,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                         <i class="fa-solid fa-pencil"></i>
                                     </button>
 
-                                    <button class="salvar hidden" type="submit" name="Altura" value="salvar">
+                                    <button class="salvar hidden" type="submit" name="tel_emergencia" value="salvar">
                                         <i class="fa-solid fa-check"></i>
                                     </button>
                                 </div>
@@ -250,38 +252,7 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                     <!-- Tabela expandida -->
                     <div class="tabela-expandida">
                         <h2>Doenças e comorbidades</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Comorbidade</th>
-                                    <th>Grau de Urgência</th>
-                                    <th>Observações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>doenca1</td> <!-- Aq o back coloca as informações na tabela -->
-                                    <td>
-                                        <p class="leve">Leve</p>
-                                    </td> <!-- Vou deixar feito a estilização de uma classe leve, medio e grave, mudando a cor do texto de acordo com o grau da doença -->
-                                    <td>obs.</td>
-                                </tr>
-                                <tr>
-                                    <td>doenca2</td>
-                                    <td>
-                                        <p class="medio">Médio</p>
-                                    </td>
-                                    <td>obs.</td>
-                                </tr>
-                                <tr>
-                                    <td>doenca3</td>
-                                    <td>
-                                        <p class="grave">Grave</p>
-                                    </td>
-                                    <td>obs.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <?php echo renderTable($problemaLeve, $problemaMedio, $problemaGrave) ?>
                     </div>
 
                     <button class="btnExpandir" type="button">Expandir</button>

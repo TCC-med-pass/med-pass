@@ -56,25 +56,13 @@ $datas_emissoes =  showDataEmissao();
             <h1><?php echo $nomePciente ?></h1>
         </div>
 
-        <form action="registros.php" method="GET"> <!-- adicionei a tag de formulario e a tag de botao para conseguir enviar os dados-->
-            <button class="opcao" name="titulo" type="submit" value="Prontuário">Prontuário</button> <!-- opções do sidebar q ta no figma -->
-        </form>
+        <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a>
 
-        <form action="registros.php" method="GET">
-            <button class="opcao" name="titulo" type="submit" value="Cirurgia">Cirurgia</button>
-        </form>
+        <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+        <a href="registros.php?titulo=exame" class="opcao">Exames</a>
+        <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+        <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
 
-        <form action="registros.php" method="GET">
-            <button class="opcao" name="titulo" type="submit" value="Exames">Exames</button>
-        </form>
-
-        <form action="registros.php" method="GET">
-            <button class="opcao" name="titulo" type="submit" value="Atestados/Declaração">Atestados/Declaração</button>
-        </form>
-
-        <form action="registros.php" method="GET">
-            <button class="opcao" name="titulo" type="submit" value="Laudo Médico">Laudo Médico</button>
-        </form>
         <div class="contSidebar">
             <a href="" class="config">
                 <h3>Ajuda</h3>
