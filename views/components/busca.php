@@ -16,7 +16,7 @@ foreach ($dado as $paciente){
          3 => 'grave'
     ];
     $nivel = $tipo[$valor] ?? 'leve';
-        echo " <a class='card  {$nivel}' href='medPaciente.php?paciente=" . htmlspecialchars($paciente['id'], ENT_QUOTES, 'UTF-8') . "'>
+        echo " <a class='card  {$nivel}' href='medPaciente.php?paciente=" . htmlspecialchars($paciente['id'], ENT_QUOTES, 'UTF-8') . "&tipo=" . $nivel . "'>
       <h1 class='card-name'>". htmlspecialchars($paciente['nome'], ENT_QUOTES, 'UTF-8') . "</h1>
       <div class='card-body'>
         <p><strong>Data nascimento: </strong> " . htmlspecialchars(traduz_data_para_exibir($paciente['data_nascimento']), ENT_QUOTES, 'UTF-8') . "</p>

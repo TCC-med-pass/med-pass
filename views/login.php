@@ -30,6 +30,7 @@ verificarLogadoTipo();
             <h1>MedPass- Login</h1>
 
             <?php mensagemErro(); ?>
+            <?php mensagemSucesso(); ?>
 
             <form method="post">
                 <label for="cpf">CPF</label>

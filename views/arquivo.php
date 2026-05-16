@@ -52,7 +52,7 @@ $titulo = ucwords($_GET['tipo']);
   <!-- BOTTOM BAR -->
     <div class="nav-number-badge">
     <p>Número da carterinha:</p>
-    <span>12345678-0</span>
+    <span><?php echo $_SESSION['numero_carteirinha'] ?></span>
   </div>
 
 </main>

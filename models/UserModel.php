@@ -425,6 +425,7 @@ function getNumCarterinhaDataBase($pdo, $paciente_id)
 
     if ($stmt->execute([$paciente_id])) {
         $numero_de_carteirinha = $stmt->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['numero_carteirinha'] = $numero_de_carteirinha['numero_de_carteirinha'];
 
         return $numero_de_carteirinha['numero_de_carteirinha'];
     }
@@ -630,7 +631,7 @@ function setArquivo($pdo, $nome, $descricao, $data_emissao, $data_validade, $tip
 
 function getinformacaoPaciente($pdo, $id)
 {
-    $sql = "SELECT usuarios.nome as nome FROM paciente INNER JOIN usuarios on paciente.fk_usuario_id = usuarios.id WHERE paciente.id = ?";
+    $sql = "SELECT usuarios.nome as nome, paciente.numero_de_carteirinha as numeroCartera FROM paciente INNER JOIN usuarios on paciente.fk_usuario_id = usuarios.id WHERE paciente.id = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
     return $stmt->fetch();
@@ -680,7 +681,7 @@ function getinformacaoUsuario($pdo, $cpf)
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$usuario) {
-        $_SESSION['erro'][] = "CPF não encontrado.";
+        //$_SESSION['erro'][] = "CPF não encontrado.";
         return false;
     }
     return $usuario;
@@ -768,9 +769,8 @@ function getInformacaoMedicamentoUso($pdo, $id)
     return $stmt->fetchAll();
 }
 
-function getProblemaSaude($pdo, $id)
-{
-    $sql = "SELECT id_problema_de_saude, nome, status, tipo, data FROM problema_de_saude WHERE fk_paciente = ?";
+function getProblemaSaude($pdo, $id){
+    $sql = "SELECT id_problema_de_saude as id, nome, status, tipo, data FROM problema_de_saude WHERE fk_paciente = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
     return $stmt->fetchAll();
@@ -819,4 +819,36 @@ function getNomeMedicoDataBase($pdo, $paciente_id, $tipo)
     }
 
     return [];
+}
+
+
+function setProblemaSaude($pdo, $nome, $status, $tipo, $data, $pacienteId, $medico){
+    try{
+        $sql = "INSERT INTO problema_de_saude (nome, status, tipo, data, fk_medico, fk_paciente) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$nome, $status, $tipo, $data, $pacienteId, $medico]);
+        return true;
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = "Erro ao cadastrar problema de saúde: " . $e->getMessage();
+        return false;
+    }
+}
+
+function updateProblemaSaude($pdo, $id, $nome, $status, $tipo, $data, $pacienteId, $medico){
+    if (!is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        return false;
+    }
+    try{
+        $sql = "UPDATE problema_de_saude SET nome = ?, status = ?, tipo = ?, data = ?, fk_medico = ?, fk_paciente = ? WHERE id_problema_de_saude = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$nome, $status, $tipo, $data, $medico, $pacienteId, $id]);
+        if ($stmt->rowCount() === 0) {
+            throw new Exception("Problema de saúde não encontrado ou dados iguais.");
+        }
+        return true;
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = "Erro ao atualizar problema de saúde: " . $e->getMessage();
+        return false;
+    }
 }

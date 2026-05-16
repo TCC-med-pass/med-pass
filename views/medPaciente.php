@@ -53,6 +53,11 @@ verificarTipo(['medico']);
         <span class="action-label">Adicionar<br>Medicamento em<br>uso</span>
       </a>
 
+      <a class="action-card" href="problema_saude.php">
+        <span class="action-plus">+</span>
+        <span class="action-label">Adicionar<br>Problema de Saúde</span>
+      </a>
+
     </div>
   </main>
 
@@ -77,8 +82,8 @@ verificarTipo(['medico']);
   <!-- ── PATIENT BADGE ── -->
   <div class="patient-badge">
     <div class="badge-label">Paciente:</div>
-    <div class="badge-name">Ana Beatriz Pereira Costa</div>
-    <div class="badge-severity">Comorbidade grave</div>
+    <div class="badge-name"><?php echo $_SESSION['nome_paciente'] ?? 'paciente'; ?></div>
+    <div class="badge-severity">Comorbidade <?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></div>
   </div>
 
   <script src="./scripts/menu.js"></script>

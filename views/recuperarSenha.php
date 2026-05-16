@@ -1,6 +1,7 @@
 <?php
 require_once '../controllers/UserControll.php';
 require_once './components/UserComponents.php';
+verificarLogadoTipo();
 mudarSenha();
 ?>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ mudarSenha();
 
             <form method="post">
                 <label for="cpf">CPF</label>
-                <input name="cpf" type="text" placeholder='Digite seu CPF aqui. Não utilize "." e "-"' required> <!-- Troquei os campos cpf de todos os arquivos de text pra number pro cara nao conseguir colocar letra no campo (se precisar troca de volta pra text) -->
+                <input name="cpf" type="text" placeholder='Digite seu CPF aqui.' required> <!-- Troquei os campos cpf de todos os arquivos de text pra number pro cara nao conseguir colocar letra no campo (se precisar troca de volta pra text) -->
 
                 <button type="submit" class="btn" style="margin-top: 20px;">Enviar código de recuperação</button>
             </form>

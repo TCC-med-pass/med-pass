@@ -15,6 +15,7 @@ MedicamentoUso()
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="./styles/medicamento.css">
+  <link rel="stylesheet" href="./styles/erros.css">
   <link rel="stylesheet" href="./scripts/medicamento-uso.js">
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -44,6 +45,7 @@ MedicamentoUso()
   <!-- Main content -->
   <div class="content">
     <?php mensagemErro(); ?>
+    <?php mensagemSucesso(); ?>
 
     <!-- Table -->
     <table class="med-table">
@@ -86,7 +88,7 @@ MedicamentoUso()
 
       <div class="card-number">
         <p>Número da carterinha:</p>
-        <span>12345678-0</span>
+        <span><?php echo $_SESSION['numero_carteirinha']; ?></span>
       </div>
     </div>
 

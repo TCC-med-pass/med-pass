@@ -16,22 +16,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const dataEmissao  = document.getElementById('dataEmissao');
   const dataValidade = document.getElementById('dataValidade');
 
-  // ── Constantes ─────────────────────────────
-  const TIPOS_ACEITOS  = ['application/pdf', 'image/jpeg', 'image/png'];
-  const EXTENSOES      = ['.pdf', '.jpg', '.jpeg', '.png'];
-  const TAMANHO_MAX_MB = 10;
-
   // ── Máscara de data (DD/MM/AAAA) ───────────
   function aplicarMascara(input) {
-    input.addEventListener('input', () => {
-      let v = input.value.replace(/\D/g, '').slice(0, 8);
-      if (v.length > 4) v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4);
-      else if (v.length > 2) v = v.slice(0,2) + '/' + v.slice(2);
+    if (!input) return;
+    // Se for input do tipo date (YYYY-MM-DD), não aplicar máscara DD/MM/AAAA.
+    // A máscara vai quebrar o valor e pode deixar o campo vazio no submit.
+    if (input.type === 'date') return;
+
+    const aplicar = () => {
+      const raw = input.value ?? '';
+      const vDigits = raw.replace(/\D/g, '').slice(0, 8);
+      if (vDigits.length === 0) return; // evita limpar o campo por eventos intermediários
+
+      let v = vDigits;
+      if (v.length > 4) v = v.slice(0, 2) + '/' + v.slice(2, 4) + '/' + v.slice(4);
+      else if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+
       input.value = v;
-    });
+    };
+
+    input.addEventListener('input', aplicar);
+    input.addEventListener('change', aplicar);
+    input.addEventListener('blur', aplicar);
   }
+
   aplicarMascara(dataEmissao);
   aplicarMascara(dataValidade);
+
+  // ── Constantes ─────────────────────────────
+  const TIPOS_ACEITOS  = ['application/pdf', 'image/jpeg', 'image/png'];
+  const EXTENSOES      = ['.pdf'];
+  const TAMANHO_MAX_MB = 10;
+
 
   // ── Upload: clicar na caixa ─────────────────
   uploadBox.addEventListener('click', () => fileInput.click());
@@ -76,12 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Transferir para o input se veio do drag & drop
-    if (fileInput.files.length === 0) {
-      const dt = new DataTransfer();
-      dt.items.add(arquivo);
-      fileInput.files = dt.files;
-    }
+    // Garantir que o arquivo fique no <input type="file">
+    // (em alguns browsers, fileInput.files é somente-leitura; por isso usamos DataTransfer)
+    const dt = new DataTransfer();
+    dt.items.add(arquivo);
+    fileInput.files = dt.files;
 
     mostrarPreview(arquivo);
   }
@@ -179,31 +194,36 @@ document.addEventListener('DOMContentLoaded', () => {
     fileInput.value = '';
   }
 
-  // ── Validação e envio do formulário ─────────
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+   // ── Validação e envio do formulário ─────────
+   form.addEventListener('submit', (e) => {
+     const nome   = document.getElementById('nome').value.trim();
+     const status = document.getElementById('status').value.trim();
+     const tipo   = document.getElementById('tipo').value;
 
-    const nome   = document.getElementById('nome').value.trim();
-    const status = document.getElementById('status').value.trim();
-    const tipo   = document.getElementById('tipo').value;
+     let temErro = false;
 
-    if (!nome) { alertaCampo('nome', 'Informe o nome do prontuário'); return; }
-    if (!status) { alertaCampo('status', 'Informe o status'); return; }
-    if (!tipo) { alertaCampo('tipo', 'Selecione o tipo'); return; }
+     if (!nome) {
+       alertaCampo('nome', 'Informe o nome do prontuário');
+       temErro = true;
+     }
+     if (!status) {
+       alertaCampo('status', 'Informe o status');
+       temErro = true;
+     }
+     if (!tipo) {
+       alertaCampo('tipo', 'Selecione o tipo');
+       temErro = true;
+     }
+     if (fileInput.files.length === 0) {
+       mostrarErroUpload('Selecione um arquivo para anexar.');
+       temErro = true;
+     }
 
-    // Simula envio
-    const btnEnviar = form.querySelector('.btn-send');
-    btnEnviar.disabled = true;
-    btnEnviar.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando…';
-
-    setTimeout(() => {
-      mostrarToast('Prontuário enviado com sucesso!', 'sucesso');
-      btnEnviar.disabled = false;
-      btnEnviar.textContent = 'Enviar';
-      // form.reset(); // descomente para limpar após envio
-      // limparUpload();
-    }, 1500);
-  });
+     if (temErro) {
+       e.preventDefault();
+     }
+     // Se não houver erro, o formulário será enviado normalmente
+   });
 
   function alertaCampo(id, msg) {
     const el = document.getElementById(id);

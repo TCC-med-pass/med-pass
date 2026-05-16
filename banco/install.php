@@ -127,7 +127,7 @@ $sql = "CREATE TABLE IF NOT EXISTS problema_de_saude(
     ID_problema_de_saude int not null PRIMARY KEY auto_increment,
     nome VARCHAR(100),
     status VARCHAR(50),
-    tipo ENUM('grave','leve','medio','normal'),
+    tipo ENUM('grave','leve','medio'),
     data DATE not null,
     fk_paciente INTEGER NOT NULL,
     fk_medico INTEGER NOT NULL

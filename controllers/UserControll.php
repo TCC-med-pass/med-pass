@@ -65,7 +65,7 @@ function getUser()
             $email = sanitizar($_POST['email'] ?? '', 'email');
             $senha = trim($_POST['senha']);
             $confirmar_senha = trim($_POST['confirmar_senha']);
-            $cpf = trim($_POST['cpf']);
+            $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
             $telefone = sanitizar($_POST['telefone'] ?? '', 'inteiro');
             $genero = sanitizar($_POST['genero'] ?? '', 'texto');
             $bDate = trim($_POST['bDate']);
@@ -89,7 +89,7 @@ function getUser()
             $email = sanitizar($_POST['email'] ?? '', 'email');
             $senha = trim($_POST['senha']);
             $confirmar_senha = trim($_POST['confirmar_senha']);
-            $cpf = trim($_POST['cpf']);
+            $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));;
             $crm = trim($_POST['crm']);   // corrigido
             $telefone = trim($_POST['telefone']);
             $especialidade = trim($_POST['especialidade']);
@@ -116,7 +116,7 @@ function validateUser()
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $senha = trim($_POST['senha']);
-        $cpf = trim($_POST['cpf']);
+        $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
 
         if (empty($_SESSION['erro'])) {
             validar($pdo, $senha, $cpf);
@@ -378,7 +378,7 @@ function showDataNasc()
         return null;
     }
 
-    return getDataNascDataBase($pdo, $paciente_id);
+    return traduz_data_para_exibir(getDataNascDataBase($pdo, $paciente_id));
 }
 
 
@@ -524,10 +524,14 @@ function pacienteMedicos($id)
 function sessionPaciente()
 {
     global $pdo;
-    $id = $_GET['paciente'] ?? '';
-    $_SESSION['id_paciente'] = $id;
-    $nome = getinformacaoPaciente($pdo, $id);
+    if (isset($_GET['paciente']) && isset($_GET['tipo'])) {
+        $id = $_GET['paciente'] ?? '';
+        $_SESSION['id_paciente'] = $id;
+        $_SESSION['comorbidades'] = $_GET['tipo'];
+    }
+    $nome = getinformacaoPaciente($pdo, $_SESSION['id_paciente']);
     $_SESSION['nome_paciente'] = $nome['nome'] ?? 'paciente';
+    $_SESSION['numero_carteirinha'] = $nome['numeroCartera'] ?? '';
 }
 function informacaoMedica()
 {
@@ -639,6 +643,10 @@ function mudarSenha()
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
         $usuario = getinformacaoUsuario($pdo, $cpf);
+        if (!$usuario) {
+            $_SESSION['erro'][] = "Usuário não encontrado.";
+            return;
+        }
         $novaSenha = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
         $hash = password_hash($novaSenha, PASSWORD_DEFAULT);
         $resultado = updateUsuario($pdo, $usuario['id'], $hash);
@@ -763,4 +771,76 @@ function showNomeMedico()
     }
 
     return getNomeMedicoDataBase($pdo, $paciente_id, $tipo);
+}
+
+function problemaSaude()
+{
+    global $pdo;
+    date_default_timezone_set('America/Sao_Paulo');
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
+        $nome = sanitizar($_POST['nome'] ?? '', 'texto');
+        $status = trim($_POST['status'] ?? '');
+        $tipo = trim($_POST['tipo'] ?? '');
+        $data = date('Y-m-d');
+        $pacienteId = ($_SESSION['id_paciente'] ?? 0);
+        $medico = $_SESSION['id_medico'] ?? 0;
+        $modelo = $_POST['modelo'];
+
+        if (!$pacienteId && !$medico) {
+            $_SESSION['erro'][] = "Sessão inválida. Faça login novamente.";
+            return;
+        }
+
+        if ($nome === '' || $status === '' || $tipo === '') {
+            $_SESSION['erro'][] = "Preencha todos os campos obrigatórios.";
+            return;
+        }
+
+        if ($modelo === 'adicionar') {
+            $dado = setProblemaSaude($pdo, $nome, $status, $tipo, $data, $pacienteId, $medico);
+            if ($dado) {
+                header("Location: ../views/problema_saude.php");
+                exit();
+            }
+        }
+        if ($modelo === 'editar') {
+            $dado = updateProblemaSaude($pdo, $id, $nome, $status, $tipo, $data, $pacienteId, $medico);
+            if ($dado) {
+                header("Location: ../views/problema_saude.php");
+                exit();
+            }
+        }
+    }
+}
+
+function editarSenha()
+{
+    global $pdo;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $senha = trim($_POST['senha']);
+        $confirmar_senha = trim($_POST['confirmar_senha']);
+        $usuario = $_SESSION['id_usuario'] ?? 0;
+
+        if (!$usuario) {
+            $_SESSION['erro'][] = "Sessão inválida. Faça login novamente.";
+            return;
+        }
+
+        validarSenha($senha);
+        confirmarSenha($senha, $confirmar_senha);
+
+        if (empty($_SESSION['erro'])) {
+            $hash = password_hash($senha, PASSWORD_DEFAULT);
+            $resultado = updateUsuario($pdo, $usuario, $hash);
+            if ($resultado === true) {
+                $_SESSION['sucesso'] = "Senha atualizada com sucesso.";
+                header("Location: login.php");
+                exit();
+            } else {
+                $_SESSION['erro'][] = "Erro ao atualizar a senha. Tente novamente.";
+            }
+        }
+    }
 }

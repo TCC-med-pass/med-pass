@@ -146,7 +146,7 @@ label {
 }
 
 /* ── INPUTS ── */
-input[type="text"],
+input,
 textarea,
 select {
   background: white;
@@ -161,7 +161,7 @@ select {
   font-family: inherit;
 }
 
-input[type="text"]:focus,
+input:focus,
 textarea:focus,
 select:focus {
   border-color: #007b7b;

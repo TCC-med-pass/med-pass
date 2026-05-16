@@ -48,8 +48,8 @@ function showMedicamento()
 
 function mensagemErro()
 {
-    global $pdo;
     if (!empty($_SESSION['erro'])) {
+        echo "<div class='erro'>";
         echo "<ul>";
 
         foreach ($_SESSION['erro'] as $erro) {
@@ -57,13 +57,16 @@ function mensagemErro()
         }
 
         echo "</ul>";
+        echo "</div>";
         unset($_SESSION['erro']);
     }
 }
-function mensagemSucesso()
-{
-    if (!empty($_SESSION['sucesso'])) {
-        echo "<p>" . htmlspecialchars($_SESSION['sucesso'], ENT_QUOTES, 'UTF-8') . "</p>";
+
+function mensagemSucesso() {
+    if(!empty($_SESSION['sucesso'])) {
+        echo "<div class='sucesso'>";
+        echo "<p>" . $_SESSION['sucesso'] . "</p>";
+        echo "</div>";
         unset($_SESSION['sucesso']);
     }
 }
@@ -179,13 +182,34 @@ function showInformacaoMedicamentoUso()
       </div>";
     }
 }
-function showProblemaSaude()
-{
-    $id = $_SESSION['id_paciente'] ?? '';
-    $dado = mostrarProblemaSaude($id);
 
-    // foreach ($dado as $problema) {
-    // }
+function showProblemaSaude(){
+    $id = $_SESSION['id_paciente'] ?? '';
+    $dado = mostrarProblemaSaude($id); 
+
+     foreach ($dado as $problema) {
+        echo "<tr data-id='" . htmlspecialchars($problema['id'], ENT_QUOTES, 'UTF-8') . "'>
+
+          <td>" . htmlspecialchars($problema['nome'], ENT_QUOTES, 'UTF-8') . "</td>
+          <td>" . htmlspecialchars($problema['status'], ENT_QUOTES, 'UTF-8') . "</td>
+          <td>" . htmlspecialchars($problema['tipo'], ENT_QUOTES, 'UTF-8') . "</td>
+          <td>" . htmlspecialchars(traduz_data_para_exibir($problema['data']), ENT_QUOTES, 'UTF-8') . "</td>
+
+          <td class='td-acoes'>
+
+            <button
+              class='btn-editar'
+              onclick='abrirEdicao(this)'
+              title='Editar'>
+
+              <i class='fa-solid fa-pen'></i>
+
+            </button>
+
+          </td>
+
+        </tr>";
+     }
 }
 
 
