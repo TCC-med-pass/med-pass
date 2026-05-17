@@ -455,7 +455,7 @@ function getHistoricoFamiliarDataBase($pdo, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$paciente_id])) {
-        $historico_familiar = $stmt->fetch(PDO::FETCH_ASSOC);
+        $historico_familiar = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $historico_familiar['historico_familiar'];
     }

@@ -31,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-// salvarHistoricoFamiliar(); só deve ser chamada no submit
+// salvarHistoricoFamiliar(); / pagina de historico
+// $historico_familiar = showHistoricoFamiliar(); / pagina de historico
 
 
 $telefoneDeEmergencia = showTelEmergencia();
@@ -45,7 +46,7 @@ $peso = showPeso();
 $idade = showIdade();
 $data_nascimento = showDataNasc();
 $numero_de_carteirinha = showNumCarterinha();
-$historico_familiar = showHistoricoFamiliar();
+
 
 $problemaLeve =  showProblemaLeve();
 $problemaMedio = showProblemaMedio();

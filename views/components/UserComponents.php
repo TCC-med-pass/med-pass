@@ -286,3 +286,16 @@ function renderTable($problemaLeve, $problemaMedio, $problemaGrave)
 
     return $html;
 }
+
+
+function renderHistoricoFami($historico_familiar) {
+
+    if(!$historico_familiar){
+        return;
+    }
+
+    foreach($historico_familiar as $historico){
+        echo""; // renderização da tabela
+    }
+
+}
