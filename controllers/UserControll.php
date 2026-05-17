@@ -17,7 +17,7 @@ require_once __DIR__ . '/../servico/chamados/enviar_email.php';
 
 function verificarTipo($niveisPermitidos)
 {
-    if (!isset($_SESSION['id_usuario'])) { // se o id tiver nulo, manda devolta pro login
+    if (!isset($_SESSION['id_usuario'])) { // se o id tiver nulo, manda de volta pro login
         header('Location: login.php');
         exit();
     }
@@ -138,7 +138,16 @@ function medicamento($id, $tipo)
 
 
 
-function salvarTelEmergencia()
+
+
+
+
+function salvarHistoricoFamiliar()
+{
+
+    global $pdo;
+    if (!isset($_SESSION['id_usuario'])) {
+      function salvarTelEmergencia()
 {
     global $pdo;
     if (!isset($_SESSION['id_usuario'])) {
@@ -396,16 +405,7 @@ function showNumCarterinha()
     }
 
     return getNumCarterinhaDataBase($pdo, $paciente_id);
-}
-
-
-
-function salvarHistoricoFamiliar()
-{
-
-    global $pdo;
-    if (!isset($_SESSION['id_usuario'])) {
-        die("Usuário não autenticado");
+}  die("Usuário não autenticado");
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $historico_familiar = $_POST['historico_familiar'] ?? null;
