@@ -769,7 +769,8 @@ function getInformacaoMedicamentoUso($pdo, $id)
     return $stmt->fetchAll();
 }
 
-function getProblemaSaude($pdo, $id){
+function getProblemaSaude($pdo, $id)
+{
     $sql = "SELECT id_problema_de_saude as id, nome, status, tipo, data FROM problema_de_saude WHERE fk_paciente = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
@@ -822,8 +823,9 @@ function getNomeMedicoDataBase($pdo, $paciente_id, $tipo)
 }
 
 
-function setProblemaSaude($pdo, $nome, $status, $tipo, $data, $pacienteId, $medico){
-    try{
+function setProblemaSaude($pdo, $nome, $status, $tipo, $data, $pacienteId, $medico)
+{
+    try {
         $sql = "INSERT INTO problema_de_saude (nome, status, tipo, data, fk_medico, fk_paciente) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nome, $status, $tipo, $data, $pacienteId, $medico]);
@@ -834,12 +836,13 @@ function setProblemaSaude($pdo, $nome, $status, $tipo, $data, $pacienteId, $medi
     }
 }
 
-function updateProblemaSaude($pdo, $id, $nome, $status, $tipo, $data, $pacienteId, $medico){
+function updateProblemaSaude($pdo, $id, $nome, $status, $tipo, $data, $pacienteId, $medico)
+{
     if (!is_numeric($id)) {
         $_SESSION['erro'][] = "ID inválido.";
         return false;
     }
-    try{
+    try {
         $sql = "UPDATE problema_de_saude SET nome = ?, status = ?, tipo = ?, data = ?, fk_medico = ?, fk_paciente = ? WHERE id_problema_de_saude = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nome, $status, $tipo, $data, $medico, $pacienteId, $id]);
@@ -851,4 +854,21 @@ function updateProblemaSaude($pdo, $id, $nome, $status, $tipo, $data, $pacienteI
         $_SESSION['erro'][] = "Erro ao atualizar problema de saúde: " . $e->getMessage();
         return false;
     }
+}
+
+
+function getIdAequivoDataBase($pdo, $paciente_id, $tipo)
+{
+
+
+    $sql = "SELECT id_arquivos from arquivos where fk_paciente_id = ? and tipo = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute([$paciente_id, $tipo])) {
+
+        return $stmt->fetch(PDO::FETCH_COLUMN);
+    }
+
+    return;
 }
