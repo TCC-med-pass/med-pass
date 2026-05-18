@@ -854,3 +854,21 @@ function editarSenha()
         }
     }
 }
+
+
+
+
+function showIdArquivo()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+    $tipo = $_GET['titulo'] ?? null;
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    return getIdAequivoDataBase($pdo, $paciente_id, $tipo);
+}

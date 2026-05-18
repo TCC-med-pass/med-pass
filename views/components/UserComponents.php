@@ -62,8 +62,9 @@ function mensagemErro()
     }
 }
 
-function mensagemSucesso() {
-    if(!empty($_SESSION['sucesso'])) {
+function mensagemSucesso()
+{
+    if (!empty($_SESSION['sucesso'])) {
         echo "<div class='sucesso'>";
         echo "<p>" . $_SESSION['sucesso'] . "</p>";
         echo "</div>";
@@ -183,11 +184,12 @@ function showInformacaoMedicamentoUso()
     }
 }
 
-function showProblemaSaude(){
+function showProblemaSaude()
+{
     $id = $_SESSION['id_paciente'] ?? '';
-    $dado = mostrarProblemaSaude($id); 
+    $dado = mostrarProblemaSaude($id);
 
-     foreach ($dado as $problema) {
+    foreach ($dado as $problema) {
         echo "<tr data-id='" . htmlspecialchars($problema['id'], ENT_QUOTES, 'UTF-8') . "'>
 
           <td>" . htmlspecialchars($problema['nome'], ENT_QUOTES, 'UTF-8') . "</td>
@@ -209,15 +211,17 @@ function showProblemaSaude(){
           </td>
 
         </tr>";
-     }
+    }
 }
 
 
 
 
 
-function renderCard($datas_emissoes, $nomes_medicos)
+function renderCard($datas_emissoes, $nomes_medicos, $id)
 {
+
+    $titulo = $_GET['titulo'];
     if (!$nomes_medicos || !$datas_emissoes) {
         return;
     }
@@ -226,20 +230,22 @@ function renderCard($datas_emissoes, $nomes_medicos)
 
         $data_emissao = $datas_emissoes[$index];
 
-        echo '
-            <div class="card">
+        echo "
+            <div class='card'>
                 <h2>
                     <strong>Médico: </strong> 
-                    ' . $nome_medico . '   
+                    " . $nome_medico . "   
                 </h2>  
                 <h3>
                     <strong>Data: </strong>
-                    ' . $data_emissao . '
+                    " . $data_emissao . "
                 </h3>
 
-                <button>Abrir</button>
+        <a href='arquivo.php?arquivo=" . htmlspecialchars($id, ENT_QUOTES, 'UTF-8') . "&tipo=$titulo' alt='Botão de mostrar o documento médico'> 
+    <button class='card-btn'>Abrir</button>
+</a>
             </div>
-        ';
+        ";
     }
 }
 
@@ -288,14 +294,14 @@ function renderTable($problemaLeve, $problemaMedio, $problemaGrave)
 }
 
 
-function renderHistoricoFami($historico_familiar) {
+function renderHistoricoFami($historico_familiar)
+{
 
-    if(!$historico_familiar){
+    if (!$historico_familiar) {
         return;
     }
 
-    foreach($historico_familiar as $historico){
-        echo""; // renderização da tabela
+    foreach ($historico_familiar as $historico) {
+        echo ""; // renderização da tabela
     }
-
 }

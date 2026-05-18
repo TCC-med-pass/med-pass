@@ -15,6 +15,7 @@ $nomePciente = showNome();
 $numero_de_carteirinha = showNumCarterinha();
 
 
+$id = showIdArquivo();
 $nomes_medicos = showNomeMedico();
 $datas_emissoes =  showDataEmissao();
 
@@ -97,7 +98,7 @@ $datas_emissoes =  showDataEmissao();
 
         <section class="cards">
 
-            <?php renderCard($datas_emissoes, $nomes_medicos) ?>
+            <?php renderCard($datas_emissoes, $nomes_medicos, $id) ?>
 
         </section>
 
