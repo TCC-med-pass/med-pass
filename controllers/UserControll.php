@@ -147,7 +147,25 @@ function salvarHistoricoFamiliar()
 
     global $pdo;
     if (!isset($_SESSION['id_usuario'])) {
-      function salvarTelEmergencia()
+        die("Usuário não autenticado");
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $historico_familiar = $_POST['historico_familiar'] ?? null;
+        $paciente_id = $_SESSION['id_usuario'];
+        if ($historico_familiar) {
+            setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id);
+        }
+    }
+}
+
+
+
+
+
+
+
+function salvarTelEmergencia()
 {
     global $pdo;
     if (!isset($_SESSION['id_usuario'])) {
@@ -161,6 +179,7 @@ function salvarHistoricoFamiliar()
         }
     }
 }
+
 
 function showTelEmergencia()
 {
@@ -405,15 +424,6 @@ function showNumCarterinha()
     }
 
     return getNumCarterinhaDataBase($pdo, $paciente_id);
-}  die("Usuário não autenticado");
-    }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $historico_familiar = $_POST['historico_familiar'] ?? null;
-        $paciente_id = $_SESSION['id_usuario'];
-        if ($historico_familiar) {
-            setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id);
-        }
-    }
 }
 
 function showHistoricoFamiliar()
