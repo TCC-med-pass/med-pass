@@ -264,7 +264,7 @@ $problemaGrave = showProblemaGrave();
                 <div class="gridBtn">
                     <a href="./medicamento_uso.php"><button class="btnMenu">Medicamento em Uso</button></a>
                     <a href="./receitas_medicas.php"><button class="btnMenu">Receita Médica</button></a>
-                    <a href=""><button class="btnMenu">Histório Familiar</button></a>
+                    <a href="./historicoFamiliar.php"><button class="btnMenu">Histório Familiar</button></a>
                 </div>
             </div>
         </div>
