@@ -7,6 +7,7 @@ uploadArquivoI();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,23 +16,29 @@ uploadArquivoI();
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link rel="stylesheet" href="./styles/upload.css" />
 </head>
+
 <body>
-    <?php mensagemErro() ?>
-    <?php mensagemSucesso() ?>
-    <!-- TOP BAR -->
-  <div class="topbar">
-    <a href="#" class="topbar-icon">
-      <i class="fa-solid fa-house"></i>
-    </a>
-    <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
-    <a href="#" class="topbar-icon">
-      <i class="fa-solid fa-bars"></i>
-    </a>
-  </div>
+  <?php mensagemErro() ?>
+  <?php mensagemSucesso() ?>
+  <!-- TOP BAR -->
+  <header id="header">
+    <div class="container">
+      <a href="#">
+        <i class="fa-solid fa-house btnCasa"></i>
+      </a>
+    </div>
+    <div class="container">
+      <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass">
+    </div>
+    <div class="container">
+      <!--Menu hamburguer-->
+      <i class="fa-solid fa-bars menu-icon"></i>
+    </div>
+  </header>
 
   <!-- SUBHEADER -->
   <div class="subheader">
-    <a class="back-btn" href="#" id="btnVoltar">
+    <a class="back-btn" href="./medPaciente.php" id="btnVoltar">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <div class="subheader-title">Novo Prontuário</div>
@@ -45,7 +52,7 @@ uploadArquivoI();
     <div class="card">
       <h2>Novo Prontuário</h2>
 
-       <form id="formProntuario" method="post" enctype="multipart/form-data" novalidate>
+      <form id="formProntuario" method="post" enctype="multipart/form-data" novalidate>
 
         <div class="row">
           <div class="field">
@@ -61,7 +68,7 @@ uploadArquivoI();
           </div>
           <div class="field">
             <label for="dataValidade">Data Validade:</label>
-            <input type="date" id="dataValidade" name="data_validade"  maxlength="10" />
+            <input type="date" id="dataValidade" name="data_validade" maxlength="10" />
           </div>
         </div>
 
@@ -110,13 +117,38 @@ uploadArquivoI();
       <div class="bottom-spacer"></div>
 
       <!-- ── PATIENT BADGE ── -->
-  <div class="patient-badge">
-    <div class="badge-label">Paciente:</div>
-    <div class="badge-name">Ana Beatriz Pereira Costa</div>
-    <div class="badge-severity">Comorbidade grave</div>
-  </div>
+      <div class="patient-badge" id="carteirinha">
+        <div class="badge-label">Paciente:</div>
+        <div class="badge-name">Ana Beatriz Pereira Costa</div>
+        <div class="badge-severity">Comorbidade grave</div>
+      </div>
+
+      <!-- Sidebar -->
+      <nav id="sidebar">
+        <div class="contSidebar">
+          <h1>Medico</h1>
+        </div>
+
+        <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+        <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+        <a href="registros.php?titulo=exame" class="opcao">Exames</a>
+        <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+        <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
+
+        <div class="contSidebar">
+          <a href="" class="config">
+            <h3>Ajuda</h3>
+          </a>
+          <a href="" class="config">
+            <h3>Configurações</h3>
+          </a>
+        </div>
+      </nav>
+
 
   </main>
-<script src="./scripts/upload.js"></script>
+  <script src="./scripts/upload.js"></script>
+  <script src="./scripts/sidebar.js"></script>
 </body>
+
 </html>

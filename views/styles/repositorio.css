@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@400;700&display=swap');
+
 *, *::before, *::after {
+  font-family: 'Aleo', serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -22,7 +25,6 @@
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
   background: var(--gray-100);
   color: var(--text);
   min-height: 100vh;

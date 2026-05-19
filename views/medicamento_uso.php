@@ -1,47 +1,73 @@
 <?php
 require_once '../controllers/UserControll.php';
 require_once './components/UserComponents.php';
-verificarTipo(['paciente','medico']);
+verificarTipo(['paciente', 'medico']);
 MedicamentoUso()
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Medicamentos em Uso</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="./styles/medicamento.css">
   <link rel="stylesheet" href="./styles/erros.css">
-  <link rel="stylesheet" href="./scripts/medicamento-uso.js">
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+
 <body>
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <a href="#" class="topbar-icon"> 
-      <i class="fa-solid fa-house"></i> 
-    </a>
-    <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
-    <a href="#" class="topbar-icon">
-      <i class="fa-solid fa-bars"></i>
-    </a>
-  </div>
+  <header id="header">
+    <div class="container">
+      <a href="./pgMedico.php">
+        <i class="fa-solid fa-house btnCasa"></i>
+      </a>
+    </div>
+    <div class="container">
+      <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass">
+    </div>
+    <div class="container">
+      <!--Menu hamburguer-->
+      <i class="fa-solid fa-bars menu-icon"></i>
+    </div>
+  </header>
 
   <!-- Sub-header -->
   <div class="subheader">
-    <a href="#" class="back-btn">
+    <a href="./medPaciente.php" class="back-btn">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <span class="subheader-title">Medicamentos em Uso</span>
     <div class="subheader-spacer"></div>
   </div>
 
+
+  <nav id="sidebar">
+    <div class="contSidebar">
+      <h1>aaa</h1>
+    </div>
+
+    <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+    <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+    <a href="registros.php?titulo=exame" class="opcao">Exames</a>
+    <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+    <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
+
+    <div class="contSidebar">
+      <a href="" class="config">
+        <h3>Ajuda</h3>
+      </a>
+      <a href="" class="config">
+        <h3>Configurações</h3>
+      </a>
+    </div>
+  </nav>
   <!-- Main content -->
   <div class="content">
     <?php mensagemErro(); ?>
@@ -133,6 +159,9 @@ MedicamentoUso()
     </div>
 
     <script src="./scripts/medicamento-uso.js"></script>
+    <script src="./scripts/esconderHeader.js"></script>
+    <script src="./scripts/sidebar.js"></script>
   <?php endif; ?>
 </body>
+
 </html>

@@ -172,7 +172,6 @@ $problemaGrave = showProblemaGrave();
                                     <p class="texto"><?php echo $genero ?></p>
 
                                     <select class="input hidden" name="genero" required>
-                                        <option value="">Selecione seu gênero</option>
                                         <option value="m">Masculino</option>
                                         <option value="f">Feminino</option>
                                         <option value="i">Indefinido</option>
@@ -264,7 +263,7 @@ $problemaGrave = showProblemaGrave();
                 <div class="gridBtn">
                     <a href="./medicamento_uso.php"><button class="btnMenu">Medicamento em Uso</button></a>
                     <a href="./receitas_medicas.php"><button class="btnMenu">Receita Médica</button></a>
-                    <a href=""><button class="btnMenu">Histório Familiar</button></a>
+                    <a href="./historicoFamiliar.php"><button class="btnMenu">Histório Familiar</button></a>
                 </div>
             </div>
         </div>

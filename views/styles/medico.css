@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@400;700&display=swap');
 
+/* Elementos globais */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    font-family: "Aleo", serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-  --teal: #1a8f85;
+  --teal: #007977;
   --teal-card: #c97310;
-  --teal-dark: #146f67;
+  --teal-dark: #005853;
   --teal-light: #e8f5f4;
   --red: #c0392b;
   --red-dark: #a93226;
@@ -22,22 +25,61 @@
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
   background-color: var(--gray-bg);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding-top: 15vh;
 }
 
 /* ── HEADER ── */
-.topbar {
-  background: var(--teal);
-  padding: 2px 78px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 800px;
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    transition: transform 0.3s ease;
+
+    width: 100%;
+    height: 15vh;
+    background-color: var(--teal);
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#header.esconder {
+    transform: translateY(-100%);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: auto;
+}
+
+
+/* menu hamburger */
+
+.menu-icon, .btnCasa {
+    font-size: 33px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.menu-icon:hover {
+    color: #ccc;
+}
+
+#header img,
+.logo-img {
+  max-width: 220px;
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
 }
 
 .topbar-icon {
@@ -45,12 +87,6 @@ body {
   font-size: 22px;
   cursor: pointer;
   text-decoration: none;
-}
-
-.logo-img {
-  height: 120px;
-  width: auto;
-  object-fit: contain;
 }
 
 
@@ -100,6 +136,7 @@ body {
 main {
   width: 100%;
   max-width: 740px;
+  margin: 0 auto;
   padding: 40px 32px 56px;
 }
 
@@ -119,7 +156,6 @@ main {
   flex: 1;
   border: none;
   outline: none;
-  font-family: 'Nunito', sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: var(--text-dark);
@@ -210,4 +246,87 @@ main {
   margin-top: 6px;
   font-weight: 800;
   font-size: 14px;
+}
+
+
+
+
+
+
+/* menu hamburger */
+
+.menu-icon {
+    font-size: 33px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.menu-icon:hover {
+    color: #ccc;
+}
+
+/* sidebar */
+
+#sidebar {
+    position: fixed;
+    top: 15vh;
+    right: -0; /* responsivo */
+    width: 25vw;
+    height: calc(100vh - 15vh);
+    background: #007977;
+    padding: 5px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+
+    transform: translateX(100%); /* escondido */
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Quando aberto */
+#sidebar.active {
+    transform: translateX(0); /* aparece */
+}
+
+#sidebar a {
+    display: block;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+#sidebar h1, h3 {
+    color: #007977;
+}
+
+.contSidebar {
+    width: 100%;
+    min-height: 10vh;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.config {
+    color: black;
+}
+
+.opcao {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.opcao:hover {
+    color: #ccc;
 }
