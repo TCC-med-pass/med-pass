@@ -296,12 +296,20 @@ function renderTable($problemaLeve, $problemaMedio, $problemaGrave)
 
 function renderHistoricoFami($historico_familiar)
 {
+    
 
-    if (!$historico_familiar) {
-        return;
-    }
-
-    foreach ($historico_familiar as $historico) {
-        echo ""; // renderização da tabela
-    }
+ 
+        echo '<table>
+            <thead>
+                <tr>
+                    <th>Doenças familiares registradas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>' . $historico_familiar . '</td>
+                </tr>
+            </tbody>
+        </table>';
+    
 }

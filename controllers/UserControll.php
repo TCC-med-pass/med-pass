@@ -20,7 +20,10 @@ function verificarTipo($niveisPermitidos)
     if (!isset($_SESSION['id_usuario'])) { // se o id tiver nulo, manda de volta pro login
         header('Location: login.php');
         exit();
+    }else{
+        $_SESSION['numero_carteirinha'] = showNumCarterinha();
     }
+
     if (!in_array($_SESSION['nivel'], $niveisPermitidos)) { //verifica se o nivel é permitido, se nao for, vai para acesso_negado
         header('Location: acesso_negado.php');
         exit();
@@ -872,3 +875,4 @@ function showIdArquivo()
 
     return getIdAequivoDataBase($pdo, $paciente_id, $tipo);
 }
+

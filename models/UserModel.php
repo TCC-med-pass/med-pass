@@ -153,7 +153,6 @@ function validar($pdo, $senha, $cpf)
         if ($usuario['nivel'] == 'medico') {
 
             header("Location: ../views/pgMedico.php");
-            //echo 'deu certo!';
             exit();
         } elseif ($usuario['nivel'] == 'paciente') {
 
@@ -455,9 +454,14 @@ function getHistoricoFamiliarDataBase($pdo, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$paciente_id])) {
-        $historico_familiar = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $historico_familiar['historico_familiar'];
+        $historico_familiar = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ( $historico_familiar && !empty($historico_familiar['historico_familiar'])) {
+            return $historico_familiar['historico_familiar'];
+        }
+
+        return 'Sem Histórico';
     }
 
     return null;

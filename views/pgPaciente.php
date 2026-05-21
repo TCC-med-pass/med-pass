@@ -31,8 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-// salvarHistoricoFamiliar(); / pagina de historico
-// $historico_familiar = showHistoricoFamiliar();
+
 
 
 $telefoneDeEmergencia = showTelEmergencia();

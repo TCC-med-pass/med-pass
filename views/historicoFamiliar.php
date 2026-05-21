@@ -7,6 +7,9 @@ verificarTipo(['paciente']);
 
 $nomePciente = showNome();
 $numero_de_carteirinha = showNumCarterinha();
+
+salvarHistoricoFamiliar();
+$historico_familiar = showHistoricoFamiliar();
 ?>
 
 <!doctype html>
@@ -89,21 +92,9 @@ $numero_de_carteirinha = showNumCarterinha();
       </div>
 
       <!-- Tabela com as doenças -->
-      <table>
-        <thead>
-          <tr>
-            <th>Doenças familiares registradas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Diabetes</td>
-          </tr>
-          <tr>
-            <td>Hipertensão</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <?php renderHistoricoFami($historico_familiar) ?>
+   
 
       <!-- Pop up de adicionar doença -->
       <div class="modal" id="popup">
@@ -117,6 +108,7 @@ $numero_de_carteirinha = showNumCarterinha();
           <form method="post">
             <input
               type="text"
+              name="historico_familiar"
               placeholder="Digite aqui a doença"
               aria-label="Digite a doença"
               required />
