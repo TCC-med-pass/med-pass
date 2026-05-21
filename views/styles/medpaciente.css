@@ -315,3 +315,99 @@ main {
 .patient-badge {
   z-index: 10;
 }
+
+
+/* Modal / Popup */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal.ativo {
+    display: flex;
+}
+
+.modalConteudo {
+    width: 600px;
+    background-color: white;
+    border-radius: 24px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    animation: aparecer 0.25s ease;
+}
+
+.modalConteudo h2 {
+    font-size: 2rem;
+    color: #222;
+}
+
+.fecharInfo {
+    all: unset;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.fecharInfo:hover {
+    transform: scale(1.15);
+}
+
+.modalConteudo form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modalConteudo input {
+    height: 55px;
+    border: 1px solid #d1d1d1;
+    border-radius: 14px;
+    padding: 0px 18px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.salvar {
+    all: unset;
+    height: 55px;
+    background-color: #007977;
+    color: white;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.salvar:hover {
+    background-color: #015554;
+    transform: scale(1.02);
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

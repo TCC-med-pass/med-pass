@@ -67,6 +67,30 @@ verificarTipo(['medico']);
         <span class="action-label">Adicionar<br>Problema de Saúde</span>
       </a>
 
+      <button class="action-card" id="btnInfo">
+        <span class="action-plus">✎</span>
+        <span class="action-label">Editar<br>Informações do Paciente</span>
+      </button>
+
+
+      <div class="modal" id="popup">
+        <div class="modalConteudo">
+          <button class="fecharInfo" id="fecharInfo" aria-label="Fechar popup">
+            <i class="fa-solid fa-x"></i>
+          </button>
+
+          <h2>Editar Informações do Paciente</h2>
+
+          <form method="post"> <!-- Precisa fazer com o que estivar em branco não fique em branco no banco -->
+            <input type="number" placeholder="Insira o n° de carteirinha do Paciente" aria-label="Insira o número de carteirinha do Paciente">
+            <input type="number" placeholder="Insira a altura do Paciente (ex: 1.70)" step="0.01" min="1" max="2.72" lang="en" value="" aria-label="Insira a altura do Paciente (ex: 1.70)">
+            <input type="number" placeholder="Insira o peso do Paciente em Kg (Ex: 70)" step="0.01" min="2" max="300" lang="en" value="" aria-label="Insira o peso do Paciente em Kg (Ex: 70)">
+            <input type="text" placeholder="Insira as alergias do Paciente" value="" aria-label="Insira as alergias do Paciente"><!-- puxar as Informações de antes pelo banco e colocar no value com echo pra ficar mais agradável se conseguir :) -->
+            <button type="submit" class="salvar">Salvar</button>
+          </form>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -100,21 +124,7 @@ verificarTipo(['medico']);
   </div>
 
   <script src="./scripts/sidebar.js"></script>
+  <script src="./scripts/popupMedico.js"></script>
 </body>
 
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="adicionarDocumento.php">Adicionar Documento</a>
-    <a href="repositorio.php?tipo=receitas&mensagem=receita">receita</a>
-    <a href="medicamento_uso.php">medicamento uso</a>
-</body>
-</html> -->
