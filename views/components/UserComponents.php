@@ -313,3 +313,31 @@ function renderHistoricoFami($historico_familiar)
         </table>';
     
 }
+
+function showDadosPaciente()
+{
+    $id = $_GET['paciente'];
+    $dados = mostrarDadosPaciente($id);
+
+    $carteirinha = $dados['numero_de_carteirinha'] ?? '';
+    $altura = $dados['altura'] ?? '';
+    $peso = $dados['peso'] ?? '';
+    $alergias = $dados['alergias'] ?? '';
+
+        echo "
+        <form method='post'>
+        <input type='number' name='carterinha' value='" . htmlspecialchars($carteirinha, ENT_QUOTES, 'UTF-8') . "' placeholder='Insira o n° de carteirinha do Paciente' aria-label='Insira o número de carteirinha do Paciente'>
+
+
+        <input type='number' name='altura' placeholder='Insira a altura do Paciente (ex: 1.70)' step='0.01' min='1' max='2.72' lang='en' value='" . htmlspecialchars($altura, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira a altura do Paciente (ex: 1.70)'>
+
+
+        <input type='number' name='peso' placeholder='Insira o peso do Paciente em Kg (Ex: 70)' step='0.01' min='2' max='300' lang='en' value='" . htmlspecialchars($peso, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira o peso do Paciente em Kg (Ex: 70)'>
+
+
+        <input type='text' name='alergias' placeholder='Insira as alergias do Paciente' value='" . htmlspecialchars($alergias, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira as alergias do Paciente'>
+        <button type='submit' class='salvar'>Salvar</button>
+        </form>
+        ";
+
+}

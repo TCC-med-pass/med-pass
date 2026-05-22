@@ -62,6 +62,7 @@ $problemaGrave = showProblemaGrave();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/paciente.css">
+    <link rel="stylesheet" href="./styles/erros.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <title>Página do Paciente- Início</title>
@@ -109,7 +110,10 @@ $problemaGrave = showProblemaGrave();
     <main>
         <div class="contMain">
             <div class="parte">
+                <?php mensagemErro() ?>
+                <?php mensagemSucesso() ?>
                 <div class="cardSaude">
+                    
                     <div class="titulo">
                         <h1>Cartão Nacional de Saúde</h1>
                     </div>

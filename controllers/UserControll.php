@@ -426,7 +426,7 @@ function showNumCarterinha()
         return null;
     }
 
-    return getNumCarterinhaDataBase($pdo, $paciente_id);
+    return getNumeroCarteirinha($pdo, $paciente_id);
 }
 
 function showHistoricoFamiliar()
@@ -876,3 +876,32 @@ function showIdArquivo()
     return getIdAequivoDataBase($pdo, $paciente_id, $tipo);
 }
 
+
+function mostrarDadosPaciente($id)
+{
+    global $pdo;
+    return getDadosPaciente($pdo, $id);
+}
+
+
+function dadosPaciente()
+{
+    global $pdo;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $carteira  = $_POST['carterinha'] ?? null;
+    $altura = $_POST['altura'] ?? null;
+    $peso = $_POST['peso'] ?? null;
+    $alergias = $_POST['alergias'] ?? null;
+    $id = $_SESSION['id_paciente'] ?? null;
+
+
+    if (empty($_SESSION['erro'])) {
+        updateDadosPaciente($pdo, $id, $carteira, $altura, $peso, $alergias);
+    }
+   
+    }
+
+
+
+
+}

@@ -1,8 +1,10 @@
 <?php
 require_once '../controllers/UserControll.php';
-
+require_once './components/UserComponents.php';
+dadosPaciente();
 sessionPaciente();
 verificarTipo(['medico']);
+
 
 ?>
 <!DOCTYPE html>
@@ -12,9 +14,11 @@ verificarTipo(['medico']);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Criar novo</title>
+  
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/medpaciente.css">
+  <link rel="stylesheet" href="./styles/erros.css">
 </head>
 
 <body>
@@ -45,10 +49,13 @@ verificarTipo(['medico']);
     </a>
     <span class="subheader-title">Criar novo....</span>
   </div>
+  <?php mensagemErro() ?>
 
   <!-- ── MAIN ── -->
   <main>
+    
     <div class="action-grid">
+      
 
       <!-- Adicionar Documento -->
       <a class="action-card" href="adicionarDocumento.php">
@@ -81,13 +88,8 @@ verificarTipo(['medico']);
 
           <h2>Editar Informações do Paciente</h2>
 
-          <form method="post"> <!-- Precisa fazer com o que estivar em branco não fique em branco no banco -->
-            <input type="number" placeholder="Insira o n° de carteirinha do Paciente" aria-label="Insira o número de carteirinha do Paciente">
-            <input type="number" placeholder="Insira a altura do Paciente (ex: 1.70)" step="0.01" min="1" max="2.72" lang="en" value="" aria-label="Insira a altura do Paciente (ex: 1.70)">
-            <input type="number" placeholder="Insira o peso do Paciente em Kg (Ex: 70)" step="0.01" min="2" max="300" lang="en" value="" aria-label="Insira o peso do Paciente em Kg (Ex: 70)">
-            <input type="text" placeholder="Insira as alergias do Paciente" value="" aria-label="Insira as alergias do Paciente"><!-- puxar as Informações de antes pelo banco e colocar no value com echo pra ficar mais agradável se conseguir :) -->
-            <button type="submit" class="salvar">Salvar</button>
-          </form>
+
+          <?php showDadosPaciente() ?>
         </div>
       </div>
 

@@ -416,7 +416,7 @@ function getDataNascDataBase($pdo, $paciente_id)
     return null;
 }
 
-function getNumCarterinhaDataBase($pdo, $paciente_id)
+function getNumeroCarteirinha($pdo, $paciente_id)
 {
     $sql = "SELECT numero_de_carteirinha FROM paciente WHERE fk_usuario_id = ?";
 
@@ -424,9 +424,10 @@ function getNumCarterinhaDataBase($pdo, $paciente_id)
 
     if ($stmt->execute([$paciente_id])) {
         $numero_de_carteirinha = $stmt->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['numero_carteirinha'] = $numero_de_carteirinha['numero_de_carteirinha'];
-
-        return $numero_de_carteirinha['numero_de_carteirinha'];
+        if ($numero_de_carteirinha && isset($numero_de_carteirinha['numero_de_carteirinha'])) {
+            $_SESSION['numero_carteirinha'] = $numero_de_carteirinha['numero_de_carteirinha'];
+            return $numero_de_carteirinha['numero_de_carteirinha'];
+        }
     }
 
     return null;
@@ -875,4 +876,36 @@ function getIdAequivoDataBase($pdo, $paciente_id, $tipo)
     }
 
     return;
+}
+
+
+function getDadosPaciente($pdo, $id)
+{
+    $sql = "SELECT paciente.alergias as alergias, paciente.numero_de_carteirinha as numero_de_carteirinha, paciente.altura as altura, paciente.peso AS peso FROM paciente WHERE paciente.id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
+
+function updateDadosPaciente($pdo, $id, $carteira, $altura, $peso, $alergias)
+{
+    if (!$id || !is_numeric($id)) {
+        $_SESSION['erro'][] = "ID inválido.";
+        exit;
+    }
+    try {
+        $sql = "UPDATE paciente SET numero_de_carteirinha = ?, altura = ?, peso = ?, alergias = ? WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$carteira, $altura, $peso, $alergias, $id]);
+        if ($stmt->rowCount() === 0) {
+            throw new Exception("Acesso negado ou paciente não encontrada.");
+        }
+        return true;
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = $e->getMessage();
+        return false;
+    }
 }
