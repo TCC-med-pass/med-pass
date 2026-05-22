@@ -16,7 +16,7 @@ require_once './components/UserComponents.php';
 
 <!-- TOP BAR -->
   <div class="topbar">
-    <a href="#" class="topbar-icon">
+    <a href="login.php" class="topbar-icon">
       <i class="fa-solid fa-house"></i>
     </a>
     <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
@@ -27,7 +27,7 @@ require_once './components/UserComponents.php';
 
 <!-- SUBHEADER -->
 <div class="subheader">
-  <a class="back-btn" href="#">
+  <a class="back-btn" href="login.php">
     <i class="fa-solid fa-chevron-left"></i> Voltar
   </a>
   <div class="subheader-title">Receitas médicas</div>
@@ -46,21 +46,18 @@ require_once './components/UserComponents.php';
 <div class="bottom-row">
   <div class="nav-cards">
     
-    <div class="nav-card active">
+    <div class="nav-card active" >
       <i class="fa-solid fa-pills"></i>
-      <span class="nav-card-label">Medicamentos<br>em Uso</span>
+      <span class="nav-card-label" >Medicamentos<br>em Uso</span>
     
     </div>
-    <div class="nav-card">
-      <i class="fa-solid fa-phone-flip"></i>
-      <span class="nav-card-label">Contato de<br>Emergência</span>
-    </div>
+    
 
     <div class="nav-card">
       <i class="fa-solid fa-clock-rotate-left"></i>
       <span class="nav-card-label">Histórico<br>Familiar</span>
     </div>
-  </div>
+  </div> 
 
   <div class="nav-number-badge">
     <p>Número da carterinha:</p>

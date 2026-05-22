@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const toggle = () => {
             const isExpanded = cardSaude.classList.toggle("expandido");
-            btnExpandir.textContent = isExpanded ? "Recolher" : "Expandir";
+            btnExpandir.textContent = isExpanded ? "Recolher" : "Doenças e Comorbidades" ;
         };
 
         btnExpandir.addEventListener("click", toggle);

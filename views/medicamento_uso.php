@@ -25,7 +25,7 @@ MedicamentoUso()
 
   <header id="header">
     <div class="container">
-      <a href="./pgMedico.php">
+      <a href="login.php">
         <i class="fa-solid fa-house btnCasa"></i>
       </a>
     </div>
@@ -40,7 +40,7 @@ MedicamentoUso()
 
   <!-- Sub-header -->
   <div class="subheader">
-    <a href="./medPaciente.php" class="back-btn">
+    <a href="login.php" class="back-btn">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <span class="subheader-title">Medicamentos em Uso</span>
@@ -98,10 +98,7 @@ MedicamentoUso()
     <!-- Bottom row -->
     <div class="bottom-row">
       <div class="cards">
-        <div class="card">
-          <i class="fa-solid fa-phone-flip"></i>
-          <span class="card-label">Contato de<br>Emergência</span>
-        </div>
+        
         <div class="card">
           <i class="fa-solid fa-file-medical"></i>
           <span class="card-label">Receita<br>Médica</span>

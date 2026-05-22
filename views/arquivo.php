@@ -18,7 +18,7 @@ $titulo = ucwords($_GET['tipo']);
 
 <!-- TOP BAR -->
   <div class="topbar">
-    <a href="#" class="topbar-icon">
+    <a href="login.php" class="topbar-icon">
       <i class="fa-solid fa-house"></i>
     </a>
     <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
@@ -29,7 +29,7 @@ $titulo = ucwords($_GET['tipo']);
 
 <!-- SUBHEADER -->
 <div class="subheader">
-  <a class="back-btn" href="#">
+  <a class="back-btn" href="receitas_medicas.php">
     <i class="fa-solid fa-chevron-left"></i> Voltar
   </a>
   <div class="subheader-title"><?= $titulo ?></div>

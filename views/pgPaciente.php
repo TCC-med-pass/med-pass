@@ -258,7 +258,7 @@ $problemaGrave = showProblemaGrave();
                         <?php echo renderTable($problemaLeve, $problemaMedio, $problemaGrave) ?>
                     </div>
 
-                    <button class="btnExpandir" type="button">Expandir</button>
+                    <button class="btnExpandir" type="button">Doenças e Comorbidades</button>
                 </div>
             </div>
 
