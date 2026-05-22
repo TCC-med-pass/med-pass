@@ -20,7 +20,7 @@ $mensagem = $_GET['mensagem'];
 
 <!-- TOP BAR -->
   <div class="topbar">
-    <a href="#" class="topbar-icon">
+    <a href="./medPaciente.php" class="topbar-icon">
       <i class="fa-solid fa-house"></i>
     </a>
     <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
@@ -31,7 +31,7 @@ $mensagem = $_GET['mensagem'];
 
 <!-- SUBHEADER -->
 <div class="subheader">
-  <a class="back-btn" href="#">
+  <a class="back-btn" href="./medPaciente.php">
     <i class="fa-solid fa-chevron-left"></i> Voltar
   </a>
   <div class="subheader-title"><?= $mensagem ?></div>
@@ -49,8 +49,8 @@ $mensagem = $_GET['mensagem'];
     <!-- ── PATIENT BADGE ── -->
   <div class="patient-badge">
     <div class="badge-label">Paciente:</div>
-    <div class="badge-name">Ana Beatriz Pereira Costa</div>
-    <div class="badge-severity">Comorbidade grave</div>
+    <div class="badge-name"><?php echo $_SESSION['nome_paciente'] ?? 'paciente'; ?></div>
+    <div class="badge-severity">Comorbidade <?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></div>
   </div>
 
   </div>  

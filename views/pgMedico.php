@@ -57,15 +57,10 @@ informacaoMedica();
 
     <nav id="sidebar">
       <div class="contSidebar">
-        <h1>aaa</h1>
+        <h1>Dr. <?php echo $_SESSION['nome_medico'] ?? 'Médico'; ?></h1>
       </div>
 
-      <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-      <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
-      <a href="registros.php?titulo=exame" class="opcao">Exames</a>
-      <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
-      <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
-
+    
       <div class="contSidebar">
         <a href="" class="config">
           <h3>Ajuda</h3>

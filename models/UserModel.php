@@ -833,7 +833,8 @@ function setProblemaSaude($pdo, $nome, $status, $tipo, $data, $pacienteId, $medi
     try {
         $sql = "INSERT INTO problema_de_saude (nome, status, tipo, data, fk_medico, fk_paciente) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$nome, $status, $tipo, $data, $pacienteId, $medico]);
+        $stmt->execute([$nome, $status, $tipo, $data, $medico, $pacienteId]);
+        $_SESSION['sucesso'] = "Problema de saúde cadastrado com sucesso!";
         return true;
     } catch (Exception $e) {
         $_SESSION['erro'][] = "Erro ao cadastrar problema de saúde: " . $e->getMessage();

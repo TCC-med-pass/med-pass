@@ -119,21 +119,21 @@ uploadArquivoI();
       <!-- ── PATIENT BADGE ── -->
       <div class="patient-badge" id="carteirinha">
         <div class="badge-label">Paciente:</div>
-        <div class="badge-name">Ana Beatriz Pereira Costa</div>
-        <div class="badge-severity">Comorbidade grave</div>
+        <div class="badge-name"><?php echo $_SESSION['nome_paciente'] ?? 'paciente'; ?></div>
+        <div class="badge-severity">Comorbidade <?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></div>
       </div>
 
       <!-- Sidebar -->
       <nav id="sidebar">
         <div class="contSidebar">
-          <h1>Medico</h1>
+          <h1>Dr. <?php echo $_SESSION['nome_medico'] ?? 'Médico'; ?></h1>
         </div>
 
-        <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-        <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
-        <a href="registros.php?titulo=exame" class="opcao">Exames</a>
-        <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
-        <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
+        <a href="repositorio.php?tipo=prontuario&mensagem=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+        <a href="repositorio.php?tipo=cirurgia&mensagem=cirurgia" class="opcao">Cirurgia</a>
+        <a href="repositorio.php?tipo=exame&mensagem=exame" class="opcao">Exames</a>
+        <a href="repositorio.php?tipo=atestado&mensagem=atestado" class="opcao">Atestados/Declaração</a>
+        <a href="repositorio.php?tipo=laudos&mensagem=laudo" class="opcao">Laudo Médico</a>
 
         <div class="contSidebar">
           <a href="" class="config">

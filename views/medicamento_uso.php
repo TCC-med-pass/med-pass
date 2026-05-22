@@ -111,7 +111,11 @@ MedicamentoUso()
 
       <div class="card-number">
         <p>Número da carterinha:</p>
-        <span><?php echo $_SESSION['numero_carteirinha']; ?></span>
+        <span><?php if (isset($_SESSION['numeroCarteirinha'])) {
+                echo $_SESSION['numeroCarteirinha'];
+              } elseif (isset($_SESSION['numero_carteirinha'])) {
+                echo '';
+              } ?></span>
       </div>
     </div>
 

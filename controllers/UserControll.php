@@ -544,7 +544,7 @@ function sessionPaciente()
     }
     $nome = getinformacaoPaciente($pdo, $_SESSION['id_paciente']);
     $_SESSION['nome_paciente'] = $nome['nome'] ?? 'paciente';
-    $_SESSION['numero_carteirinha'] = $nome['numeroCartera'] ?? '';
+    $_SESSION['numeroCarteirinha'] = $nome['numeroCartera'] ?? '';
 }
 function informacaoMedica()
 {
@@ -797,7 +797,7 @@ function problemaSaude()
         $status = trim($_POST['status'] ?? '');
         $tipo = trim($_POST['tipo'] ?? '');
         $data = date('Y-m-d');
-        $pacienteId = ($_SESSION['id_paciente'] ?? 0);
+        $pacienteId = ($_SESSION['id_paciente']);
         $medico = $_SESSION['id_medico'] ?? 0;
         $modelo = $_POST['modelo'];
 
@@ -888,11 +888,11 @@ function dadosPaciente()
 {
     global $pdo;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $carteira  = $_POST['carterinha'] ?? null;
-    $altura = $_POST['altura'] ?? null;
-    $peso = $_POST['peso'] ?? null;
-    $alergias = $_POST['alergias'] ?? null;
-    $id = $_SESSION['id_paciente'] ?? null;
+    $carteira  = $_POST['carterinha'];
+    $altura = $_POST['altura'];
+    $peso = $_POST['peso'];
+    $alergias = $_POST['alergias'];
+    $id = $_SESSION['id_paciente'];
 
 
     if (empty($_SESSION['erro'])) {

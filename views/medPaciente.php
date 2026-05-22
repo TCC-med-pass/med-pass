@@ -50,6 +50,7 @@ verificarTipo(['medico']);
     <span class="subheader-title">Criar novo....</span>
   </div>
   <?php mensagemErro() ?>
+  <?php mensagemSucesso() ?>
 
   <!-- ── MAIN ── -->
   <main>
@@ -99,14 +100,14 @@ verificarTipo(['medico']);
   <!-- ── HAMBURGUER ── -->
   <nav id="sidebar">
     <div class="contSidebar">
-      <h1>Medico</h1>
+      <h1>Dr. <?php echo $_SESSION['nome_medico'] ?? 'Médico'; ?></h1>
     </div>
 
-    <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-    <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
-    <a href="registros.php?titulo=exame" class="opcao">Exames</a>
-    <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
-    <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
+    <a href="repositorio.php?tipo=prontuario&mensagem=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+    <a href="repositorio.php?tipo=cirurgia&mensagem=cirurgia" class="opcao">Cirurgia</a>
+    <a href="repositorio.php?tipo=exame&mensagem=exame" class="opcao">Exames</a>
+    <a href="repositorio.php?tipo=atestado&mensagem=atestado" class="opcao">Atestados/Declaração</a>
+    <a href="repositorio.php?tipo=laudos&mensagem=laudo" class="opcao">Laudo Médico</a>
 
     <div class="contSidebar">
       <a href="" class="config">
