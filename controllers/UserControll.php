@@ -75,7 +75,7 @@ function getUser()
 
             validarSenha($senha);
             confirmarSenha($senha, $confirmar_senha);
-            validarCPF($cpf);
+            //validarCPF($cpf);
 
 
             if (empty($_SESSION['erro'])) {
@@ -100,7 +100,7 @@ function getUser()
 
             validarSenha($senha);
             confirmarSenha($senha, $confirmar_senha);
-            validarCPF($cpf);
+            //validarCPF($cpf);
 
             if (empty($_SESSION['erro'])) {
                 setMedico($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $crm, $telefone, $especialidade, $genero, $nivel);

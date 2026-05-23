@@ -55,8 +55,8 @@ verificarLogadoTipo();
                     </div>
 
 
-                    <p>Já possui uma conta? <strong><a href="#" class="ajuda">Faça login aqui</a></strong></p>
-                    <p>Precisa de ajuda? <strong><a href="#" class="ajuda">Clique aqui!</a></strong></p>
+                    <p>Já possui uma conta? <strong><a href="./login.php" class="ajuda">Faça login aqui</a></strong></p>
+                    <!-- <p>Precisa de ajuda? <strong><a href="#" class="ajuda">Clique aqui!</a></strong></p> -->
                 </div>
 
                 <div class="coluna">
