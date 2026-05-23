@@ -53,7 +53,7 @@ problemaSaude();
 
   <nav id="sidebar">
     <div class="contSidebar">
-      <h1>doutor</h1>
+      <h1>Dr. <?php echo $_SESSION['nome_medico'] ?? 'Médico'; ?></h1>
     </div>
 
     <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->

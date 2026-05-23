@@ -2,7 +2,9 @@
 require_once '../controllers/UserControll.php';
 require_once './components/UserComponents.php';
 verificarTipo(['paciente', 'medico']);
-MedicamentoUso()
+MedicamentoUso();
+$link = showLinkNav();
+
 ?>
 
 <!DOCTYPE html>
@@ -50,14 +52,18 @@ MedicamentoUso()
 
   <nav id="sidebar">
     <div class="contSidebar">
-      <h1>aaa</h1>
+      <h1><?php if ($_SESSION['nivel'] === 'paciente') {
+                echo showNome();
+              } elseif ($_SESSION['nivel'] === 'medico') {
+                echo "Dr. " . $_SESSION['nome_medico'];
+              } ?></h1>
     </div>
 
-    <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-    <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
-    <a href="registros.php?titulo=exame" class="opcao">Exames</a>
-    <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
-    <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
+    <a href=<?= $link['prontuario']; ?> class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+    <a href=<?=  $link['cirurgia']; ?> class="opcao">Cirurgia</a>
+    <a href=<?=  $link['exame'] ?> class="opcao">Exames</a>
+    <a href=<?=  $link['atestado'] ?> class="opcao">Atestados/Declaração</a>
+    <a href=<?=  $link['laudo'] ?> class="opcao">Laudo Médico</a>
 
     <div class="contSidebar">
       <a href="" class="config">

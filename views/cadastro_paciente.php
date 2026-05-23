@@ -42,11 +42,13 @@ verificarLogadoTipo();
 
                     <label for="senha">Senha</label>
                     <div class="campoSenha">
-                        <input type="password" name="senha" placeholder="Digite aqui sua senha" id="senha" required>
+                        <input type="password" name="senha" placeholder="Mín. 6 caracteres, 1 maiúscula e 1 número" id="senha" required>
+
                         <button type="button" class="mostrarSenha" data-target="senha">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
+                    
 
                     <label for="confirmar_senha">Confirmar Senha</label>
                     <div class="campoSenha">
@@ -66,7 +68,7 @@ verificarLogadoTipo();
                     <input type="date" name="bDate" required>
 
                     <label for="cpf">CPF</label>
-                    <input name="cpf" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" placeholder="Digite seu CPF aqui" required>
+                    <input name="cpf" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" placeholder="Digite seu CPF aqui. Ex: 123.456.789-00" required>
 
                     <label for="telefone">Telefone</label>
                     <input type="tel" name="telefone" required placeholder="Digite seu telefone">

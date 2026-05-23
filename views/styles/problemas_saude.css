@@ -7,10 +7,10 @@
   padding: 0;
 }
 
-.fa, .fas, .far, .fal, .fab, .fa-solid, .fa-regular, .fa-light, .fa-brands {
+/* .fa, .fas, .far, .fal, .fab, .fa-solid, .fa-regular, .fa-light, .fa-brands {
   font-family: "Font Awesome 6 Free" !important;
   font-weight: 900;
-}
+} */
 
 :root {
   --teal:       #007977;

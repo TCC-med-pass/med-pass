@@ -590,7 +590,7 @@ function uploadArquivoI()
             throw new RuntimeException('Preencha todos os campos obrigatórios.');
         }
 
-        if (!isset($_FILES['arquivo'])) {
+        if (!isset($_FILES['arquivo']) || $_FILES['arquivo']['error'] === UPLOAD_ERR_NO_FILE) {
             throw new RuntimeException('Arquivo não enviado.');
         }
 
@@ -645,8 +645,7 @@ function uploadArquivoI()
         }
 
         $_SESSION['erro'][] = $e->getMessage();
-        header('Location: ../views/adicionarDocumento.php');
-        exit();
+
     }
 }
 

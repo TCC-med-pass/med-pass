@@ -29,7 +29,7 @@ $titulo = ucwords($_GET['tipo']);
 
 <!-- SUBHEADER -->
 <div class="subheader">
-  <a class="back-btn" href="receitas_medicas.php">
+  <a class="back-btn" onclick="history.back()"
     <i class="fa-solid fa-chevron-left"></i> Voltar
   </a>
   <div class="subheader-title"><?= $titulo ?></div>

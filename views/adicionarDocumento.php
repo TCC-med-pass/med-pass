@@ -15,11 +15,11 @@ uploadArquivoI();
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link rel="stylesheet" href="./styles/upload.css" />
+  <link rel="stylesheet" href="./styles/erros.css" />
 </head>
 
 <body>
-  <?php mensagemErro() ?>
-  <?php mensagemSucesso() ?>
+  
   <!-- TOP BAR -->
   <header id="header">
     <div class="container">
@@ -47,6 +47,8 @@ uploadArquivoI();
 
   <!-- MAIN CONTENT -->
   <main>
+    <?php mensagemErro() ?>
+  <?php mensagemSucesso() ?>
 
     <!-- FORM CARD -->
     <div class="card">

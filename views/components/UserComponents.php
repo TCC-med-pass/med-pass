@@ -339,3 +339,29 @@ function showDadosPaciente()
         ";
 
 }
+
+
+
+function showLinkNav()
+{
+$nivel = $_SESSION['nivel'] ?? '';
+$dados = [];
+if ($nivel === 'paciente') {
+    $dados = [
+        'prontuario' => 'registros.php?titulo=prontuario',
+        'cirurgia' => 'registros.php?titulo=cirurgia',
+        'exame' => 'registros.php?titulo=exame',
+        'atestado' => 'registros.php?titulo=atestado',
+        'laudo' => 'registros.php?titulo=laudo'
+    ];
+} elseif ($nivel === 'medico') {
+    $dados = [
+        'prontuario' => 'repositorio.php?tipo=prontuario&mensagem=prontuario',
+        'cirurgia' => 'repositorio.php?tipo=cirurgia&mensagem=cirurgia',
+        'exame' => 'repositorio.php?tipo=exame&mensagem=exame',
+        'atestado' => 'repositorio.php?tipo=atestado&mensagem=atestado',
+        'laudo' => 'repositorio.php?tipo=laudo&mensagem=laudo'
+    ];
+}
+return $dados;
+}
