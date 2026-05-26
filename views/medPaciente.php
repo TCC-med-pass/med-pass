@@ -14,7 +14,7 @@ verificarTipo(['medico']);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Criar novo</title>
-  
+
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/medpaciente.css">
@@ -26,7 +26,7 @@ verificarTipo(['medico']);
   <!-- ── HEADER ── -->
   <header id="header">
     <div class="container">
-      <a href="#">
+      <a href="pgMedico.php">
         <i class="fa-solid fa-house btnCasa"></i>
       </a>
     </div>
@@ -54,9 +54,9 @@ verificarTipo(['medico']);
 
   <!-- ── MAIN ── -->
   <main>
-    
+
     <div class="action-grid">
-      
+
 
       <!-- Adicionar Documento -->
       <a class="action-card" href="adicionarDocumento.php">
