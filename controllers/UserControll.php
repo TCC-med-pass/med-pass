@@ -175,12 +175,27 @@ function salvarTelEmergencia()
         die("Usuário não autenticado");
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['tel_emergencia'] ?? '') === 'salvar') {
-        $telefone = $_POST['telefone'] ?? null;
-        $paciente_id = $_SESSION['id_usuario'];
-        if ($telefone) {
+
+    $telefone = $_POST['telefone'] ?? null;
+    $paciente_id = $_SESSION['id_usuario'];
+
+    if ($telefone) {
+
+        // remove tudo que não for número
+        $telefone = preg_replace('/\D/', '', $telefone);
+
+        // valida se tem exatamente 11 números
+        if (strlen($telefone) === 11) {
+
             setTelEmergencia($pdo, $telefone, $paciente_id);
+
+        } else {
+
+            $_SESSION['erro'][] = "O telefone deve conter exatamente 11 números.";
+
         }
     }
+}
 }
 
 
@@ -237,12 +252,34 @@ function salvarAltura()
         die("Usuário não autenticado");
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $altura = $_POST['altura'] ?? null;
-        $paciente_id = $_SESSION['id_usuario'];
-        if ($altura !== null && $altura !== '') {
-            setAltura($pdo, $altura, $paciente_id);
+
+    $altura = $_POST['altura'] ?? null;
+    $paciente_id = $_SESSION['id_usuario'];
+
+    if ($altura !== null && $altura !== '') {
+
+        // troca vírgula por ponto
+        $altura = str_replace(',', '.', trim($altura));
+
+        // valida se é número
+        if (is_numeric($altura)) {
+
+            $altura = (float) $altura;
+
+            // valida limite
+            if ($altura <= 230) {
+
+                setAltura($pdo, $altura, $paciente_id);
+
+            } else {
+                $_SESSION['erro'][] = "A altura não pode ser maior que 2,30.";
+            }
+
+        } else {
+            $_SESSION['erro'][] = "Digite apenas números válidos.";
         }
     }
+}
 }
 
 function showAltura()
@@ -266,13 +303,26 @@ function salvarAlergia()
     if (!isset($_SESSION['id_usuario'])) {
         die("Usuário não autenticado");
     }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $alergia = $_POST['alergia'] ?? null;
-        $paciente_id = $_SESSION['id_usuario'];
-        if ($alergia) {
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $alergia = $_POST['alergia'] ?? null;
+    $paciente_id = $_SESSION['id_usuario'];
+
+    if ($alergia) {
+
+        // Remove espaços extras
+        $alergia = trim($alergia);
+
+        // Verifica se NÃO contém números
+        if (!preg_match('/[0-9]/', $alergia)) {
+
             setAlergia($pdo, $alergia, $paciente_id);
+
+        } else {
+            $_SESSION['erro'][] = "A alergia não pode conter números.";
         }
     }
+}
 }
 
 function showAlergia()
@@ -361,12 +411,31 @@ function salvarPeso()
         die("Usuário não autenticado");
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $peso = $_POST['peso'] ?? null;
-        $paciente_id = $_SESSION['id_usuario'];
-        if ($peso) {
+
+    $peso = $_POST['peso'] ?? null;
+    $paciente_id = $_SESSION['id_usuario'];
+
+    // Remove espaços e troca vírgula por ponto
+    $peso = str_replace(',', '.', trim($peso));
+
+    // Verifica se é número válido
+    if (is_numeric($peso)) {
+
+        $peso = (float) $peso;
+
+        // validação de limite (ex: altura até 2.30)
+        if ($peso <= 230) {
+
             setPeso($pdo, $peso, $paciente_id);
+
+        } else {
+            $_SESSION['erro'][] = "A altura não pode ser maior que 2,30.";
         }
+
+    } else {
+        $_SESSION['erro'][] = "Digite apenas números válidos.";
     }
+}
 }
 
 

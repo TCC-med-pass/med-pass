@@ -49,25 +49,50 @@ function showMedicamento()
 function mensagemErro()
 {
     if (!empty($_SESSION['erro'])) {
-        echo "<div class='erro'>";
-        echo "<ul>";
 
-        foreach ($_SESSION['erro'] as $erro) {
-            echo "<li>" . htmlspecialchars($erro, ENT_QUOTES, 'UTF-8') . "</li>";
+        $mensagem = '';
+
+        if (is_array($_SESSION['erro'])) {
+            $mensagem = implode('<br>', $_SESSION['erro']);
+        } else {
+            $mensagem = $_SESSION['erro'];
         }
 
-        echo "</ul>";
-        echo "</div>";
+        echo '
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Erro",
+                html: "' . $mensagem . '",
+                confirmButtonText: "OK",
+            confirmButtonColor: "#007977"
+            });
+        </script>
+        ';
+
         unset($_SESSION['erro']);
     }
 }
 
+
+
+
 function mensagemSucesso()
 {
     if (!empty($_SESSION['sucesso'])) {
-        echo "<div class='sucesso'>";
-        echo "<p>" . $_SESSION['sucesso'] . "</p>";
-        echo "</div>";
+
+        echo '
+        <script>
+        Swal.fire({
+            title: "' . $_SESSION['sucesso'] . '",
+            icon: "success",
+            draggable: true,
+            confirmButtonText: "OK",
+            confirmButtonColor: "#007977"
+        });
+        </script>
+        ';
+
         unset($_SESSION['sucesso']);
     }
 }

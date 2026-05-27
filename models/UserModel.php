@@ -183,9 +183,13 @@ function setTelEmergencia($pdo, $telefone, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$telefone, $paciente_id])) {
-        $_SESSION['sucesso'] = "Contato de Emergencia adicionado com sucesso!";
+
+        $_SESSION['sucesso'] = "Alteração feita com sucesso!";
+
     } else {
+
         $_SESSION['erro'][] = "Erro ao adicionar Contato de Emergencia";
+
     }
 }
 
@@ -297,7 +301,7 @@ function setGenero($pdo, $genero, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$genero, $paciente_id])) {
-        $_SESSION['sucesso'] = "Genero adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Gênero adicionado com sucesso!";
     } else {
         $_SESSION['erro'][] = "Erro ao adicionar gênero";
     }
