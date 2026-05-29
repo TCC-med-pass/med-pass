@@ -355,6 +355,10 @@ function salvarGenero()
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $genero = $_POST['genero'];
 
+        if ($genero == null) {
+            $genero = showGenero();
+        }
+
 
         $generoVerificacao = $genero;
 

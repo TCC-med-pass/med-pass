@@ -70,6 +70,7 @@ function mensagemErro()
         </script>
         ';
 
+
         unset($_SESSION['erro']);
     }
 }

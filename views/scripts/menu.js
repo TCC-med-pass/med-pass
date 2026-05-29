@@ -93,3 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarIdadeInicial();
     toggleCardSaude();
 });
+
+/*btnSalvar = document.querySelector(".passeiPorAqui");
+
+btnSalvar.addEventListener("click", () => {
+        console.log('teste');
+        location.reload();
+    })*/
