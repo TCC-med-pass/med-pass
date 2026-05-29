@@ -18,6 +18,7 @@ $historico_familiar = showHistoricoFamiliar();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="./styles/historicoFamiliar.css" />
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -31,6 +32,8 @@ $historico_familiar = showHistoricoFamiliar();
 </head>
 
 <body>
+  <?php mensagemErro() ?>
+  <?php mensagemSucesso() ?>
   <header id="header">
     <div class="container">
       <a href="pgPaciente.php">
@@ -94,7 +97,7 @@ $historico_familiar = showHistoricoFamiliar();
       <!-- Tabela com as doenças -->
 
       <?php renderHistoricoFami($historico_familiar) ?>
-   
+
 
       <!-- Pop up de adicionar doença -->
       <div class="modal" id="popup">

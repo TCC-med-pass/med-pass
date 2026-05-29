@@ -72,7 +72,7 @@ verificarLogadoTipo();
                     <label for="especialidade">Especialidade Médica:</label>
                     <select name="especialidade" id="especialidade">
 
-                        <option value="">Selecione</option>
+                        <option value="" disabled selected>Selecione</option>
 
                         <optgroup label="Clínicas">
                             <option value="clinico_geral">Clínico Geral</option>
@@ -122,7 +122,7 @@ verificarLogadoTipo();
 
                     <label for="genero">Gênero</label>
                     <select name="genero" required>
-                        <option value="">Selecione seu gênero</option>
+                        <option value="" disabled selected>Selecione seu gênero</option>
                         <option value="m">Masculino</option>
                         <option value="f">Feminino</option>
                         <option value="i">Indefinido</option>

@@ -63,7 +63,7 @@ $problemaGrave = showProblemaGrave();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/paciente.css">
     <link rel="stylesheet" href="./styles/erros.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <title>Página do Paciente- Início</title>
@@ -114,7 +114,7 @@ $problemaGrave = showProblemaGrave();
                 <?php mensagemErro() ?>
                 <?php mensagemSucesso() ?>
                 <div class="cardSaude">
-                    
+
                     <div class="titulo">
                         <h1>Cartão Nacional de Saúde</h1>
                     </div>
@@ -140,7 +140,7 @@ $problemaGrave = showProblemaGrave();
                                 <div class="campo">
                                     <p style="color: white;"><strong>Altura:</strong></p>
                                     <p class="texto"><?php echo $altura ?></p>
-                                    <input name="altura" class="input hidden" type="text" placeholder="Ex: 1,80" required>
+                                    <input name="altura" class="input hidden" type="text" placeholder="Ex: 1,80" required value="<?php echo $altura ?>">
 
                                     <button type="button" class="editar">
                                         <i class="fa-solid fa-pencil"></i>
@@ -156,7 +156,7 @@ $problemaGrave = showProblemaGrave();
                                 <div class="campo">
                                     <p style="color: white;"><strong>Alergia:</strong></p>
                                     <p class="texto"><?php echo $alergia ?></p>
-                                    <input name="alergia" class="input hidden" type="text" placeholder="Ex: Amendoim">
+                                    <input name="alergia" class="input hidden" type="text" placeholder="Ex: Amendoim" value="<?php echo $alergia ?>">
 
                                     <button type="button" class="editar">
                                         <i class="fa-solid fa-pencil"></i>
@@ -176,6 +176,8 @@ $problemaGrave = showProblemaGrave();
                                     <p class="texto"><?php echo $genero ?></p>
 
                                     <select class="input hidden" name="genero" required>
+
+                                        <option value="" disabled selected>Selecione seu Gênero</option>
                                         <option value="m">Masculino</option>
                                         <option value="f">Feminino</option>
                                         <option value="i">Indefinido</option>
@@ -200,7 +202,7 @@ $problemaGrave = showProblemaGrave();
                                 <div class="campo">
                                     <p style="color: white;"><strong>Peso:</strong></p>
                                     <p class="texto"><?php echo $peso ?></p>
-                                    <input class="input hidden" type="text" value="" name="peso" placeholder="Ex: 80Kg">
+                                    <input class="input hidden" type="text" value="<?php echo $peso ?>" name="peso" placeholder="Ex: 80Kg">
 
                                     <button type="button" class="editar">
                                         <i class="fa-solid fa-pencil"></i>
@@ -237,7 +239,7 @@ $problemaGrave = showProblemaGrave();
                                 <div class="campo">
                                     <p style="color: white;"><strong>Tel. de Emergencia:</strong></p>
                                     <p class="texto"><?php echo $telefoneDeEmergencia ?></p>
-                                    <input name="telefone" class="input hidden" type="text" value="" placeholder="Ex: (**) *****-****">
+                                    <input name="telefone" class="input hidden" type="text" value="<?php echo $telefoneDeEmergencia ?>" placeholder="Ex: (**) *****-****">
 
                                     <button type="button" class="editar">
                                         <i class="fa-solid fa-pencil"></i>
@@ -274,7 +276,7 @@ $problemaGrave = showProblemaGrave();
     </main>
 
     <style>
-        
+
     </style>
 
     <script src="./scripts/menu.js"></script>

@@ -53,17 +53,17 @@ $link = showLinkNav();
   <nav id="sidebar">
     <div class="contSidebar">
       <h1><?php if ($_SESSION['nivel'] === 'paciente') {
-                echo showNome();
-              } elseif ($_SESSION['nivel'] === 'medico') {
-                echo "Dr. " . $_SESSION['nome_medico'];
-              } ?></h1>
+            echo showNome();
+          } elseif ($_SESSION['nivel'] === 'medico') {
+            echo "Dr. " . $_SESSION['nome_medico'];
+          } ?></h1>
     </div>
 
     <a href=<?= $link['prontuario']; ?> class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-    <a href=<?=  $link['cirurgia']; ?> class="opcao">Cirurgia</a>
-    <a href=<?=  $link['exame'] ?> class="opcao">Exames</a>
-    <a href=<?=  $link['atestado'] ?> class="opcao">Atestados/Declaração</a>
-    <a href=<?=  $link['laudo'] ?> class="opcao">Laudo Médico</a>
+    <a href=<?= $link['cirurgia']; ?> class="opcao">Cirurgia</a>
+    <a href=<?= $link['exame'] ?> class="opcao">Exames</a>
+    <a href=<?= $link['atestado'] ?> class="opcao">Atestados/Declaração</a>
+    <a href=<?= $link['laudo'] ?> class="opcao">Laudo Médico</a>
 
     <div class="contSidebar">
       <a href="" class="config">
@@ -104,7 +104,7 @@ $link = showLinkNav();
     <!-- Bottom row -->
     <div class="bottom-row">
       <div class="cards">
-        
+
         <div class="card">
           <i class="fa-solid fa-file-medical"></i>
           <span class="card-label">Receita<br>Médica</span>
@@ -120,7 +120,7 @@ $link = showLinkNav();
         <span><?php if (isset($_SESSION['numeroCarteirinha'])) {
                 echo $_SESSION['numeroCarteirinha'];
               } elseif (isset($_SESSION['numero_carteirinha'])) {
-                echo '';
+                echo $_SESSION['numero_carteirinha'];
               } ?></span>
       </div>
     </div>

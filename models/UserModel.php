@@ -185,11 +185,9 @@ function setTelEmergencia($pdo, $telefone, $paciente_id)
     if ($stmt->execute([$telefone, $paciente_id])) {
 
         $_SESSION['sucesso'] = "Alteração feita com sucesso!";
-
     } else {
 
         $_SESSION['erro'][] = "Erro ao adicionar Contato de Emergencia";
-
     }
 }
 
@@ -446,7 +444,7 @@ function setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id)
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$historico_familiar, $paciente_id])) {
-        $_SESSION['sucesso'] = "Historico adicionado com sucesso!";
+        $_SESSION['sucesso'] = "Histórico adicionado com sucesso!";
     } else {
         $_SESSION['erro'] = "Erro ao adicionar Histórico";
     }
@@ -462,7 +460,7 @@ function getHistoricoFamiliarDataBase($pdo, $paciente_id)
 
         $historico_familiar = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ( $historico_familiar && !empty($historico_familiar['historico_familiar'])) {
+        if ($historico_familiar && !empty($historico_familiar['historico_familiar'])) {
             return $historico_familiar['historico_familiar'];
         }
 
