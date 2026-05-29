@@ -353,7 +353,8 @@ function salvarGenero()
         die("Usuário não autenticado");
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $genero = $_POST['genero'] ?? null;
+        $genero = $_POST['genero'];
+
 
         $generoVerificacao = $genero;
 

@@ -1,6 +1,7 @@
 <?php
 
-$arrayErrosCadastroPaciente = [];
+
+
 
 function sanitizar(string $dado, string $tipo = 'texto'): string
 {
@@ -46,17 +47,23 @@ function sanitizar(string $dado, string $tipo = 'texto'): string
 
 function validarSenha(string $senha): void
 {
-    if (strlen($senha) < 6)
+
+    if (strlen($senha) < 6) {
         $_SESSION['erro'][] =  "Senha: Mínimo 6 caracteres";
+    }
 
-    if (!preg_match('/[A-Z]/', $senha))
+    if (!preg_match('/[A-Z]/', $senha)) {
         $_SESSION['erro'][] =  "Senha: Pelo menos uma letra maiúscula";
+    }
 
-    if (!preg_match('/[0-9]/', $senha))
+
+    if (!preg_match('/[0-9]/', $senha)) {
         $_SESSION['erro'][] =  "Senha: Pelo menos um número";
+    }
 }
 function confirmarSenha(string $senha, string $confirmar_senha)
 {
+
     if ($senha !== $confirmar_senha) {
         $_SESSION['erro'][] = 'As senhas não coincidem.';
     }
@@ -74,20 +81,24 @@ function traduz_data_para_exibir($data)
 
 function validarCPF($cpf)
 {
+
+
+
     // Remove tudo que não for número
     try {
         $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
         // Verifica se tem 11 dígitos
         if (strlen($cpf) != 11) {
-            throw new Exception("CPF deve conter 11 dígitos");
+            //throw new Exception("CPF deve conter 11 dígitos");
+            $_SESSION['erro'][] = "CPF deve conter 11 dígitos";
         }
 
         // Elimina CPFs inválidos (todos iguais)
         if (preg_match('/(\d)\1{10}/', $cpf)) {
-            throw new Exception("CPF inválido");
+            //throw new Exception("CPF inválido");
+            $_SESSION['erro'][] = "CPF inválido";
         }
-
 
         // Primeiro dígito verificador
         $soma = 0;
@@ -117,7 +128,8 @@ function validarCPF($cpf)
         if ($cpf[9] == $dig1 && $cpf[10] == $dig2) {
             return true;
         } else {
-            throw new Exception("CPF inválido");
+            //throw new Exception("CPF inválido");
+            $_SESSION['erro'][] = "CPF inválido";
         }
     } catch (Exception $e) {
         $_SESSION['erro'][] = "Erro ao cadastrar: " . $e->getMessage();

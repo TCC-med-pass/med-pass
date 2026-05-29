@@ -321,10 +321,10 @@ function renderTable($problemaLeve, $problemaMedio, $problemaGrave)
 
 function renderHistoricoFami($historico_familiar)
 {
-    
 
- 
-        echo '<table>
+
+
+    echo '<table>
             <thead>
                 <tr>
                     <th>Doenças familiares registradas</th>
@@ -336,7 +336,6 @@ function renderHistoricoFami($historico_familiar)
                 </tr>
             </tbody>
         </table>';
-    
 }
 
 function showDadosPaciente()
@@ -349,7 +348,7 @@ function showDadosPaciente()
     $peso = $dados['peso'] ?? '';
     $alergias = $dados['alergias'] ?? '';
 
-        echo "
+    echo "
         <form method='post'>
         <label for='carterinha'>Número de carteirinha:</label>
         <input type='number' name='carterinha' value='" . htmlspecialchars($carteirinha, ENT_QUOTES, 'UTF-8') . "' placeholder='Insira o n° de carteirinha do Paciente' aria-label='Insira o número de carteirinha do Paciente'>
@@ -362,31 +361,30 @@ function showDadosPaciente()
         <button type='submit' class='salvar'>Salvar</button>
         </form>
         ";
-
 }
 
 
 
 function showLinkNav()
 {
-$nivel = $_SESSION['nivel'] ?? '';
-$dados = [];
-if ($nivel === 'paciente') {
-    $dados = [
-        'prontuario' => 'registros.php?titulo=prontuario',
-        'cirurgia' => 'registros.php?titulo=cirurgia',
-        'exame' => 'registros.php?titulo=exame',
-        'atestado' => 'registros.php?titulo=atestado',
-        'laudo' => 'registros.php?titulo=laudo'
-    ];
-} elseif ($nivel === 'medico') {
-    $dados = [
-        'prontuario' => 'repositorio.php?tipo=prontuario&mensagem=prontuario',
-        'cirurgia' => 'repositorio.php?tipo=cirurgia&mensagem=cirurgia',
-        'exame' => 'repositorio.php?tipo=exame&mensagem=exame',
-        'atestado' => 'repositorio.php?tipo=atestado&mensagem=atestado',
-        'laudo' => 'repositorio.php?tipo=laudo&mensagem=laudo'
-    ];
-}
-return $dados;
+    $nivel = $_SESSION['nivel'] ?? '';
+    $dados = [];
+    if ($nivel === 'paciente') {
+        $dados = [
+            'prontuario' => 'registros.php?titulo=prontuario',
+            'cirurgia' => 'registros.php?titulo=cirurgia',
+            'exame' => 'registros.php?titulo=exame',
+            'atestado' => 'registros.php?titulo=atestado',
+            'laudo' => 'registros.php?titulo=laudo'
+        ];
+    } elseif ($nivel === 'medico') {
+        $dados = [
+            'prontuario' => 'repositorio.php?tipo=prontuario&mensagem=prontuario',
+            'cirurgia' => 'repositorio.php?tipo=cirurgia&mensagem=cirurgia',
+            'exame' => 'repositorio.php?tipo=exame&mensagem=exame',
+            'atestado' => 'repositorio.php?tipo=atestado&mensagem=atestado',
+            'laudo' => 'repositorio.php?tipo=laudo&mensagem=laudo'
+        ];
+    }
+    return $dados;
 }

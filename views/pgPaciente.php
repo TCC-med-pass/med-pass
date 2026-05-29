@@ -3,7 +3,7 @@ require_once './components/UserComponents.php';
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
-$variaveldeteste = 10;
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
