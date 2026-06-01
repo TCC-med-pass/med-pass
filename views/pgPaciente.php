@@ -176,11 +176,17 @@ $problemaGrave = showProblemaGrave();
                                     <p class="texto"><?php echo $genero ?></p>
 
                                     <select class="input hidden" name="genero" required>
+                                        <option value="m" <?= $genero == 'Masculino' ? 'selected' : '' ?>>
+                                            Masculino
+                                        </option>
 
-                                        <option value="" disabled selected>Selecione seu Gênero</option>
-                                        <option value="m">Masculino</option>
-                                        <option value="f">Feminino</option>
-                                        <option value="i">Indefinido</option>
+                                        <option value="f" <?= $genero == 'Feminino' ? 'selected' : '' ?>>
+                                            Feminino
+                                        </option>
+
+                                        <option value="i" <?= $genero == 'Indefinido' ? 'selected' : '' ?>>
+                                            Indefinido
+                                        </option>
                                     </select>
 
                                     <button type="button" class="editar">
