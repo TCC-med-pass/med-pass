@@ -139,7 +139,7 @@ $problemaGrave = showProblemaGrave();
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Altura:</strong></p>
-                                    <p class="texto"><?php echo $altura ?></p>
+                                    <p class="texto"><?php echo $altura ?> cm</p>
                                     <input name="altura" class="input hidden" type="text" placeholder="Ex: 1,80" required value="<?php echo $altura ?>">
 
                                     <button type="button" class="editar">
@@ -207,7 +207,7 @@ $problemaGrave = showProblemaGrave();
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Peso:</strong></p>
-                                    <p class="texto"><?php echo $peso ?></p>
+                                    <p class="texto"><?php echo $peso ?> Kg</p>
                                     <input class="input hidden" type="text" value="<?php echo $peso ?>" name="peso" placeholder="Ex: 80Kg">
 
                                     <button type="button" class="editar">
