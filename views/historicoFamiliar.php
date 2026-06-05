@@ -28,6 +28,7 @@ $historico_familiar = showHistoricoFamiliar();
     type="image/svg+xml"
     href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png"
     alt="Med-Pass-Icon" />
+    <link rel="stylesheet" href="./styles/accessibility_global.css">
   <title>MedPass- Histórico Familiar</title>
 </head>
 
@@ -131,6 +132,7 @@ $historico_familiar = showHistoricoFamiliar();
   <script src="./scripts/sidebar.js"></script>
   <script src="./scripts/esconderHeader.js"></script>
   <script src="./scripts/popupDoencas.js"></script>
+  <script src="./scripts/settings.js"></script>
 </body>
 
 </html>

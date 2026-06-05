@@ -1,0 +1,24 @@
+/* ════════════════════════════════════════════════════
+   MedPass – accessibility-global.css
+   Inclua em TODAS as páginas do projeto, após o teste.css:
+     <link rel="stylesheet" href="../Configuracao/accessibility-global.css"/>
+   ════════════════════════════════════════════════════ */
+
+/* ── Estágios de fonte (aplicados pelo settings.js) ── */
+body.font-small  { font-size: 14px; }
+body.font-medium { font-size: 18px; }
+body.font-large  { font-size: 22px; }
+
+body.font-small  *,
+body.font-medium *,
+body.font-large  * { font-size: inherit; }
+
+/* ── Modo escuro ── */
+body.dark-theme {
+  --gray-100: #111827;
+  --gray-200: #1f2937;
+  --white:    #1f2937;
+  --text:     #f3f4f6;
+  --gray-400: #374151;
+  --gray-600: #9ca3af;
+}

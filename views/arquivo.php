@@ -14,6 +14,7 @@ $titulo = ucwords($_GET['tipo']);
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/arquivo.css">
+  <link rel="stylesheet" href="./styles/accessibility_global.css">
 </head>
 
 <body>
@@ -60,10 +61,10 @@ $titulo = ucwords($_GET['tipo']);
               echo $_SESSION['numero_carteirinha'];
             } ?></span>
     </div>
-
+  
   </main>
 
-
+<script src="./scripts/settings.js"></script>
 </body>
 
 </html>

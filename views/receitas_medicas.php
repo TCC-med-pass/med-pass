@@ -11,6 +11,7 @@ require_once './components/UserComponents.php';
   <title>MedPass – Receitas Médicas</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="./styles/receitas.css"/>
+  <link rel="stylesheet" href="./styles/accessibility_global.css">
 </head>
 <body>
 
@@ -66,5 +67,6 @@ require_once './components/UserComponents.php';
 
 </div>
 </main>
+<script src="./scripts/settings.js"></script>
 </body>
 </html>

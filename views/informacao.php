@@ -13,6 +13,7 @@ verificarTipo(['paciente','medico']);
   <link rel="stylesheet" href="./styles/informacaoMedicamento.css">
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="./styles/accessibility_global.css">
 </head>
 <body>
 
@@ -42,4 +43,5 @@ verificarTipo(['paciente','medico']);
   </div>
 
 </body>
+<script src="./scripts/settings.js"></script>
 </html>
