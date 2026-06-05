@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const abrir = document.getElementById("acionarPopup");
+    const botoesEditar = document.querySelectorAll(".editar");
     const fechar = document.getElementById("fecharPopup");
-    const popup = document.getElementById("popup");
+    const popup = document.getElementById("campoEditar");
 
-    abrir.addEventListener("click", () => {
-        popup.classList.add("ativo");
+    botoesEditar.forEach(botao => {
+        botao.addEventListener("click", () => {
+            popup.classList.add("ativo");
+        });
     });
 
     fechar.addEventListener("click", () => {
         popup.classList.remove("ativo");
     });
-})
+});

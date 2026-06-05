@@ -26,7 +26,7 @@
 
   /* ─── Lê preferência salva (ou retorna padrão) ─── */
   function getSavedFont() {
-    return sessionStorage.getItem(KEY_FONT) || 'small';
+    return sessionStorage.getItem(KEY_FONT) || 'medium';
   }
 
   function getSavedDark() {
