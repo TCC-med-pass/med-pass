@@ -13,7 +13,8 @@ verificarLogadoTipo();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <title>MedPass- Cadastro</title>
 </head>
@@ -27,7 +28,7 @@ verificarLogadoTipo();
             <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass"></img>
             <h1>Cadastro de Médico</h1>
 
-            <?php mensagemErro(); ?> 
+            <?php mensagemErro(); ?>
 
             <form method="post" class="form-grid">
                 <!-- Divisão em colunas pra conseguir fazer igual no protótipo -->
@@ -40,12 +41,12 @@ verificarLogadoTipo();
 
                     <label for="senha">Senha</label>
                     <div class="campoSenha">
-                        <input type="password" name="senha" placeholder="Digite aqui sua senha" id="senha" required>
+                        <input type="password" name="senha" placeholder="Mín. 6 caracteres, 1 maiúscula e 1 número" id="senha" required>
                         <button type="button" class="mostrarSenha" data-target="senha">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
-    
+
                     <label for="confirmar_senha">Confirmar Senha</label>
                     <div class="campoSenha">
                         <input type="password" name="confirmar_senha" placeholder="Confirme sua senha" id="confirmar_senha" required>
@@ -53,15 +54,15 @@ verificarLogadoTipo();
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
-                    
-                    
+
+
                     <p>Já possui uma conta? <strong><a href="#" class="ajuda">Faça login aqui</a></strong></p>
                     <p>Precisa de ajuda? <strong><a href="#" class="ajuda">Clique aqui!</a></strong></p>
                 </div>
 
                 <div class="coluna">
                     <label for="cpf">CPF</label>
-                    <input name="cpf" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" placeholder="Digite seu CPF aqui" required>
+                    <input name="cpf" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" placeholder="Digite seu CPF aqui. Ex: 123.456.789-00" required>
 
                     <label for="crm">CRM</label>
                     <input name="crm" maxlength="12" type="number" placeholder="Digite seu CRM aqui" required>
@@ -72,7 +73,7 @@ verificarLogadoTipo();
                     <label for="especialidade">Especialidade Médica:</label>
                     <select name="especialidade" id="especialidade">
 
-                        <option value="">Selecione</option>
+                        <option value="" disabled selected>Selecione</option>
 
                         <optgroup label="Clínicas">
                             <option value="clinico_geral">Clínico Geral</option>
@@ -122,7 +123,7 @@ verificarLogadoTipo();
 
                     <label for="genero">Gênero</label>
                     <select name="genero" required>
-                        <option value="">Selecione seu gênero</option>
+                        <option value="" disabled selected>Selecione seu gênero</option>
                         <option value="m">Masculino</option>
                         <option value="f">Feminino</option>
                         <option value="i">Indefinido</option>

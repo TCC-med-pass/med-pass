@@ -1,0 +1,387 @@
+/* ════════════════════════════════════════════════════
+   MedPass – accessibility-global.css
+   Inclua em TODAS as páginas do projeto, após o teste.css:
+     <link rel="stylesheet" href="../Configuracao/accessibility-global.css"/>
+   ════════════════════════════════════════════════════ */
+
+/* ── Estágios de fonte (aplicados pelo settings.js) ── */
+body.font-small  { font-size: 14px; }
+body.font-medium { font-size: 18px; }
+body.font-large  { font-size: 22px; }
+
+body.font-small  *,
+body.font-medium *,
+body.font-large  * { font-size: inherit; }
+
+/* ── Modo escuro ── */
+body.dark-theme {
+  --gray-100: #111827;
+  --gray-200: #1f2937;
+  --white:    #1f2937;
+  --text:     #f3f4f6;
+  --gray-400: #374151;
+  --gray-600: #9ca3af;
+}
+
+/* Força cores básicas do tema escuro para elementos que herdam cor */
+body.dark-theme {
+  background-color: var(--gray-100);
+  color: var(--text);
+}
+
+/* Garantir que elementos internos herdem a cor principal (ajuda quando estilos
+   definiam cores explicitamente no CSS da página) */
+body.dark-theme * {
+  color: inherit;
+}
+
+/* Melhor aparência do modo escuro: superfícies, cards, botões e inputs */
+body.dark-theme {
+  --mp-bg: #0b1220;        /* page background */
+  --mp-surface: #0f1724;   /* card / panel background */
+  --mp-muted: #9aa3ae;     /* texto secundário */
+  --mp-border: #16202a;    /* bordas sutis */
+  --mp-accent: #00a68f;    /* acento (mantém verde/teal) */
+}
+
+body.dark-theme,
+body.dark-theme main,
+body.dark-theme .content {
+  background-color: var(--mp-bg) !important;
+  color: var(--text) !important;
+}
+
+/* Cards e superfícies */
+body.dark-theme .card,
+body.dark-theme .card-doenca,
+body.dark-theme .detalhe-card,
+body.dark-theme .patient-badge,
+body.dark-theme .card .card-meta,
+body.dark-theme .modalConteudo,
+body.dark-theme .upload-box,
+body.dark-theme .doc-wrapper,
+body.dark-theme .bottom-row,
+body.dark-theme .nav-number-badge {
+  background-color: var(--mp-surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--mp-border) !important;
+  box-shadow: 0 4px 18px rgba(2,6,23,0.6);
+}
+
+/* Mantém cabeçalhos coloridos (ex.: verde/laranja/vermelho) visíveis, forçando texto branco */
+body.dark-theme .card-doenca .topo,
+body.dark-theme .card .card-name,
+body.dark-theme .subheader,
+body.dark-theme .topo {
+  color: #fff !important;
+}
+
+/* Corpo do card (onde estava branco) — deixa escuro e texto legível */
+body.dark-theme .card-doenca .corpo,
+body.dark-theme .card .card-desc-value,
+body.dark-theme .card .card-date-value,
+body.dark-theme .card .card-desc-label {
+  background: transparent !important;
+  color: rgba(255,255,255,0.90) !important;
+}
+
+/* Botões — tons mais suaves no escuro, preservando cor quando já coloridos */
+body.dark-theme button,
+body.dark-theme .btn,
+body.dark-theme .card-btn,
+body.dark-theme .btn-adicionar,
+body.dark-theme .action-card {
+  background-color: rgba(255,255,255,0.06) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* Inputs e textareas */
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+  background-color: #0b1620 !important;
+  color: var(--text) !important;
+  border: 1px solid var(--mp-border) !important;
+}
+
+/* Topbar: ajustes leves em modo escuro (não tocar no sidebar) */
+body.dark-theme .topbar {
+  background-color: rgba(0,0,0,0.12) !important;
+}
+
+/* Darken only the white panels inside the sidebar (keep sidebar color itself) */
+body.dark-theme #sidebar .contSidebar {
+  background-color: var(--mp-surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--mp-border) !important;
+}
+
+body.dark-theme #sidebar .contSidebar h1,
+body.dark-theme #sidebar .contSidebar h3 {
+  color: var(--text) !important;
+}
+
+body.dark-theme #sidebar a.opcao,
+body.dark-theme #sidebar a.config {
+  color: white !important;
+}
+
+/* Popup/modal sobreposição */
+body.dark-theme .modal {
+  background: rgba(3,6,12,0.6) !important;
+}
+
+/* Pequenas melhorias de contraste para textos auxiliares */
+body.dark-theme .badge-name,
+body.dark-theme .badge-label,
+body.dark-theme .nav-card-label,
+body.dark-theme .subheader-title {
+  color: var(--text) !important;
+}
+
+/* Garantir que imagens e iframes não fiquem com fundo branco */
+body.dark-theme iframe,
+body.dark-theme img {
+  background: transparent !important;
+}
+
+/* Topbar global: aparência consistente em todas as telas */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  height: 72px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.topbar .topbar-icon {
+  color: var(--gray-600, #374151);
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.topbar .logo-img {
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Ajustes quando o tema escuro está ativo */
+body.dark-theme .topbar {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+body.dark-theme .topbar .topbar-icon {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+/* Pequena variação para o ícone do menu em telas pequenas */
+@media (max-width: 640px) {
+  .topbar { padding: 10px; height: 64px; }
+  .topbar .logo-img { height: 34px; }
+}
+
+/* Algumas páginas usam `.topoPagina` / `.topo` como área superior — aplicar mesmo estilo */
+.topoPagina,
+.topo {
+  /* Não sobrescrever layout existente das páginas; apenas harmonizar aparência */
+  padding: 12px 20px;
+  height: 72px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  position: relative; /* permite que .btnVoltar use absolute sem sobrepor título */
+}
+
+.topo .titulo,
+.topoPagina .titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gray-600, #374151);
+}
+
+/* Garante que o botão voltar fique fixo à esquerda, evitando sobreposição do título */
+.topo .btnVoltar,
+.topoPagina .btnVoltar {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+}
+
+.topoAcoes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Ajustes no modo escuro */
+body.dark-theme .topoPagina,
+body.dark-theme .topo {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+body.dark-theme .topo .titulo,
+body.dark-theme .topoPagina .titulo {
+  color: var(--text) !important;
+}
+
+/* Botão voltar na topo (uma aparência coerente) */
+.topo .btnVoltar,
+.topoPagina .btnVoltar {
+  color: inherit;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+body.dark-theme .topo .btnVoltar,
+body.dark-theme .topoPagina .btnVoltar {
+  background: rgba(255,255,255,0.02);
+  border-color: rgba(255,255,255,0.04);
+}
+
+/* ── BUG FIXES PARA MODO ESCURO ── */
+
+/* 1. pgMedico.html - search wrapper e input */
+body.dark-theme .search-wrapper {
+  background-color: var(--mp-surface) !important;
+  border: 1px solid var(--mp-border) !important;
+}
+
+body.dark-theme .search-input {
+  background-color: #0b1620 !important;
+  color: var(--text) !important;
+  border: 1px solid var(--mp-border) !important;
+}
+
+body.dark-theme .search-input::placeholder {
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* 2. pgPaciente.html - tabela de comorbidades escura (apenas a table renderizada) */
+body.dark-theme .tabela-expandida table {
+  background-color: var(--mp-surface) !important;
+  color: var(--text) !important;
+}
+
+body.dark-theme .tabela-expandida thead {
+  background-color: rgba(255,255,255,0.04) !important;
+  color: var(--text) !important;
+}
+
+body.dark-theme .tabela-expandida th {
+  color: var(--text) !important;
+  border-color: var(--mp-border) !important;
+}
+
+body.dark-theme .tabela-expandida td {
+  color: var(--text) !important;
+  border-color: var(--mp-border) !important;
+}
+
+body.dark-theme .tabela-expandida tbody tr:hover {
+  background-color: rgba(255,255,255,0.02) !important;
+}
+
+/* 3. pgPaciente.html - botões do menu */
+button.btnMenu,
+.btnMenu {
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+}
+
+/* 4. pgMedico.html - ajustar search wrapper */
+.search-wrapper {
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input {
+  background-color: transparent !important;
+  border: 2px solid #00a68f !important;
+  border-radius: 999px;
+  padding: 10px !important;
+}
+
+.search-input:focus {
+  outline: none !important;
+}
+
+body.dark-theme .search-wrapper {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+body.dark-theme .search-input {
+  border: 2px solid #00a68f !important;
+  border-radius: 999px !important;
+  background-color: transparent !important;
+  color: var(--text) !important;
+  padding: 10px !important;
+}
+
+body.dark-theme .search-input:focus {
+  border: 2px solid #00a68f !important;
+  background-color: transparent !important;
+}
+
+/* Botão limpar (X) na barra de busca no modo escuro */
+body.dark-theme .clear-btn {
+  background-color: #00a68f !important;
+  border: none !important;
+  width: 34px !important;
+  height: 34px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.dark-theme .clear-btn svg,
+body.dark-theme .clear-btn i {
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+  fill: none !important;
+}
+
+/* Garantir botões de configuração permaneçam verde-água em modo escuro */
+body.dark-theme .s-card,
+body.dark-theme .s-card.card-alterar,
+body.dark-theme .btnInfo,
+body.dark-theme .card-alterar {
+  background-color: #00a68f !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+body.dark-theme .s-card:hover,
+body.dark-theme .card-alterar:hover,
+body.dark-theme .btnInfo:hover {
+  background-color: #008a7b !important;
+}
+
+body.dark-theme .font-stage-btn.active {
+  background-color: #00a68f !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}

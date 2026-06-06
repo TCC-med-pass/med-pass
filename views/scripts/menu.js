@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const toggle = () => {
             const isExpanded = cardSaude.classList.toggle("expandido");
-            btnExpandir.textContent = isExpanded ? "Recolher" : "Expandir";
+            btnExpandir.textContent = isExpanded ? "Recolher" : "Doenças e Comorbidades" ;
         };
 
         btnExpandir.addEventListener("click", toggle);
@@ -93,3 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarIdadeInicial();
     toggleCardSaude();
 });
+
+/*btnSalvar = document.querySelector(".passeiPorAqui");
+
+btnSalvar.addEventListener("click", () => {
+        console.log('teste');
+        location.reload();
+    })*/

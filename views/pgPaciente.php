@@ -1,8 +1,9 @@
 <?php
+require_once './components/UserComponents.php';
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
 
-$variaveldeteste = 0;
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,38 +31,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-// salvarHistoricoFamiliar(); só deve ser chamada no submit
 
 
-$telefoneDeEmergencia = showTelEmergencia(); // variavel que deve ser usada no front para mostrar o Telefone
 
-$nomePciente = showNome(); // variavel que deve ser usada no front para mostrar o Nome
+$telefoneDeEmergencia = showTelEmergencia();
+$nomePciente = showNome();
+$cpf = showCPF();
+$altura = showAltura();
+$alergia = showAlergia();
+$genero = showGenero();
+$sangue = showSangue();
+$peso = showPeso();
+$idade = showIdade();
+$data_nascimento = showDataNasc();
+$numero_de_carteirinha = showNumCarterinha();
 
-$cpf = showCPF(); // variavel que deve ser usada no front para mostrar o CPF
 
-$altura = showAltura(); // variavel que deve ser usada no front para mostrar a altura
-
-$alergia = showAlergia(); // variavel que deve ser usada no front para mostrar a alergia
-
-$genero = showGenero(); // variavel que deve ser usada no front para mostrar o genero
-
-$sangue = showSangue(); // variavel que deve ser usada no front para mostrar o sangue
-
-$peso = showPeso(); // variavel que deve ser usada no front para mostrar o peso
-
-// $idade = showIdade(); // variavel que deve ser usada no front para mostrar a idade
-
-$data_nascimento = showDataNasc(); // variavel que deve ser usada no front para mostrar a data de nascimento
-
-$numero_de_carteirinha = showNumCarterinha(); // variavel que deve ser usada no front para mostrar o numero da carterinha
-
-$historico_familiar = showHistoricoFamiliar(); // variavel que deve ser usada no front para mostrar o Historico Familiar
-
-$problemaLeve =  showProblemaLeve(); // variavel que deve ser usada no front para mostrar os problemas leve de saude
-
-$problemaMedio = showProblemaMedio(); // // variavel que deve ser usada no front para mostrar os problemas medios de saude 
-
-$problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front para mostrar os problemas graves de saude
+$problemaLeve =  showProblemaLeve();
+$problemaMedio = showProblemaMedio();
+$problemaGrave = showProblemaGrave();
 
 
 ?>
@@ -74,13 +62,16 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/paciente.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./styles/erros.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
+    <link rel="stylesheet" href="./styles/accessibility_global.css">
     <title>Página do Paciente- Início</title>
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <a href="#">
                 <i class="fa-solid fa-house btnCasa"></i>
@@ -100,11 +91,11 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
             <h1><?php echo $nomePciente ?></h1>
         </div>
 
-        <a href="registros.php?tipo=1" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
-        <a href="registros.php?tipo=2" class="opcao">Cirurgia</a>
-        <a href="registros.php?tipo=3" class="opcao">Exames</a>
-        <a href="registros.php?tipo=4" class="opcao">Atestados/Declaração</a>
-        <a href="registros.php?tipo=5" class="opcao">Laudo Médico</a>
+        <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a> <!-- opções do sidebar q ta no figma -->
+        <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+        <a href="registros.php?titulo=exame" class="opcao">Exames</a>
+        <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+        <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
 
         <div class="contSidebar">
             <a href="" class="config">
@@ -121,7 +112,10 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
     <main>
         <div class="contMain">
             <div class="parte">
+                <?php mensagemErro() ?>
+                <?php mensagemSucesso() ?>
                 <div class="cardSaude">
+
                     <div class="titulo">
                         <h1>Cartão Nacional de Saúde</h1>
                     </div>
@@ -133,24 +127,24 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nome:</strong></p>
-                                <p class="texto"><?php echo $nomePciente ?></p> <!-- Nome no banco -->
+                                <p class="texto"><?php echo $nomePciente ?></p>
                                 <span></span>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>CPF:</strong></p>
-                                <p class="texto"><?php echo $cpf ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <p class="texto"><?php echo $cpf ?></p>
                                 <span></span>
                             </div>
 
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Altura:</strong></p>
-                                    <p class="texto"><?php echo $altura ?></p> <!-- Mesma coisa pra todos os campos -->
-                                    <input name="altura" class="input hidden" type="text" placeholder="Ex: 1,80" required>
-                                    
+                                    <p class="texto"><?php echo $altura ?> cm</p>
+                                    <input name="altura" class="input hidden" type="text" placeholder="Ex: 1,80" required value="<?php echo $altura ?>">
+
                                     <button type="button" class="editar">
-                                        <i class="fa-solid fa-pencil"></i> <!-- Mudei o icone do botao de editar pra ficar mais bonito -->
+                                        <i class="fa-solid fa-pencil"></i>
                                     </button>
 
                                     <button class="salvar hidden" type="submit" name="Altura" value="salvar">
@@ -162,11 +156,11 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Alergia:</strong></p>
-                                    <p class="texto"><?php echo $alergia ?></p> <!-- Mesma coisa pra todos os campos -->
-                                    <input name="alergia" class="input hidden" type="text" placeholder="Ex: Amendoim">
-                                    
+                                    <p class="texto"><?php echo $alergia ?></p>
+                                    <input name="alergia" class="input hidden" type="text" placeholder="Ex: Amendoim" value="<?php echo $alergia ?>">
+
                                     <button type="button" class="editar">
-                                        <i class="fa-solid fa-pencil"></i> <!-- Mudei o icone do botao de editar pra ficar mais bonito -->
+                                        <i class="fa-solid fa-pencil"></i>
                                     </button>
 
                                     <button class="salvar hidden" type="submit" name="Alergia" value="salvar">
@@ -180,17 +174,24 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Gênero:</strong></p>
-                                    <p class="texto"><?php echo $genero ?></p> <!-- Mesma coisa pra todos os campos -->
+                                    <p class="texto"><?php echo $genero ?></p>
 
                                     <select class="input hidden" name="genero" required>
-                                        <option value="">Selecione seu gênero</option>
-                                        <option value="m">Masculino</option>
-                                        <option value="f">Feminino</option>
-                                        <option value="i">Indefinido</option>
+                                        <option value="m" <?= $genero == 'Masculino' ? 'selected' : '' ?>>
+                                            Masculino
+                                        </option>
+
+                                        <option value="f" <?= $genero == 'Feminino' ? 'selected' : '' ?>>
+                                            Feminino
+                                        </option>
+
+                                        <option value="i" <?= $genero == 'Indefinido' ? 'selected' : '' ?>>
+                                            Indefinido
+                                        </option>
                                     </select>
 
-                                    <button class="editar" type="button">
-                                        <i class="fa-solid fa-pencil"></i> <!-- Mudei o icone do botao de editar pra ficar mais bonito -->
+                                    <button type="button" class="editar">
+                                        <i class="fa-solid fa-pencil"></i>
                                     </button>
 
                                     <button class="salvar hidden" type="submit" name="Genero" value="salvar">
@@ -201,17 +202,17 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Sangue:</strong></p>
-                                <p class="texto"><?php echo $sangue ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <p class="texto"><?php echo $sangue ?></p>
+                                <span></span>
                             </div>
-
                             <form method="POST">
                                 <div class="campo">
                                     <p style="color: white;"><strong>Peso:</strong></p>
-                                    <p class="texto"><?php echo $peso ?></p> <!-- Mesma coisa pra todos os campos -->
-                                    <input class="input hidden" type="text" value="" name="peso" placeholder="Ex: 80Kg">
-                                    
+                                    <p class="texto"><?php echo $peso ?> Kg</p>
+                                    <input class="input hidden" type="text" value="<?php echo $peso ?>" name="peso" placeholder="Ex: 80Kg">
+
                                     <button type="button" class="editar">
-                                        <i class="fa-solid fa-pencil"></i> <!-- Mudei o icone do botao de editar pra ficar mais bonito -->
+                                        <i class="fa-solid fa-pencil"></i>
                                     </button>
 
                                     <button class="salvar hidden" type="submit" name="Peso" value="salvar">
@@ -219,41 +220,37 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                                     </button>
                                 </div>
                             </form>
-
-                            <div class="campo">
-                                <span></span>
-                            </div>
                         </div>
 
                         <div class="coluna">
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Idade:</strong></p>
-                                <p class="texto idade">TESTE</p> <!-- Como idade será calculada à partir da data de nascimento, não é preciso fazer a edição -->
+                                <p class="texto idade"><?php echo $idade ?></p>
                                 <span></span> <!-- ta aq so pro flex jogar o 30 no meio -->
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>Nascimento:</strong></p>
-                                <p class="texto"><?php echo $data_nascimento ?></p> <!-- Mesma coisa pra todos os campos -->
+                                <p class="texto"><?php echo $data_nascimento ?></p>
                                 <span></span>
                             </div>
 
                             <div class="campo">
                                 <p style="color: white;"><strong>N Carteirinha:</strong></p>
-                                <p class="texto"><?php echo $numero_de_carteirinha ?></p> <!-- Mesma coisa pra todos os campos -->
-
+                                <p class="texto"><?php echo $numero_de_carteirinha ?></p>
+                                <span></span>
                             </div>
 
                             <form method="POST">
                                 <div class="campo">
-                                    <p style="color: white;"><strong>Telefone de Emergencia:</strong></p>
-                                    <p class="texto"><?php echo $telefoneDeEmergencia ?></p> <!-- Mesma coisa pra todos os campos -->
-                                    <input name="telefone" class="input hidden" type="text" value="" placeholder="Ex: (**) *****-****">
-                                    
+                                    <p style="color: white;"><strong>Tel. de Emergencia:</strong></p>
+                                    <p class="texto"><?php echo $telefoneDeEmergencia ?></p>
+                                    <input name="telefone" class="input hidden" type="text" value="<?php echo $telefoneDeEmergencia ?>" placeholder="Ex: (**) *****-****">
+
                                     <button type="button" class="editar">
                                         <i class="fa-solid fa-pencil"></i>
-                                    </button> 
+                                    </button>
 
                                     <button class="salvar hidden" type="submit" name="tel_emergencia" value="salvar">
                                         <i class="fa-solid fa-check"></i>
@@ -265,53 +262,34 @@ $problemaGrave = showProblemaGrave(); // // variavel que deve ser usada no front
                         </div>
                     </div>
 
+                    <!-- Tabela expandida -->
                     <div class="tabela-expandida">
                         <h2>Doenças e comorbidades</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Comorbidade</th>
-                                    <th>Grau de Urgência</th>
-                                    <th>Observações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>doenca1</td> <!-- Aq o back coloca as informações na tabela -->
-                                    <td><p class="leve">Leve</p></td> <!-- Vou deixar feito a estilização de uma classe leve, medio e grave, mudando a cor do texto de acordo com o grau da doença -->
-                                    <td>obs.</td>
-                                </tr>
-                                <tr>
-                                    <td>doenca2</td>
-                                    <td><p class="medio">Médio</p></td>
-                                    <td>obs.</td>
-                                </tr>
-                                <tr>
-                                    <td>doenca3</td>
-                                    <td><p class="grave">Grave</p></td>
-                                    <td>obs.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <?php echo renderTable($problemaLeve, $problemaMedio, $problemaGrave) ?>
                     </div>
 
-                    <button class="btnExpandir" type="button">Expandir</button>
+                    <button class="btnExpandir" type="button">Doenças e Comorbidades</button>
                 </div>
             </div>
 
             <div class="parte">
                 <div class="gridBtn">
-                    <a href=""><button class="btnMenu">Medicamento em Uso</button></a>
-                    <a href=""><button class="btnMenu">Contato de Emergência</button></a>
-                    <a href=""><button class="btnMenu">Receita Médica</button></a>
-                    <a href=""><button class="btnMenu">Histório Familiar</button></a>
+                    <a href="./medicamento_uso.php"><button class="btnMenu">Medicamento em Uso</button></a>
+                    <a href="./receitas_medicas.php"><button class="btnMenu">Receita Médica</button></a>
+                    <a href="./historicoFamiliar.php"><button class="btnMenu">Histório Familiar</button></a>
                 </div>
             </div>
         </div>
     </main>
 
+    <style>
+
+    </style>
+
     <script src="./scripts/menu.js"></script>
     <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/esconderHeader.js"></script>
+    <script src="./scripts/settings.js"></script>
 </body>
 
 </html>

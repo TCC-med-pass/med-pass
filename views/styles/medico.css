@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:wght@400;700&display=swap');
+
+/* Elementos globais */
+* {
+    font-family: "Aleo", serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --teal: #007977;
+  --teal-card: #c97310;
+  --teal-dark: #005853;
+  --teal-light: #e8f5f4;
+  --red: #c0392b;
+  --red-dark: #a93226;
+  --green: #27ae60;
+  --green-dark: #1e8449;
+  --white: #ffffff;
+  --gray-bg: #f0f0f0;
+  --gray-border: #ccc;
+  --text-dark: #1a1a1a;
+}
+
+body {
+  background-color: var(--gray-bg);
+  min-height: 100vh;
+  padding-top: 15vh;
+}
+
+/* ── HEADER ── */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    transition: transform 0.3s ease;
+
+    width: 100%;
+    height: 15vh;
+    background-color: var(--teal);
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#header.esconder {
+    transform: translateY(-100%);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: auto;
+}
+
+
+/* menu hamburger */
+
+.menu-icon, .btnCasa {
+    font-size: 33px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.menu-icon:hover {
+    color: #ccc;
+}
+
+#header img,
+.logo-img {
+  max-width: 220px;
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.topbar-icon {
+  color: var(--white);
+  font-size: 22px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+/* ── SUBHEADER / VOLTAR ── */
+.subheader {
+  width: 100%;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--teal);
+  font-weight: 800;
+  font-size: 17px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.back-btn:hover { opacity: 0.75; }
+
+.back-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--teal);
+  stroke-width: 3;
+  fill: none;
+}
+
+.subheader-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--teal);
+}
+
+/* ── MAIN CONTENT ── */
+main {
+  width: 100%;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 40px 32px 56px;
+}
+
+/* ── SEARCH BAR ── */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border: 2px solid #00a68f;
+  border-radius: 30px;
+  padding: 8px 16px;
+  margin-bottom: 28px;
+  gap: 10px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  background: transparent;
+}
+
+.clear-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #888;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.clear-btn:hover { background: #555; }
+
+.clear-btn svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--white);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* ── PATIENT GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── PATIENT CARD ── */
+.card {
+  border-radius: 14px;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.16);
+}
+
+/* Severity colours */
+.card.grave  { border-color: var(--red); }
+.card.leve   { border-color: var(--green); }
+.card.medio     { border-color: var(--teal-card); }
+
+.card-name {
+  padding: 14px 12px;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+  color: var(--text-dark);
+  border-bottom: 2px solid transparent;
+}
+
+.card.grave .card-name  { border-bottom-color: var(--red); }
+.card.leve  .card-name  { border-bottom-color: var(--green); }
+.card.medio   .card-name  { border-bottom-color: var(--teal-card); }
+
+.card-body {
+  padding: 12px 14px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.5;
+}
+
+.card.grave .card-body  { background: var(--red); }
+.card.leve  .card-body  { background: var(--green); }
+.card.medio   .card-body  { background: var(--teal-card); }
+
+.card-body strong { font-weight: 800; }
+
+.card-severity {
+  margin-top: 6px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+
+
+
+
+
+/* menu hamburger */
+
+.menu-icon {
+    font-size: 33px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.menu-icon:hover {
+    color: #ccc;
+}
+
+/* sidebar */
+
+#sidebar {
+    position: fixed;
+    top: 15vh;
+    right: -0; /* responsivo */
+    width: 25vw;
+    height: calc(100vh - 15vh);
+    background: #007977;
+    padding: 5px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+
+    transform: translateX(100%); /* escondido */
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Quando aberto */
+#sidebar.active {
+    transform: translateX(0); /* aparece */
+}
+
+#sidebar a {
+    display: block;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+#sidebar h1, h3 {
+    color: #007977;
+}
+
+.contSidebar {
+    width: 100%;
+    min-height: 10vh;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.config {
+    color: black;
+}
+
+.opcao {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.opcao:hover {
+    color: #ccc;
+}

@@ -1,4 +1,3 @@
-
 <?php
 require_once '../controllers/UserControll.php';
 require_once './components/UserComponents.php';
@@ -11,20 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 verificarLogadoTipo();
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/erros.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <title>MedPass- Login</title>
 </head>
+
 <body>
     <main>
         <div class="container-1">
@@ -32,7 +30,8 @@ verificarLogadoTipo();
             <h1>MedPass- Login</h1>
 
             <?php mensagemErro(); ?>
-            
+            <?php mensagemSucesso(); ?>
+
             <form method="post">
                 <label for="cpf">CPF</label>
                 <input name="cpf" type="text" placeholder="Digite seu CPF aqui" required> <!-- Troquei os campos cpf de todos os arquivos de text pra number pro cara nao conseguir colocar letra no campo (se precisar troca de volta pra text) -->
@@ -45,8 +44,9 @@ verificarLogadoTipo();
                     </button>
                 </div>
 
+                <p>Esqueceu sua senha? <a href="recuperarSenha.php" class="ajuda"><strong>Recuperar Senha</strong></a></p>
                 <p>Não possui cadastro? <a href="btn_cadastro.php" class="ajuda"><strong>Fazer cadastro</strong></a></p>
-                <p>Precisa de ajuda? <a href="#" class="ajuda"><strong>Clique aqui</strong></a></p>
+                <p>Precisa de ajuda? <a href="#" class="ajuda"><strong>Clique aqui Se precisar de Ajuda</strong></a></p>
 
                 <button type="submit" class="btn">Entrar</button>
             </form>
@@ -54,6 +54,5 @@ verificarLogadoTipo();
     </main>
     <script src="./scripts/mostrarSenha.js"></script>
 </body>
+
 </html>
-
-

@@ -1,3 +1,9 @@
+<?php
+require_once '../controllers/UserControll.php';
+require_once './components/UserComponents.php';
+verificarTipo(['paciente','medico']);
+editarSenha();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,7 +20,8 @@
             <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass"></img>
             <h1>MedPass- Mudar senha</h1>
 
-            <?php mensagemSucesso(); ?>
+            <?php mensagemSucesso(); ?> 
+            <?php mensagemErro(); ?>
             
             <form method="post">
                 <label for="senha">Senha</label>
