@@ -10,13 +10,26 @@
   <link rel="stylesheet" href="./styles/configuracoes.css"/>
 </head>
 <body>
+    <header id="header">
+        <div class="container">
+            <a href="pgPaciente.php">
+                <i class="fa-solid fa-house btnCasa"></i>
+            </a>
+        </div>
+        <div class="container">
+            <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass">
+        </div>
+        <div class="container">
+            <!--Menu hamburguer-->
+            <i class="fa-solid fa-bars menu-icon"></i>
+        </div>
+    </header>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <a href="#" class="topbar-icon"><i class="fa-solid fa-house"></i></a>
-  <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
-  <a href="#" class="topbar-icon"><i class="fa-solid fa-bars"></i></a>
-</div>
+    <nav id="sidebar">
+        <div class="contSidebar">
+            <h1>Configurações</h1>
+        </div>
+    </nav>
 
 <!-- SUBHEADER -->
 <div class="subheader">
@@ -29,8 +42,7 @@
   <div class="subheader-spacer"></div>
 </div>
 
-<!-- MAIN -->
-<main>
+    <main>
 
   <!-- Paciente -->
   <div class="patient-info">
@@ -163,6 +175,8 @@
     syncDarkUI(MedPassSettings.getDark());
   });
 </script>
+<script src="./scripts/sidebar.js"></script>
+<script src="./scripts/esconderHeader.js"></script>
 <script src="./scripts/settings.js"></script>
 <script src="./scripts/popupMedico.js"></script>
 </body>

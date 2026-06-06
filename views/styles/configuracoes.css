@@ -5,6 +5,106 @@
 }
 
 /* ════════════════════════════════════════════
+   HEADER STYLING (do historicoFamiliar)
+   ════════════════════════════════════════════ */
+header {
+    width: 100%;
+    height: 15vh;
+    background-color: #007977;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: auto;
+}
+
+.btnCasa {
+    font-size: 33px;
+}
+
+.menu-icon {
+    font-size: 33px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.menu-icon:hover {
+    color: #ccc;
+}
+
+header i {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+header i:hover {
+    color: #dfdfdf;
+}
+
+/* ════════════════════════════════════════════
+   SIDEBAR (adaptado de historicoFamiliar, escondido por padrão)
+   Mantém transform para não puxar conteúdo da página
+   ════════════════════════════════════════════ */
+#sidebar {
+  position: fixed;
+  top: 15vh;
+  right: 0;
+  width: 25vw;
+  height: calc(100vh - 15vh);
+  background: #007977;
+  padding: 5px;
+  transition: transform 0.3s ease;
+  transform: translateX(100%); /* escondido por padrão */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+#sidebar.active {
+  transform: translateX(0);
+}
+
+#sidebar a {
+  display: block;
+  text-decoration: none;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+#sidebar h1, h3 {
+  color: #007977;
+}
+
+.contSidebar {
+  width: 100%;
+  min-height: 10vh;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.config {
+  color: black;
+}
+
+.opcao {
+  color: white;
+}
+
+/* ════════════════════════════════════════════
    VARIÁVEIS (devem bater com teste.css)
    Se o seu teste.css já as define, remova daqui
    ════════════════════════════════════════════ */
