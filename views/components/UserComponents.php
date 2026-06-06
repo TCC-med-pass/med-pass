@@ -351,6 +351,9 @@ function showDadosPaciente()
 
     echo "
         <form method='post'>
+
+
+        <h2>Informações Gerais</h2>
         
         <label for='carterinha'>Número de carteirinha:</label>
         <input type='number' name='carterinha' value='" . htmlspecialchars($carteirinha, ENT_QUOTES, 'UTF-8') . "' placeholder='Insira o n° de carteirinha do Paciente' aria-label='Insira o número de carteirinha do Paciente'>
@@ -363,9 +366,27 @@ function showDadosPaciente()
         
         <label for='alergias'>Alergias:</label>
         <input type='text' name='alergias' placeholder='Insira as alergias do Paciente' value='" . htmlspecialchars($alergias, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira as alergias do Paciente'>
+
         
-        <label for='endereco'>Endereço:</label>
-        <input type='text' name='endereco' placeholder='Insira o endereço do Paciente' value='' aria-label='Insira o endereço do Paciente'>
+        <h2>Endereço:</h2>
+        
+        <label for='rua'>Rua:</label>
+        <input type='text' name='rua' placeholder='Insira a rua do Paciente' aria-label='Insira a rua do Paciente'>
+
+        <label for='bairro'>Bairro:</label>
+        <input type='text' name='bairro' placeholder='Insira o bairro do Paciente' aria-label='Insira o bairro do Paciente'>
+
+        <label for='cidade'>Cidade:</label>
+        <input type='text' name='cidade' placeholder='Insira a cidade do Paciente' aria-label='Insira a cidade do Paciente'>
+
+        <label for='n_casa'>Número Casa:</label>
+        <input type='text' name='n_casa' placeholder='Insira o número de residência do Paciente' aria-label='Insira o número de residência do Paciente'>
+
+
+        <h2>Tipo Sanguíneo</h2>
+        
+        <label for='tipo_sanguineo'>Tipo Sanguíneo:</label>
+        <input type='text' name='tipo_sanguineo' placeholder='Tipo sanguíneo do Paciente' aria-label='Insra o tipo sanguíneo do Paciente'>
 
         <button type='submit' class='salvar'>Salvar</button>
         </form>

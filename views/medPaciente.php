@@ -89,8 +89,7 @@ verificarTipo(['medico']);
           </button>
 
           <h2>Editar Informações do Paciente</h2>
-
-
+          
           <?php showDadosPaciente() ?>
         </div>
       </div>
