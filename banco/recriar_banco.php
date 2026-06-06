@@ -107,7 +107,7 @@ $conn->query("CREATE TABLE problema_de_saude(
     id_problema_de_saude INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     status VARCHAR(50),
-    tipo ENUM('grave','leve','normal','medio'),
+    tipo ENUM('grave','leve','medio'),
     data DATE NOT NULL,
     fk_paciente INT NOT NULL,
     fk_medico INT NOT NULL

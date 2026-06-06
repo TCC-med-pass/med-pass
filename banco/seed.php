@@ -108,7 +108,7 @@ VALUES
 ('Hipertensão','controlado','grave','2025-01-10',1,1),
 ('Gripe','curado','leve','2025-02-15',2,2),
 ('Diabetes','em tratamento','medio','2025-03-20',3,3),
-('Enxaqueca','recorrente','normal','2025-04-01',4,1),
+('Enxaqueca','recorrente','leve','2025-04-01',4,1),
 ('Gastrite','tratamento','medio','2025-04-05',5,2)
 ";
 
