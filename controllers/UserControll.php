@@ -155,15 +155,37 @@ function salvarHistoricoFamiliar()
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $historico_familiar = $_POST['historico_familiar'] ?? null;
         $paciente_id = $_SESSION['id_usuario'];
+        $parentesco = $_POST['parentesco'] ?? null;
+        $doença = $_POST['doença'] ?? null;
+        $nivel = $_POST['nivel'] ?? null;
+        
 
-        if ($historico_familiar && !preg_match('/\d/', $historico_familiar)) {
+      
 
-            setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id);
-        } else {
-            $_SESSION['erro'][] = "O histórico não pode conter números";
-        }
+        setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doença, $nivel);
+       
+    }
+}
+
+function  editarHistorico(){
+      global $pdo;
+    if (!isset($_SESSION['id_usuario'])) {
+        die("Usuário não autenticado");
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $paciente_id = $_SESSION['id_usuario'];
+        $parentesco = $_POST['parentesco'] ?? null;
+        $doença = $_POST['doença'] ?? null;
+        $nivel = $_POST['nivel'] ?? null;
+        $idHistorico = $_POST['id_historico'] ?? null;
+        
+
+
+        updateHistoricoFamiliar($pdo, $idHistorico, $parentesco, $doença, $nivel);
+       
     }
 }
 
@@ -524,7 +546,7 @@ function showHistoricoFamiliar()
     $paciente_id = $_SESSION['id_usuario'] ?? null;
 
     if (!$paciente_id) {
-        return null;
+        return [];
     }
 
     return getHistoricoFamiliarDataBase($pdo, $paciente_id);

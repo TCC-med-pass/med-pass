@@ -13,3 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.classList.remove("ativo");
     });
 });
+
+document.querySelectorAll('.editar').forEach(botao => {
+
+    botao.addEventListener('click', () => {
+
+        const idHistorico = botao.dataset.id;
+
+        document.getElementById('id_historico').value = idHistorico;
+    });
+
+});

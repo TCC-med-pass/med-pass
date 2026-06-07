@@ -320,24 +320,6 @@ function renderTable($problemaLeve, $problemaMedio, $problemaGrave)
 }
 
 
-function renderHistoricoFami($historico_familiar)
-{
-
-
-
-    echo '<table>
-            <thead>
-                <tr>
-                    <th>Doenças familiares registradas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>' . $historico_familiar . '</td>
-                </tr>
-            </tbody>
-        </table>';
-}
 
 function showDadosPaciente()
 {
@@ -417,4 +399,49 @@ function showLinkNav()
         ];
     }
     return $dados;
+}
+
+function renderHistoricoFam($historicos)
+{
+    ?>
+    
+    <section class="cards">
+
+        <?php foreach ($historicos as $historico): ?>
+
+            <div class="card-doenca <?= strtolower($historico['nivel']) ?>">
+
+                <div class="topo">
+                    <h2>
+                        Filiação:
+                        <?= htmlspecialchars($historico['parentesco']) ?>
+                    </h2>
+
+                    <h3>
+                        Comorbidade
+                        <?= htmlspecialchars($historico['nivel']) ?>
+                    </h3>
+                </div>
+
+                <div class="corpo">
+                    <p>
+                        <strong>Comorbidade:</strong>
+                        <?= htmlspecialchars($historico['doenca']) ?>
+                    </p>
+                </div>
+
+                <div class="footer">
+                    <button 
+                    class="editar"
+                    data-id="<?= $historico['id_historico'] ?>">
+                    Editar</button>
+                </div>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    </section>
+
+    <?php
 }

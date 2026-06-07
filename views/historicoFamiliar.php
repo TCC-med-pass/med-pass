@@ -1,3 +1,29 @@
+<?php
+require_once './components/UserComponents.php';
+require_once '../controllers/UserControll.php'; 
+
+$nomePciente = showNome();
+$numero_de_carteirinha = showNumCarterinha();
+
+$historicos = showHistoricoFamiliar();
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (isset($_POST['addHistorico'])) {
+        salvarHistoricoFamiliar();
+    }elseif(isset($_POST['editarHistorico'])){
+        editarHistorico();
+    }
+
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,6 +31,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/historicoFamiliar.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
     <link rel="stylesheet" href="./styles/accessibility_global.css">
@@ -13,6 +40,11 @@
 
 
 <body>
+
+ <?php 
+    mensagemErro();
+    mensagemSucesso();
+ ?>
     <header id="header">
         <div class="container">
             <a href="pgPaciente.php">
@@ -67,44 +99,7 @@
         </div>
 
         <section class="cards">
-            <div class="card-doenca leve"> <!-- Card da doença -->
-                <div class="topo">
-                    <h2>Filiação: Mãe</h2> <!-- Tem q mudar a filiação pelo q ta no banco -->
-                    <h3>Comorbidade Leve</h3> <!-- isso aq tbm -->
-                </div>
-                <div class="corpo"> <!-- Divisão pra ficar igual no figma -->
-                    <p><strong>Comorbidade: </strong>Diabates tipo II</p> <!-- doença -->
-                </div>
-                <div class="footer">
-                    <button class="editar">Editar</button> <!-- o botao vai abrir um popup igual o do adicionar, mas pra editar a comorbidade -->
-                </div>
-            </div>
-            
-            <div class="card-doenca medio">
-                <div class="topo">
-                    <h2>Filiação: Mãe</h2>
-                    <h3>Comorbidade Media</h3>
-                </div>
-                <div class="corpo">
-                    <p><strong>Comorbidade: </strong>Diabates tipo II</p>
-                </div>
-                <div class="footer">
-                    <button class="editar">Editar</button>
-                </div>
-            </div>
-
-            <div class="card-doenca grave">
-                <div class="topo">
-                    <h2>Filiação: Mãe</h2>
-                    <h3>Comorbidade Grave</h3>
-                </div>
-                <div class="corpo">
-                    <p><strong>Comorbidade: </strong>Diabates tipo II</p>
-                </div>
-                <div class="footer">
-                    <button class="editar">Editar</button>
-                </div>
-            </div>
+        <?php renderHistoricoFam($historicos) ?>
 
             <!-- POPUP DE ADICIONAR -->
             <div class="modal" id="popup">
@@ -116,9 +111,10 @@
                     <h2>Adicionar doença</h2>
 
                     <form method="post">
-                        <input type="text" name="filiacao" placeholder="O grau de parentesco do paciente que foi diagnosticado" aria-label="Digite o grau de parentesco do paciente que foi diagnosticado" required />
-                        <input type="text" name="historico_familiar" placeholder="Digite aqui a doença" aria-label="Digite a doença" required />
-                        <button type="submit" class="salvar">Salvar</button>
+                        <input type="text" name="parentesco" placeholder="O grau de parentesco do paciente que foi diagnosticado" aria-label="Digite o grau de parentesco do paciente que foi diagnosticado" required />
+                        <input type="text" name="doença" placeholder="Digite aqui a doença" aria-label="Digite a doença" required />
+                        <input type="text" name="nivel" placeholder="Digite aqui o nível da doença" aria-label="Digite a doença" required />
+                        <button type="submit" class="salvar" name="addHistorico">Salvar</button>
                     </form>
                 </div>
             </div>
@@ -134,8 +130,11 @@
                     <h2>Editar doença</h2>
 
                     <form method="post">
-                        <input type="text" name="doenca" placeholder="Editar a doença" aria-label="Editar a doenca" value="" required /> <!-- Seria interessante fazer igual o popup do médico, q apareça a doença antes de editar como valor atual desse input -->
-                        <button type="submit" class="salvar">Salvar</button>
+                        <input type="text" name="parentesco" placeholder="Editar o parentesco" aria-label="Editar a doenca" value="" required /> <!-- Seria interessante fazer igual o popup do médico, q apareça a doença antes de editar como valor atual desse input -->
+                        <input type="text" name="doença" placeholder="Editar a doença" aria-label="Editar a doenca" value="" required /> 
+                        <input type="text" name="nivel" placeholder="Editar o nível" aria-label="Editar a doenca" value="" required /> 
+                        <input type="hidden" name="id_historico" id="id_historico">
+                        <button name="editarHistorico" type="submit" class="salvar">Salvar</button>
                     </form>
                 </div>
             </div>
