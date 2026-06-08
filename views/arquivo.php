@@ -13,17 +13,19 @@ $titulo = ucwords($_GET['tipo']);
   <title><?= $titulo ?> - MedPass</title>
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./styles/arquivo.css">
+  <link rel="stylesheet" href="./styles/arquivo.css?v=3">
 </head>
 
 <body>
 
   <!-- TOP BAR -->
   <div class="topbar">
-    <a href="login.php" class="topbar-icon">
+    <a href="pgPaciente.php" class="topbar-icon">
       <i class="fa-solid fa-house"></i>
     </a>
-    <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
+    <div class="topbar-center">
+      <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
+    </div>
     <a href="#" class="topbar-icon">
       <i class="fa-solid fa-bars"></i>
     </a>
@@ -39,31 +41,21 @@ $titulo = ucwords($_GET['tipo']);
   </div>
 
   <main>
-
-    <!-- ÁREA CENTRAL DO DOCUMENTO -->
     <div class="doc-wrapper">
-
-      <!-- ZONA DE UPLOAD -->
       <div class="upload-zone">
         <?php arquivoIframe(); ?>
       </div>
-
-
     </div>
 
-    <!-- BOTTOM BAR -->
     <div class="nav-number-badge">
-      <p>Número da carterinha:</p>
+      <p>Número da carteirinha:</p>
       <span><?php if (isset($_SESSION['numeroCarteirinha'])) {
               echo $_SESSION['numeroCarteirinha'];
             } elseif (isset($_SESSION['numero_carteirinha'])) {
               echo $_SESSION['numero_carteirinha'];
             } ?></span>
     </div>
-
   </main>
 
-
 </body>
-
 </html>

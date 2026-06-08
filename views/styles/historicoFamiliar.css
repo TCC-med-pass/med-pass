@@ -2,16 +2,16 @@
 
 /* Elementos globais */
 * {
-    font-family: "Aleo", serif;
-    font-optical-sizing: auto;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    min-height: 100vh;
+    font-family: 'Aleo', serif;
     background-color: #f4f4f4;
+    color: #1c3432;
+    min-height: 100vh;
 }
 
 header {
@@ -167,6 +167,18 @@ main {
     align-items: center;
     padding: 10px;
     transition: 0.3s ease;
+}
+
+.carteirinha span {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.carteirinha p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 600;
 }
 
 .carteirinha.descer {

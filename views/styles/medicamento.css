@@ -25,91 +25,164 @@ body {
   padding-top: 15vh;
 }
 
-/* ── Top bar ── */
+/* ── HEADER ── */
 #header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-
-    transition: transform 0.3s ease;
-
-    width: 100%;
-    height: 15vh;
-    background-color: var(--teal);
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  width: 100%;
+  height: 15vh;
+  background-color: var(--teal);
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 #header.esconder {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 15vh;
-    width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  width: auto;
 }
 
-
-/* menu hamburger */
-
-.menu-icon, .btnCasa {
-    font-size: 33px;
-    cursor: pointer;
-    color: white;
-    transition: color 0.3s ease;
+.btnCasa {
+  font-size: 33px;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/* Hover */
+.btnCasa:hover {
+  color: #dfdfdf;
+}
+
+.menu-icon {
+  font-size: 33px;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s ease;
+}
+
 .menu-icon:hover {
-    color: #ccc;
+  color: #ccc;
 }
 
+/* Logo — igual à página de receitas */
 #header img,
 .logo-img {
-  max-width: 220px;
-  max-height: 80px;
+  height: 180px;
   width: auto;
   object-fit: contain;
 }
 
-/* ── Sub-header ── */
+/* ── SIDEBAR ── */
+#sidebar {
+  position: fixed;
+  top: 15vh;
+  right: 0;
+  width: 25vw;
+  height: calc(100vh - 15vh);
+  background: var(--teal);
+  padding: 5px;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+#sidebar.active {
+  transform: translateX(0);
+}
+
+#sidebar a {
+  display: block;
+  text-decoration: none;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+#sidebar h1,
+#sidebar h3 {
+  color: var(--teal);
+}
+
+.contSidebar {
+  width: 100%;
+  min-height: 10vh;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.config {
+  color: black;
+}
+
+.opcao {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.opcao:hover {
+  color: #ccc;
+}
+
+/* ── SUB-HEADER ── */
 .subheader {
-  border-bottom: 2px solid var(--teal-mid);
-  padding: 14px 40px;
+  width: 100%;
+  min-height: 70px;
+  background-color: white;
   display: flex;
   align-items: center;
-  background: var(--white);
+  justify-content: center;
+  position: relative;
+  border-bottom: 3px solid #019c9a;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .back-btn {
+  position: absolute;
+  left: 20px;
   display: flex;
   align-items: center;
-  gap: 5px;
-  color: var(--teal);
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
+  gap: 8px;
   text-decoration: none;
+  color: #007977;
+  font-weight: bold;
+  font-size: 20px;
+  transition: opacity 0.2s;
+}
+
+.back-btn:hover {
+  opacity: 0.75;
 }
 
 .subheader-title {
-  flex: 1;
-  text-align: center;
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--teal);
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #1c3432;
 }
 
 .subheader-spacer {
-  width: 70px;
+  display: none;
 }
 
-/* ── Main content ── */
+/* ── MAIN CONTENT ── */
 .content {
   flex: 1;
   padding: 36px 48px 48px;
@@ -121,7 +194,7 @@ body {
   gap: 28px;
 }
 
-/* ── Medication table ── */
+/* ── TABELA ── */
 .med-table {
   width: 100%;
   border-collapse: collapse;
@@ -130,7 +203,7 @@ body {
   border: 2px solid var(--teal);
   box-shadow: var(--shadow);
 }
- 
+
 .med-table thead tr th {
   background: var(--teal);
   color: var(--white);
@@ -140,7 +213,7 @@ body {
   text-align: center;
   border-right: 1.5px solid rgba(255,255,255,0.3);
 }
- 
+
 .med-table thead tr th:first-child {
   text-align: left;
   padding-left: 24px;
@@ -148,24 +221,25 @@ body {
 
 .med-table thead tr th:last-child {
   border-right: none;
+  width: 110px;
 }
- 
+
 .med-table tbody tr {
   transition: background .15s;
 }
- 
+
 .med-table tbody tr:nth-child(odd) {
   background: var(--white);
 }
- 
+
 .med-table tbody tr:nth-child(even) {
   background: var(--teal-light);
 }
- 
+
 .med-table tbody tr:hover {
   background: var(--teal-mid);
 }
- 
+
 .med-table tbody tr td {
   font-size: 14px;
   color: #333;
@@ -174,25 +248,92 @@ body {
   border-right: 1.5px solid var(--border);
   vertical-align: middle;
 }
- 
+
 .med-table tbody tr td:last-child {
   border-right: none;
 }
- 
+
 .med-table tbody tr:last-child td {
   border-bottom: none;
 }
- 
+
 .med-table tbody tr td:first-child {
   font-weight: 700;
   padding-left: 24px;
 }
- 
+
 .med-table tbody tr td:not(:first-child) {
   text-align: center;
 }
 
-/* ── Bottom section ── */
+/* Coluna ações */
+.td-acoes {
+  text-align: center !important;
+  white-space: nowrap;
+  padding: 10px 12px !important;
+}
+
+.tag-abrir {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 3px 11px;
+  border-radius: 20px;
+  margin-right: 6px;
+  transition: opacity .15s, transform .1s;
+}
+
+.tag-abrir:hover {
+  opacity: .8;
+  transform: scale(1.05);
+}
+
+.btn-lixeira {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--teal);
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background .15s, color .15s;
+  vertical-align: middle;
+}
+
+.btn-lixeira:hover {
+  background: #ffeeee;
+  color: #cc0000;
+}
+
+/* ── BOTÃO ADICIONAR ── */
+.btn-adicionar {
+  width: 100%;
+  border: 2.5px dashed var(--teal);
+  background: transparent;
+  border-radius: 10px;
+  color: var(--teal);
+  font-size: 15px;
+  font-weight: 800;
+  font-style: italic;
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background .15s;
+  font-family: inherit;
+  margin-top: 24px;
+}
+
+.btn-adicionar:hover {
+  background: var(--teal-light);
+}
+
+/* ── BOTTOM ROW ── */
 .bottom-row {
   display: flex;
   align-items: flex-end;
@@ -200,7 +341,7 @@ body {
   gap: 20px;
 }
 
-/* ── Cards ── */
+/* ── CARDS ── */
 .cards {
   display: flex;
   gap: 16px;
@@ -250,7 +391,7 @@ body {
   outline: 2.5px solid rgba(255, 255, 255, .5);
 }
 
-/* ── Card number ── */
+/* ── CARD NÚMERO CARTEIRINHA ── */
 .card-number {
   background: var(--teal);
   border-radius: 14px;
@@ -272,95 +413,21 @@ body {
   letter-spacing: 1px;
 }
 
-
-
-
-/* ── Cole no final do seu medicamento_uso.css ── */
-
-/* Coluna de ações */
-.med-table thead tr th:last-child {
-  width: 110px;
-  border-right: none;
-}
-
-.td-acoes {
-  text-align: center !important;
-  white-space: nowrap;
-  padding: 10px 12px !important;
-}
-
-/* Tag abrir */
-.tag-abrir {
-  display: inline-block;
-  background: var(--teal);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 3px 11px;
-  border-radius: 20px;
-  margin-right: 6px;
-  transition: opacity .15s, transform .1s;
-}
-.tag-abrir:hover {
-  opacity: .8;
-  transform: scale(1.05);
-}
-
-/* Botão lixeira */
-.btn-lixeira {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--teal);
-  font-size: 14px;
-  padding: 4px 6px;
-  border-radius: 6px;
-  transition: background .15s, color .15s;
-  vertical-align: middle;
-}
-.btn-lixeira:hover {
-  background: #ffeeee;
-  color: #cc0000;
-}
-
-/* Botão adicionar */
-.btn-adicionar {
-  width: 100%;
-  border: 2.5px dashed var(--teal);
-  background: transparent;
-  border-radius: 10px;
-  color: var(--teal);
-  font-size: 15px;
-  font-weight: 800;
-  font-style: italic;
-  padding: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: background .15s;
-  font-family: inherit;
-  margin-top: 24px;
-}
-.btn-adicionar:hover {
-  background: var(--teal-light);
-}
-
 /* ── MODAL ── */
 .modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.45);
-  z-index: 200;
+  z-index: 2000;
   align-items: center;
   justify-content: center;
 }
+
 .modal-overlay.active {
   display: flex;
 }
+
 .modal {
   background: #fff;
   border-radius: 14px;
@@ -369,6 +436,7 @@ body {
   max-width: 460px;
   box-shadow: 0 8px 32px rgba(0,0,0,.2);
 }
+
 .modal h3 {
   color: var(--teal);
   font-size: 18px;
@@ -376,17 +444,20 @@ body {
   margin-bottom: 20px;
   text-align: center;
 }
+
 .modal-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
   margin-bottom: 14px;
 }
+
 .modal-field label {
   color: var(--teal);
   font-weight: 700;
   font-size: 13px;
 }
+
 .modal-field input,
 .modal-field textarea {
   width: 100%;
@@ -401,16 +472,19 @@ body {
   background: #fff;
   color: #333;
 }
+
 .modal-field input:focus,
 .modal-field textarea:focus {
   border-color: var(--teal);
 }
+
 .modal-btns {
   display: flex;
   gap: 12px;
   justify-content: center;
   margin-top: 8px;
 }
+
 .modal-btns button {
   border-radius: 30px;
   padding: 10px 28px;
@@ -420,98 +494,23 @@ body {
   font-family: inherit;
   transition: opacity .15s;
 }
+
 .modal-btns button[type="button"] {
   border: 2px solid var(--teal);
   background: #fff;
   color: var(--teal);
 }
+
 .modal-btns button[type="button"]:hover {
   background: var(--teal-light);
 }
+
 .modal-btns button[type="submit"] {
   border: none;
   background: var(--teal);
   color: #fff;
 }
+
 .modal-btns button[type="submit"]:hover {
   opacity: .85;
-}
-
-
-/* menu hamburger */
-
-.menu-icon {
-    font-size: 33px;
-    cursor: pointer;
-    color: white;
-    transition: color 0.3s ease;
-}
-
-/* Hover */
-.menu-icon:hover {
-    color: #ccc;
-}
-
-/* sidebar */
-
-#sidebar {
-    position: fixed;
-    top: 15vh;
-    right: -0; /* responsivo */
-    width: 25vw;
-    height: calc(100vh - 15vh);
-    background: #007977;
-    padding: 5px;
-    transition: transform 0.3s ease;
-    z-index: 1000;
-
-    transform: translateX(100%); /* escondido */
-    
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Quando aberto */
-#sidebar.active {
-    transform: translateX(0); /* aparece */
-}
-
-#sidebar a {
-    display: block;
-    text-decoration: none;
-    margin: 15px 0;
-    font-size: 18px;
-}
-
-#sidebar h1, h3 {
-    color: #007977;
-}
-
-.contSidebar {
-    width: 100%;
-    min-height: 10vh;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.config {
-    color: black;
-}
-
-.opcao {
-    color: white;
-    transition: color 0.3s ease;
-}
-
-.opcao:hover {
-    color: #ccc;
 }
