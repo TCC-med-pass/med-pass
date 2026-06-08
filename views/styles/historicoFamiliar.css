@@ -192,6 +192,7 @@ main {
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 3px solid #007977;
 }
 
 .card-doenca:hover {
@@ -250,18 +251,6 @@ main {
 
 .editar:active {
     transform: scale(0.94);
-}
-
-.leve {
-    border: 3px solid #0ebb65;
-}
-
-.medio {
-    border: 3px solid orange;
-}
-
-.grave {
-    border: 3px solid #e0504b;
 }
 
 .carteirinha {
