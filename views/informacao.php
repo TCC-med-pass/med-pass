@@ -9,37 +9,56 @@ verificarTipo(['paciente','medico']);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detalhe do Medicamento – MedPass</title>
-  <link rel="stylesheet" href="./styles/style.css">
-  <link rel="stylesheet" href="./styles/informacaoMedicamento.css">
+  <link rel="stylesheet" href="./styles/receitas.css?v=8">
+  <link rel="stylesheet" href="./styles/informacaoMedicamento.css?v=8">
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <a href="login.php" class="topbar-icon"><i class="fa-solid fa-house"></i></a>
-    <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
-    <a href="#" class="topbar-icon"><i class="fa-solid fa-bars"></i></a>
-  </div>
+  <header id="header">
+    <div class="container">
+      <a href="pgPaciente.php">
+        <i class="fa-solid fa-house btnCasa"></i>
+      </a>
+    </div>
+    <div class="container">
+      <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
+    </div>
+    <div class="container">
+      <i class="fa-solid fa-bars menu-icon"></i>
+    </div>
+  </header>
 
-  <!-- Sub-header -->
-  <div class="subheader">
-    <a href="medicamento_uso.php" class="back-btn">
+  <nav id="sidebar">
+    <div class="contSidebar">
+      <h1><?php echo showNome() ?></h1>
+    </div>
+    <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a>
+    <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+    <a href="registros.php?titulo=exame" class="opcao">Exames</a>
+    <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+    <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
+    <div class="contSidebar">
+      <a href="" class="config"><h3>Ajuda</h3></a>
+      <a href="" class="config"><h3>Configurações</h3></a>
+    </div>
+  </nav>
+
+  <div class="topoPagina">
+    <a href="medicamento_uso.php" class="btnVoltar">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
-    <span class="subheader-title" id="det-titulo">Detalhes do Medicamento</span>
-    <div class="subheader-spacer"></div>
+    <h1 class="titulo">Detalhes do Medicamento</h1>
   </div>
 
-  <!-- Main content -->
-  <div class="content" style="gap: 24px;">
-
+  <main>
     <div class="detalhe-card">
       <?php showInformacaoMedicamentoUso(); ?>
     </div>
+  </main>
 
-  </div>
+  <script src="./scripts/sidebar.js"></script>
 
 </body>
 </html>

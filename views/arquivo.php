@@ -14,6 +14,7 @@ $titulo = ucwords($_GET['tipo']);
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/arquivo.css?v=3">
+  <link rel="stylesheet" href="./styles/receitas.css?v=8">
 </head>
 
 <body>
@@ -26,9 +27,9 @@ $titulo = ucwords($_GET['tipo']);
     <div class="topbar-center">
       <img src="https://i.postimg.cc/VSSzvwD8/Med-Pass-Logo-(resolucao-maior).png" alt="Logo MedPass" class="logo-img" />
     </div>
-    <a href="#" class="topbar-icon">
-      <i class="fa-solid fa-bars"></i>
-    </a>
+    <span class="topbar-icon" style="cursor:pointer">
+      <i class="fa-solid fa-bars menu-icon"></i>
+    </span>
   </div>
 
   <!-- SUBHEADER -->
@@ -57,5 +58,23 @@ $titulo = ucwords($_GET['tipo']);
     </div>
   </main>
 
+  <!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="contSidebar">
+    <h1><?php echo showNome() ?></h1>
+  </div>
+  <a href="registros.php?titulo=prontuario" class="opcao">Prontuário</a>
+  <a href="registros.php?titulo=cirurgia" class="opcao">Cirurgia</a>
+  <a href="registros.php?titulo=exame" class="opcao">Exames</a>
+  <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
+  <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
+  <div class="contSidebar">
+    <a href="" class="config"><h3>Ajuda</h3></a>
+    <a href="" class="config"><h3>Configurações</h3></a>
+  </div>
+</nav>
+
+  <script src="./scripts/sidebar.js"></script>
+  <script src="./scripts/esconderHeader.js"></script>
 </body>
 </html>

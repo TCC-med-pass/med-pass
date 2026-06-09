@@ -15,7 +15,7 @@ $link = showLinkNav();
   <title>Medicamentos em Uso</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" href="./styles/medicamento.css?v=2">
+  <link rel="stylesheet" href="./styles/medicamento.css">
   <link rel="stylesheet" href="./styles/erros.css">
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
 </head>
@@ -94,34 +94,30 @@ $link = showLinkNav();
         <i class="fa-solid fa-plus"></i> Adicionar novo medicamento
       </button>
     <?php endif; ?>
-
-    <!-- Bottom row -->
-    <div class="bottom-row">
-      <div class="cards">
-        <div class="card">
-          <i class="fa-solid fa-file-medical"></i>
-          <span class="card-label">Receita<br>Médica</span>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-clock-rotate-left"></i>
-          <span class="card-label">Histórico<br>Familiar</span>
-        </div>
-      </div>
-
-      <div class="card-number">
-        <p>Número da carterinha:</p>
-        <span>
-          <?php
-            if (isset($_SESSION['numeroCarteirinha'])) {
-              echo $_SESSION['numeroCarteirinha'];
-            } elseif (isset($_SESSION['numero_carteirinha'])) {
-              echo $_SESSION['numero_carteirinha'];
-            }
-          ?>
-        </span>
-      </div>
+    
+    <!-- Bottom-row -->
+   <div class="content">
+  <!-- tabela -->
+  <div class="bottom-row">
+    <div class="nav-cards">
+      <a href="receitas_medicas.php" class="nav-card">Receita Médica</a>
+      <a href="historicoFamiliar.php" class="nav-card">Histórico Familiar</a>
     </div>
   </div>
+</div>
+
+<div class="carteirinha" id="carteirinha">
+  <p>Número da carteirinha:</p>
+  <span>
+    <?php
+      if (isset($_SESSION['numeroCarteirinha'])) {
+        echo $_SESSION['numeroCarteirinha'];
+      } elseif (isset($_SESSION['numero_carteirinha'])) {
+        echo $_SESSION['numero_carteirinha'];
+      }
+    ?>
+  </span>
+</div>
 
   <!-- MODAL ADICIONAR (só médico) -->
   <?php if ($_SESSION['nivel'] === 'medico'): ?>
