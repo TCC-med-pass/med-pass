@@ -435,40 +435,92 @@ function getNumeroCarteirinha($pdo, $paciente_id)
     return null;
 }
 
-
-
-function setHistoricoFamiliar($pdo, $historico_familiar, $paciente_id)
-{
-    $sql = "UPDATE paciente SET historico_familiar = ? WHERE fk_usuario_id = ?";
-
-    $stmt = $pdo->prepare($sql);
-
-    if ($stmt->execute([$historico_familiar, $paciente_id])) {
-        $_SESSION['sucesso'] = "Histórico adicionado com sucesso!";
-    } else {
-        $_SESSION['erro'] = "Erro ao adicionar Histórico";
-    }
-}
-
 function getHistoricoFamiliarDataBase($pdo, $paciente_id)
 {
-    $sql = "SELECT historico_familiar FROM paciente WHERE fk_usuario_id = ?";
+    $sql = "    SELECT id_historico, parentesco, doenca, nivel    FROM historico_familiar    WHERE fk_paciente_id = ?";
 
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$paciente_id])) {
 
-        $historico_familiar = $stmt->fetch(PDO::FETCH_ASSOC);
+        $historicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($historico_familiar && !empty($historico_familiar['historico_familiar'])) {
-            return $historico_familiar['historico_familiar'];
+        if (!empty($historicos)) {
+            return $historicos;
         }
 
-        return 'Sem Histórico';
+        return [];
     }
 
-    return null;
+    return [];
 }
+
+
+
+function setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doenca, $nivel)
+{
+    try {
+
+        $sql = "
+            INSERT INTO historico_familiar
+            (parentesco, doenca, fk_paciente_id, nivel)
+            VALUES (?, ?, ?, ?)
+        ";
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+            $parentesco,
+            $doenca,
+            $paciente_id,
+            $nivel
+        ]);
+
+        $_SESSION['sucesso'] = "Histórico adicionado com sucesso!";
+        return true;
+
+    } catch (PDOException $e) {
+
+        $_SESSION['erro'] = "Erro ao adicionar histórico.";
+
+        // Opcional para debug:
+        // $_SESSION['erro'] = $e->getMessage();
+
+        return false;
+    }
+}
+
+function updateHistoricoFamiliar(    $pdo,    $id_historico,    $parentesco,    $doenca,    $nivel)
+{
+    try {
+
+        $sql = "
+            UPDATE historico_familiar
+            SET
+                parentesco = ?,
+                doenca = ?,
+                nivel = ?
+            WHERE id_historico = ?
+        ";
+
+        $stmt = $pdo->prepare($sql);
+
+       $stmt->execute([
+    $parentesco,
+    $doenca,
+    $nivel,
+    $id_historico
+]);
+
+        $_SESSION['sucesso'] = "Histórico atualizado com sucesso!";
+        return true;
+
+    } catch (PDOException $e) {
+      $_SESSION['erro'] = "Não foi possível atualizar";
+
+}
+}
+
 
 
 function getReceitasMedicas($pdo, $id)

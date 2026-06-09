@@ -16,6 +16,7 @@ uploadArquivoI();
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link rel="stylesheet" href="./styles/upload.css" />
   <link rel="stylesheet" href="./styles/erros.css" />
+  <link rel="stylesheet" href="./styles/accessibility_global.css">
 </head>
 
 <body>
@@ -151,6 +152,7 @@ uploadArquivoI();
   </main>
   <script src="./scripts/upload.js"></script>
   <script src="./scripts/sidebar.js"></script>
+  <script src="./scripts/settings.js"></script>
 </body>
 
 </html>

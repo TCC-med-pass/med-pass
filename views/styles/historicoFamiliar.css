@@ -23,10 +23,6 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.historico {
-    padding: 30px;
-}
-
 .container {
     display: flex;
     justify-content: center;
@@ -152,6 +148,111 @@ main {
     font-size: 20px;
 }
 
+.topoAcoes {
+    width: 100%;
+    padding: 20px 50px 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    background-color: transparent;
+}
+
+.btnAdicionar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 999px;
+    background-color: #019c9a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btnAdicionar:hover {
+    background-color: #017a77;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 50px;
+}
+
+.card-doenca {
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 300px;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 3px solid #007977;
+}
+
+.card-doenca:hover {
+    transform: scale(1.02);
+}
+
+
+.topo {
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.topo h3 {
+    color: white;
+}
+
+.corpo {
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editar {
+    height: 30px;
+    width:70%;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+
+    padding: 10px;
+    border-radius: 999px;
+    font-size: large;
+    color: white;
+    transition: 0.3s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editar:hover {
+    transform: scale(1.05);
+}
+
+.editar:active {
+    transform: scale(0.94);
+}
+
 .carteirinha {
     position: fixed;
     right: 0;
@@ -185,66 +286,6 @@ main {
     bottom: -120px;
 }
 
-.tituloPagina {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.adicionar {
-    height: 70px;
-    width: 15%;
-    border: none;
-    background: none;
-    outline: none;
-    cursor: pointer;
-
-    padding: 10px;
-    background-color: #007977;
-    border-radius: 999px;
-    font-size: large;
-    color: white;
-    transition: color 0.5s ease, transform 0.3s ease;
-}
-
-.adicionar:hover {
-    transform: scale(1.03);
-    background-color: #015554;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-thead {
-    background: #007977;
-}
-
-th {
-    color: white;
-    font-size: large;
-    padding: 5px;
-}
-
-td {
-    padding: 12px 14px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    font-size: 1rem;
-    color: #222;
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
 /* Modal / Popup */
 
 .modal {
@@ -262,7 +303,7 @@ tbody tr:last-child td {
 }
 
 .modalConteudo {
-    width: 420px;
+    width: 600px;
     background-color: white;
     border-radius: 24px;
     padding: 35px;
@@ -279,7 +320,7 @@ tbody tr:last-child td {
     color: #222;
 }
 
-.fechar {
+.fecharInfo {
     all: unset;
     position: absolute;
     top: 20px;
@@ -289,7 +330,7 @@ tbody tr:last-child td {
     transition: transform 0.2s ease;
 }
 
-.fechar:hover {
+.fecharInfo:hover {
     transform: scale(1.15);
 }
 

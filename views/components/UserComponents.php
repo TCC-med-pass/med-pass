@@ -320,24 +320,6 @@ function renderTable($problemaLeve, $problemaMedio, $problemaGrave)
 }
 
 
-function renderHistoricoFami($historico_familiar)
-{
-
-
-
-    echo '<table>
-            <thead>
-                <tr>
-                    <th>Doenças familiares registradas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>' . $historico_familiar . '</td>
-                </tr>
-            </tbody>
-        </table>';
-}
 
 function showDadosPaciente()
 {
@@ -351,14 +333,43 @@ function showDadosPaciente()
 
     echo "
         <form method='post'>
+
+
+        <h2>Informações Gerais</h2>
+        
         <label for='carterinha'>Número de carteirinha:</label>
         <input type='number' name='carterinha' value='" . htmlspecialchars($carteirinha, ENT_QUOTES, 'UTF-8') . "' placeholder='Insira o n° de carteirinha do Paciente' aria-label='Insira o número de carteirinha do Paciente'>
+        
         <label for='altura'>Altura:</label>
         <input type='number' name='altura' placeholder='Insira a altura do Paciente (ex: 1.70)' step='0.01' min='1' max='2.72' lang='en' value='" . htmlspecialchars($altura, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira a altura do Paciente (ex: 1.70)'>
+        
         <label for='peso'>Peso:</label>
         <input type='number' name='peso' placeholder='Insira o peso do Paciente em Kg (Ex: 70)' step='0.01' min='2' max='300' lang='en' value='" . htmlspecialchars($peso, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira o peso do Paciente em Kg (Ex: 70)'>
+        
         <label for='alergias'>Alergias:</label>
         <input type='text' name='alergias' placeholder='Insira as alergias do Paciente' value='" . htmlspecialchars($alergias, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira as alergias do Paciente'>
+
+        
+        <h2>Endereço:</h2>
+        
+        <label for='rua'>Rua:</label>
+        <input type='text' name='rua' placeholder='Insira a rua do Paciente' aria-label='Insira a rua do Paciente'>
+
+        <label for='bairro'>Bairro:</label>
+        <input type='text' name='bairro' placeholder='Insira o bairro do Paciente' aria-label='Insira o bairro do Paciente'>
+
+        <label for='cidade'>Cidade:</label>
+        <input type='text' name='cidade' placeholder='Insira a cidade do Paciente' aria-label='Insira a cidade do Paciente'>
+
+        <label for='n_casa'>Número Casa:</label>
+        <input type='text' name='n_casa' placeholder='Insira o número de residência do Paciente' aria-label='Insira o número de residência do Paciente'>
+
+
+        <h2>Tipo Sanguíneo</h2>
+        
+        <label for='tipo_sanguineo'>Tipo Sanguíneo:</label>
+        <input type='text' name='tipo_sanguineo' placeholder='Tipo sanguíneo do Paciente' aria-label='Insra o tipo sanguíneo do Paciente'>
+
         <button type='submit' class='salvar'>Salvar</button>
         </form>
         ";
@@ -388,4 +399,49 @@ function showLinkNav()
         ];
     }
     return $dados;
+}
+
+function renderHistoricoFam($historicos)
+{
+    ?>
+    
+    <section class="cards">
+
+        <?php foreach ($historicos as $historico): ?>
+
+            <div class="card-doenca <?= strtolower($historico['nivel']) ?>">
+
+                <div class="topo">
+                    <h2>
+                        Filiação:
+                        <?= htmlspecialchars($historico['parentesco']) ?>
+                    </h2>
+
+                    <h3>
+                        Comorbidade
+                        <?= htmlspecialchars($historico['nivel']) ?>
+                    </h3>
+                </div>
+
+                <div class="corpo">
+                    <p>
+                        <strong>Comorbidade:</strong>
+                        <?= htmlspecialchars($historico['doenca']) ?>
+                    </p>
+                </div>
+
+                <div class="footer">
+                    <button 
+                    class="editar"
+                    data-id="<?= $historico['id_historico'] ?>">
+                    Editar</button>
+                </div>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    </section>
+
+    <?php
 }

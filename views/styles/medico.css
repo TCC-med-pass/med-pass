@@ -145,7 +145,7 @@ main {
   display: flex;
   align-items: center;
   background: var(--white);
-  border: 2px solid var(--teal);
+  border: 2px solid #00a68f;
   border-radius: 30px;
   padding: 8px 16px;
   margin-bottom: 28px;

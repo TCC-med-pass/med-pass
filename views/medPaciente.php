@@ -19,6 +19,7 @@ verificarTipo(['medico']);
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/medpaciente.css">
   <link rel="stylesheet" href="./styles/erros.css">
+  <link rel="stylesheet" href="./styles/accessibility_global.css">
 </head>
 
 <body>
@@ -88,8 +89,7 @@ verificarTipo(['medico']);
           </button>
 
           <h2>Editar Informações do Paciente</h2>
-
-
+          
           <?php showDadosPaciente() ?>
         </div>
       </div>
@@ -128,6 +128,7 @@ verificarTipo(['medico']);
 
   <script src="./scripts/sidebar.js"></script>
   <script src="./scripts/popupMedico.js"></script>
+  <script src="./scripts/settings.js"></script>
 </body>
 
 </html>
