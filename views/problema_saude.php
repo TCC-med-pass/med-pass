@@ -17,6 +17,7 @@ problemaSaude();
   <link rel="stylesheet" href="./styles/problemas_saude.css">
   <link rel="icon" type="image/png" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
   <link rel="stylesheet" href="./styles/accessibility_global.css">
+  <link rel="stylesheet" href="./styles/fontes.css">
 </head>
 
 <body>

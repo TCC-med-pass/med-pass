@@ -12,6 +12,7 @@ editarSenha();
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/erros.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./styles/fontes.css">
     <title>Recuperar Senha</title>
 </head>
 <body>

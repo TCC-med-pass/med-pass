@@ -10,7 +10,7 @@
 
 :root {
   --teal: #1a8f85;
-  --teal-dark: #005853;
+  --teal-dark: #007977;
   --teal-light: #e8f5f4;
   --red: #c0392b;
   --red-dark: #a93226;
@@ -41,7 +41,7 @@ body {
 
     width: 100%;
     height: 15vh;
-    background-color: var(--teal);
+    background-color: var(--teal-dark);
     display: grid;
     grid-template-columns: 33% 33% 33%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -77,7 +77,6 @@ body {
 #header img,
 .logo-img {
   max-width: 220px;
-  max-height: 80px;
   width: auto;
   object-fit: contain;
 }

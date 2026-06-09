@@ -20,6 +20,7 @@ verificarTipo(['medico']);
   <link rel="stylesheet" href="./styles/medpaciente.css">
   <link rel="stylesheet" href="./styles/erros.css">
   <link rel="stylesheet" href="./styles/accessibility_global.css">
+  <link rel="stylesheet" href="./styles/fontes.css">
 </head>
 
 <body>

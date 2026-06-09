@@ -13,6 +13,7 @@ mudarSenha();
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/erros.css">
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
+    <link rel="stylesheet" href="./styles/fontes.css">
     <title>Recuperar Senha</title>
 </head>
 

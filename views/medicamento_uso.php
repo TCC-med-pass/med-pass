@@ -18,11 +18,10 @@ $link = showLinkNav();
   <link rel="stylesheet" href="./styles/medicamento.css">
   <link rel="stylesheet" href="./styles/erros.css">
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
-<<<<<<< HEAD
-=======
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="./styles/accessibility_global.css">
->>>>>>> ba8aab21e8f36172417200924a11359631937bb4
+  <link rel="stylesheet" href="./styles/fontes.css">
 </head>
 
 <body>
@@ -162,12 +161,9 @@ $link = showLinkNav();
       </div>
     </div>
     <script src="./scripts/medicamento-uso.js"></script>
-<<<<<<< HEAD
-=======
     <script src="./scripts/esconderHeader.js"></script>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/settings.js"></script>
->>>>>>> ba8aab21e8f36172417200924a11359631937bb4
   <?php endif; ?>
 
   <!-- Scripts sempre carregados, FORA do if medico -->

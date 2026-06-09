@@ -77,7 +77,6 @@ body {
 #header img,
 .logo-img {
   max-width: 220px;
-  max-height: 80px;
   width: auto;
   object-fit: contain;
 }

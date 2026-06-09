@@ -1,0 +1,33 @@
+/* =====================================================================
+   MedPass — fontes.css
+   Padroniza a tipografia em TODAS as telas.
+   Linke SEMPRE POR ÚLTIMO no <head>, depois dos outros CSS da página.
+
+   Fonte principal ..... Aleo
+   Fonte secundária .... Bowlby One (títulos de destaque)
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400&family=Bowlby+One&display=swap');
+
+/* Fonte principal em tudo */
+body,
+input,
+button,
+select,
+textarea {
+  font-family: 'Aleo', serif;
+}
+
+/* Fonte secundária: títulos de destaque */
+h1,
+.subheader-title,
+.fonte-secundaria {
+  font-family: 'Bowlby One', 'Aleo', cursive;
+  font-weight: 400;          /* Bowlby One só tem o peso 400 */
+  letter-spacing: .3px;
+}
+
+/* Demais títulos seguem a principal (Aleo) */
+h2, h3, h4, h5, h6 {
+  font-family: 'Aleo', serif;
+}
