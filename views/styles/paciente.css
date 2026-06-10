@@ -44,14 +44,14 @@ body {
 }
 
 .btnCasa {
-    font-size: 33px;
+    font-size: 33px !important;
 }
 
 
 /* menu hamburger */
 
 .menu-icon {
-    font-size: 33px;
+    font-size: 33px !important;
     cursor: pointer;
     color: white;
     transition: color 0.3s ease;
