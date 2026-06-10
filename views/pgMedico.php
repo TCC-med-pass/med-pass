@@ -16,7 +16,6 @@ informacaoMedica();
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/medico.css">
   <link rel="stylesheet" href="./styles/accessibility_global.css">
-  <link rel="stylesheet" href="./styles/fontes.css">
 </head>
 
 <body>

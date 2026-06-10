@@ -15,7 +15,7 @@ $titulo = ucwords($_GET['tipo']);
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/arquivo.css?v=3">
   <link rel="stylesheet" href="./styles/receitas.css?v=8">
-  <link rel="stylesheet" href="./styles/fontes.css">
+  
 </head>
 
 <body>

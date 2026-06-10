@@ -42,7 +42,7 @@ uploadArquivoI();
     <a class="back-btn" href="./medPaciente.php" id="btnVoltar">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
-    <div class="subheader-title">Novo Prontuário</div>
+    <div class="subheader-title">Novo Documento</div>
     <div class="subheader-spacer"></div>
   </div>
 
@@ -53,7 +53,7 @@ uploadArquivoI();
 
     <!-- FORM CARD -->
     <div class="card">
-      <h2>Novo Prontuário</h2>
+      <h2>Novo Documento</h2>
 
       <form id="formProntuario" method="post" enctype="multipart/form-data" novalidate>
 
@@ -123,7 +123,7 @@ uploadArquivoI();
       <div class="patient-badge" id="carteirinha">
         <div class="badge-label">Paciente:</div>
         <div class="badge-name"><?php echo $_SESSION['nome_paciente'] ?? 'paciente'; ?></div>
-        <div class="badge-severity">Comorbidade <?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></div>
+        <div class="badge-severity">Comorbidade: <b class="<?php echo $_SESSION['comorbidades']; ?>"><?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></b></div>
       </div>
 
       <!-- Sidebar -->

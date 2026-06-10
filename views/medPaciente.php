@@ -20,7 +20,6 @@ verificarTipo(['medico']);
   <link rel="stylesheet" href="./styles/medpaciente.css">
   <link rel="stylesheet" href="./styles/erros.css">
   <link rel="stylesheet" href="./styles/accessibility_global.css">
-  <link rel="stylesheet" href="./styles/fontes.css">
 </head>
 
 <body>
@@ -124,7 +123,7 @@ verificarTipo(['medico']);
   <div class="patient-badge" id="carteirinha">
     <div class="badge-label">Paciente:</div>
     <div class="badge-name"><?php echo $_SESSION['nome_paciente'] ?? 'paciente'; ?></div>
-    <div class="badge-severity">Comorbidade <?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></div>
+    <div class="badge-severity">Comorbidade <b class="<?php echo $_SESSION['comorbidades']; ?>"><?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></b></div>
   </div>
 
   <script src="./scripts/sidebar.js"></script>

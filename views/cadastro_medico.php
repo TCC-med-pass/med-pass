@@ -16,7 +16,7 @@ verificarLogadoTipo();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
-    <link rel="stylesheet" href="./styles/fontes.css">
+    
     <title>MedPass- Cadastro</title>
 </head>
 

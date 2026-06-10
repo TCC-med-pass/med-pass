@@ -437,7 +437,7 @@ function getNumeroCarteirinha($pdo, $paciente_id)
 
 function getHistoricoFamiliarDataBase($pdo, $paciente_id)
 {
-    $sql = "    SELECT id_historico, parentesco, doenca, nivel    FROM historico_familiar    WHERE fk_paciente_id = ?";
+    $sql = "    SELECT id_historico, parentesco, doenca, nivel, descricao    FROM historico_familiar    WHERE fk_paciente_id = ?";
 
     $stmt = $pdo->prepare($sql);
 

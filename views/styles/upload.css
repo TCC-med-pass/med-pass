@@ -431,13 +431,16 @@ textarea {
 .bottom-spacer {
   flex: 1;
 }
-
+ b.leve  { color: var(--green) !important; }
+ b.medio { color: var(--teal-card) !important; }
+ b.grave { color: var(--red) !important; }
+ 
 /* ── PATIENT BADGE ── */
 .patient-badge {
   position: fixed;
   bottom: 0;
   right: 0;
-  background: var(--red);
+  background: var(--teal);
   color: var(--white);
   padding: 20px 28px;
   border-top-left-radius: 18px;
@@ -446,6 +449,7 @@ textarea {
   box-shadow: -4px -4px 20px rgba(0,0,0,0.18);
   transition: bottom 0.3s ease, transform 0.3s ease;
 }
+
 
 .patient-badge.descer {
   bottom: -120px;

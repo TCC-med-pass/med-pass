@@ -193,7 +193,7 @@ main {
   position: fixed;
   bottom: 0;
   right: 0;
-  background: var(--red);
+  background: var(--teal);
   color: var(--white);
   padding: 20px 28px;
   border-top-left-radius: 18px;
@@ -437,6 +437,10 @@ main {
     background-color: #015554;
     transform: scale(1.02);
 }
+
+ b.leve  { color: var(--green) !important; }
+ b.medio { color: var(--teal-card) !important; }
+ b.grave { color: var(--red) !important; }
 
 @keyframes aparecer {
     from {

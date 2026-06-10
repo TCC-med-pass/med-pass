@@ -418,7 +418,7 @@ function renderHistoricoFam($historicos)
                     </h2>
 
                     <h3>
-                        Comorbidade
+                        Comorbidade:
                         <?= htmlspecialchars($historico['nivel']) ?>
                     </h3>
                 </div>
@@ -427,6 +427,10 @@ function renderHistoricoFam($historicos)
                     <p>
                         <strong>Comorbidade:</strong>
                         <?= htmlspecialchars($historico['doenca']) ?>
+                    </p>
+                     <p>
+                        <strong>Descrição:</strong>
+                        <?= htmlspecialchars($historico['descricao']) ?>
                     </p>
                 </div>
 

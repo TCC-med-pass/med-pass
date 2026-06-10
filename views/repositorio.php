@@ -13,10 +13,11 @@ $mensagem = $_GET['mensagem'];
   <title>MedPass – <?= $mensagem ?></title>
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" alt="Med-Pass-Icon" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="./styles/repositorio.css"/>
-  <link rel="stylesheet" href="./styles/erros.css">
   <link rel="stylesheet" href="./styles/accessibility_global.css">
-  <link rel="stylesheet" href="./styles/fontes.css">
+  <link rel="stylesheet" href="./styles/repositorio.css?v=3"/>
+  
+  
+  
 </head>
 <body>
 
@@ -52,7 +53,7 @@ $mensagem = $_GET['mensagem'];
   <div class="patient-badge">
     <div class="badge-label">Paciente:</div>
     <div class="badge-name"><?php echo $_SESSION['nome_paciente'] ?? 'paciente'; ?></div>
-    <div class="badge-severity">Comorbidade <?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></div>
+    <div class="badge-severity">Comorbidade: <b class="<?php echo $_SESSION['comorbidades']; ?>"><?php echo $_SESSION['comorbidades'] ?? 'desconhecida'; ?></b></div>
   </div>
 
   </div>  
