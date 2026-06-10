@@ -1,6 +1,6 @@
 <?php
 require_once './components/UserComponents.php';
-require_once '../controllers/UserControll.php'; 
+require_once '../controllers/UserControll.php';
 
 $nomePciente = showNome();
 $numero_de_carteirinha = showNumCarterinha();
@@ -12,10 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['addHistorico'])) {
         salvarHistoricoFamiliar();
-    }elseif(isset($_POST['editarHistorico'])){
+    } elseif (isset($_POST['editarHistorico'])) {
         editarHistorico();
     }
-
 }
 
 
@@ -41,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
- <?php 
+    <?php
     mensagemErro();
     mensagemSucesso();
- ?>
+    ?>
     <header id="header">
         <div class="container">
             <a href="pgPaciente.php">
@@ -76,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="" class="config">
                 <h3>Ajuda</h3>
             </a>
-            <a href="" class="config">
+            <a href="configuracoes.php" class="config">
                 <h3>Configurações</h3>
             </a>
         </div>
@@ -99,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <section class="cards">
-        <?php renderHistoricoFam($historicos) ?>
+            <?php renderHistoricoFam($historicos) ?>
 
             <!-- POPUP DE ADICIONAR -->
             <div class="modal" id="popup">
@@ -133,8 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form method="post">
                         <input type="text" name="parentesco" placeholder="Editar o parentesco" aria-label="Editar a doenca" value="" required /> <!-- Seria interessante fazer igual o popup do médico, q apareça a doença antes de editar como valor atual desse input -->
                         <input type="text" name="doença" placeholder="Editar a doença" aria-label="Editar a doenca" value="" required />
-                        <input type="text" name="descricao" placeholder="Editar a descrição" aria-label="Editar a descrição" value="" required />  
-                        <input type="text" name="nivel" placeholder="Editar o nível" aria-label="Editar a doenca" value="" required /> 
+                        <input type="text" name="descricao" placeholder="Editar a descrição" aria-label="Editar a descrição" value="" required />
+                        <input type="text" name="nivel" placeholder="Editar o nível" aria-label="Editar a doenca" value="" required />
                         <input type="hidden" name="id_historico" id="id_historico">
                         <button name="editarHistorico" type="submit" class="salvar">Salvar</button>
                     </form>

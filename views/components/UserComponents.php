@@ -403,8 +403,8 @@ function showLinkNav()
 
 function renderHistoricoFam($historicos)
 {
-    ?>
-    
+?>
+
     <section class="cards">
 
         <?php foreach ($historicos as $historico): ?>
@@ -418,7 +418,7 @@ function renderHistoricoFam($historicos)
                     </h2>
 
                     <h3>
-                        Comorbidade:
+                        Nível:
                         <?= htmlspecialchars($historico['nivel']) ?>
                     </h3>
                 </div>
@@ -428,17 +428,17 @@ function renderHistoricoFam($historicos)
                         <strong>Comorbidade:</strong>
                         <?= htmlspecialchars($historico['doenca']) ?>
                     </p>
-                     <p>
+                    <p>
                         <strong>Descrição:</strong>
                         <?= htmlspecialchars($historico['descricao']) ?>
                     </p>
                 </div>
 
                 <div class="footer">
-                    <button 
-                    class="editar"
-                    data-id="<?= $historico['id_historico'] ?>">
-                    Editar</button>
+                    <button
+                        class="editar"
+                        data-id="<?= $historico['id_historico'] ?>">
+                        Editar</button>
                 </div>
 
             </div>
@@ -447,5 +447,5 @@ function renderHistoricoFam($historicos)
 
     </section>
 
-    <?php
+<?php
 }
