@@ -90,7 +90,7 @@ $historico_familiar = showHistoricoFamiliar();
           <h1>Histórico Familiar</h1>
           <h3>Doenças registradas no histórico familiar do paciente.</h3>
         </div>
-        <button class="adicionar" id="acionarPopup">
+        <button class="btnAdicionar" id="acionarPopup">
           <i class="fa-solid fa-plus"></i> Adicionar
         </button>
       </div>

@@ -63,7 +63,7 @@ body {
 /* menu hamburger */
 
 .menu-icon, .btnCasa {
-    font-size: 33px;
+    font-size: 42px;
     cursor: pointer;
     color: white;
     transition: color 0.3s ease;
@@ -255,7 +255,7 @@ main {
 /* menu hamburger */
 
 .menu-icon {
-    font-size: 33px;
+    font-size: 42px;
     cursor: pointer;
     color: white;
     transition: color 0.3s ease;
