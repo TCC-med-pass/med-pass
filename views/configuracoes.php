@@ -15,7 +15,7 @@
 <body>
   <header id="header">
     <div class="container">
-      <a href="pgPaciente.php">
+      <a href="./pgMedico.php">
         <i class="fa-solid fa-house btnCasa"></i>
       </a>
     </div>
@@ -36,7 +36,7 @@
 
   <!-- SUBHEADER -->
   <div class="subheader">
-    <a class="back-btn" href="#">
+    <a class="back-btn" href="./login.php">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <div class="subheader-title">
@@ -95,10 +95,10 @@
       </div>
 
       <!-- LOGOUT -->
-      <div class="s-card card-logout">
+       <a href="../utils/logout.php" class="s-card card-logout">
         <span class="s-card-label">Logout</span>
         <i class="fa-solid fa-right-from-bracket s-icon"></i>
-      </div>
+      </a>
 
     </div>
 

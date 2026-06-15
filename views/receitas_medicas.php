@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="./styles/receitas.css?v=8" />
+    <link rel="stylesheet" href="./styles/accessibility_global.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />    
     <title>MedPass- Receitas Médicas</title>
@@ -43,8 +44,8 @@
       <a href="registros.php?titulo=atestado" class="opcao">Atestados/Declaração</a>
       <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
       <div class="contSidebar">
-        <a href="" class="config"><h3>Ajuda</h3></a>
-        <a href="" class="config"><h3>Configurações</h3></a>
+        <a href="./ajuda_paciente.php" class="config"><h3>Ajuda</h3></a>
+        <a href="./configuracoes.php" class="config"><h3>Configurações</h3></a>
       </div>
     </nav>
 
@@ -73,5 +74,6 @@
 
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/esconderHeader.js"></script>
+    <script src="./scripts/settings.js"></script>
   </body>
   </html>

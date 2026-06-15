@@ -53,7 +53,7 @@ body {
 }
 
 .btnCasa {
-  font-size: 33px;
+  font-size: 33px !important;
   color: white;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -62,7 +62,7 @@ body {
 .btnCasa:hover { color: #dfdfdf; }
 
 .menu-icon {
-  font-size: 33px;
+  font-size: 33px !important;
   cursor: pointer;
   color: white;
   transition: color 0.3s ease;
@@ -157,7 +157,7 @@ body {
 
 .subheader-title {
   font-size: 1.8em;
-  font-weight: bold;
+  font-weight: bold !important;
   color: #1c3432;
 }
 
@@ -365,6 +365,150 @@ a.nav-card:hover {
 .carteirinha.descer {
   bottom: -120px;
   transition: bottom 0.3s ease;
+}
+
+/* ── MODO ESCURO ESPECÍFICO PARA MEDICAMENTO ── */
+body.dark-theme {
+  background: #0f1724;
+  color: #e6f1f5;
+}
+
+body.dark-theme #header {
+  background-color: var(--teal) !important;
+}
+
+body.dark-theme #sidebar {
+  background-color: #0f4f4b;
+}
+
+body.dark-theme .contSidebar {
+  background-color: #111a22;
+  color: #e6f1f5;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+body.dark-theme .contSidebar h1,
+body.dark-theme .contSidebar h3 {
+  color: #e6f1f5;
+}
+
+body.dark-theme .subheader {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.06));
+  border-bottom-color: #1f6f70;
+}
+
+body.dark-theme .subheader-title {
+  color: #f8fafc;
+}
+
+body.dark-theme .back-btn {
+  color: #7fd9d1;
+}
+
+body.dark-theme .med-table {
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-theme .med-table thead tr th {
+  background: #176b6d;
+  color: #f8fafc;
+}
+
+body.dark-theme .med-table tbody tr:nth-child(odd) {
+  background: #101c24;
+}
+
+body.dark-theme .med-table tbody tr:nth-child(even) {
+  background: #14262d;
+}
+
+body.dark-theme .med-table tbody tr:hover {
+  background: #18464b;
+}
+
+body.dark-theme .med-table tbody tr td {
+  color: #d6e3e6;
+  border-color: rgba(255,255,255,0.08);
+}
+
+body.dark-theme .tag-abrir {
+  background: #16807c;
+}
+
+body.dark-theme .btn-lixeira {
+  color: #7fd9d1;
+}
+
+body.dark-theme .btn-lixeira:hover {
+  background: rgba(255,255,255,0.08);
+  color: #ff9fa1;
+}
+
+body.dark-theme .btn-adicionar {
+  color: #c2ece8;
+  border-color: rgba(95,209,206,0.5);
+}
+
+body.dark-theme .btn-adicionar:hover {
+  background: rgba(0, 119, 119, 0.12);
+}
+
+body.dark-theme a.nav-card {
+  background-color: #1c7270 !important;
+}
+
+body.dark-theme a.nav-card:hover {
+  background-color: #165a58 !important;
+}
+
+body.dark-theme .carteirinha {
+  background-color: #165d5b;
+}
+
+body.dark-theme .carteirinha p {
+  color: rgba(255,255,255,0.8);
+}
+
+body.dark-theme .modal {
+  background: #111b24;
+  border-color: rgba(255,255,255,0.08);
+}
+
+body.dark-theme .modal h3,
+body.dark-theme .modal-field label {
+  color: #7bd3c9;
+}
+
+body.dark-theme .modal-field input,
+body.dark-theme .modal-field textarea {
+  background: #0b1720;
+  color: #e7edf1;
+  border-color: #23494a;
+}
+
+body.dark-theme .modal-field input:focus,
+body.dark-theme .modal-field textarea:focus {
+  border-color: #5fd1ce;
+}
+
+body.dark-theme .modal-btns button[type="button"] {
+  background: transparent;
+  color: #8ce4dd;
+  border-color: rgba(95,209,206,0.35);
+}
+
+body.dark-theme .modal-btns button[type="button"]:hover {
+  background: rgba(95,209,206,0.12);
+}
+
+body.dark-theme .modal-btns button[type="submit"] {
+  background: #257872;
+  color: #ffffff;
+}
+
+body.dark-theme .modal-btns button[type="submit"]:hover {
+  opacity: .95;
 }
 
 /* ── MODAL ── */

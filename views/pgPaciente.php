@@ -73,7 +73,7 @@ $problemaGrave = showProblemaGrave();
 <body>
     <header id="header">
         <div class="container">
-            <a href="#">
+            <a href="./pgPaciente.php">
                 <i class="fa-solid fa-house btnCasa"></i>
             </a>
         </div>
@@ -98,7 +98,7 @@ $problemaGrave = showProblemaGrave();
         <a href="registros.php?titulo=laudo" class="opcao">Laudo Médico</a>
 
         <div class="contSidebar">
-            <a href="" class="config">
+            <a href="./ajuda_paciente.php" class="config">
                 <h3>Ajuda</h3>
             </a>
             <a href="configuracoes.php" class="config">

@@ -40,7 +40,7 @@ header {
 }
 
 .btnCasa {
-  font-size: 33px;
+  font-size: 33px !important;
   color: white;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -55,7 +55,7 @@ header {
 }
 
 .menu-icon {
-  font-size: 33px;
+  font-size: 33px !important;
   color: white;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -72,7 +72,7 @@ header {
   align-items: center;
   justify-content: center;
   position: relative;
-  border-bottom: 3px solid #019c9a;
+  border-bottom: 3px solid #019c9a !important;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
@@ -307,4 +307,108 @@ main {
 
 .carteirinha.descer {
   bottom: -120px;
+}
+
+/* ════════════════════════════════════════════════════
+   MODO ESCURO – Harmonia com versão clara
+   ════════════════════════════════════════════════════ */
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #e8e8e8;
+}
+
+body.dark-theme main {
+  background-color: #1a1a1a;
+}
+
+body.dark-theme .topoPagina {
+  background-color: #242424;
+  border-bottom-color: #2a8f8c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .btnVoltar {
+  color: #5fd1ce;
+}
+
+body.dark-theme .titulo {
+  color: #e8e8e8;
+}
+
+body.dark-theme .card {
+  background-color: #252525;
+  border-color: #3a8f8c;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .card:hover {
+  background-color: #2a2a2a;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .card-name {
+  color: #f0f0f0;
+}
+
+body.dark-theme .card-date-label,
+body.dark-theme .card-desc-label {
+  color: #5fd1ce;
+}
+
+body.dark-theme .card-date-value,
+body.dark-theme .card-desc-value {
+  color: #d0d0d0;
+}
+
+body.dark-theme .card-btn {
+  background-color: #2a8f8c;
+  color: #ffffff;
+  border: none;
+}
+
+body.dark-theme .card-btn:hover {
+  background-color: #1e6a67;
+}
+
+body.dark-theme .nav-card {
+  background-color: #2a8f8c;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .nav-card:hover {
+  background-color: #1e6a67;
+}
+
+body.dark-theme .carteirinha {
+  background-color: #2a8f8c;
+  color: #ffffff;
+  box-shadow: -4px -4px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .carteirinha p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body.dark-theme #sidebar {
+  background-color: #2a8f8c;
+}
+
+body.dark-theme .contSidebar {
+  background-color: #252525;
+  color: #e8e8e8;
+  border: 1px solid #3a8f8c;
+}
+
+body.dark-theme .contSidebar h1,
+body.dark-theme .contSidebar h3 {
+  color: #e8e8e8;
+}
+
+body.dark-theme .opcao {
+  color: #ffffff;
+}
+
+body.dark-theme .config {
+  color: #e8e8e8;
 }

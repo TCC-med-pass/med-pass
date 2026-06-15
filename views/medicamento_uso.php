@@ -17,6 +17,7 @@ $link = showLinkNav();
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="./styles/medicamento.css">
   <link rel="stylesheet" href="./styles/erros.css">
+  <link rel="stylesheet" href="./styles/accessibility_global.css">
   <link rel="icon" type="image/svg+xml" href="https://i.postimg.cc/xkk98Qgh/Med-Pass-Icon.png" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -57,14 +58,14 @@ $link = showLinkNav();
     <a href="<?= $link['atestado']; ?>" class="opcao">Atestados/Declaração</a>
     <a href="<?= $link['laudo']; ?>" class="opcao">Laudo Médico</a>
     <div class="contSidebar">
-      <a href="" class="config"><h3>Ajuda</h3></a>
-      <a href="" class="config"><h3>Configurações</h3></a>
+      <a href="./ajuda_medico.php" class="config"><h3>Ajuda</h3></a>
+      <a href="configuracoes.php" class="config"><h3>Configurações</h3></a>
     </div>
   </nav>
 
   <!-- Sub-header -->
   <div class="subheader">
-    <a href="login.php" class="back-btn">
+    <a href="./login.php" class="back-btn">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <span class="subheader-title">Medicamentos em Uso</span>
@@ -160,29 +161,12 @@ $link = showLinkNav();
       </div>
     </div>
     <script src="./scripts/medicamento-uso.js"></script>
-    <script src="./scripts/esconderHeader.js"></script>
-    <script src="./scripts/sidebar.js"></script>
-    <script src="./scripts/settings.js"></script>
   <?php endif; ?>
 
   <!-- Scripts sempre carregados, FORA do if medico -->
   <script src="./scripts/esconderHeader.js"></script>
-  <script>
-    // Sidebar toggle — inline para garantir funcionamento independente do nível
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar    = document.getElementById('sidebar');
-
-    menuToggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      sidebar.classList.toggle('active');
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-        sidebar.classList.remove('active');
-      }
-    });
-  </script>
+  <script src="./scripts/sidebar.js"></script>
+  <script src="./scripts/settings.js"></script>
 
 </body>
 </html>

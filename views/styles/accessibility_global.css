@@ -56,7 +56,6 @@ body.dark-theme .card,
 body.dark-theme .card-doenca,
 body.dark-theme .detalhe-card,
 body.dark-theme .patient-badge,
-body.dark-theme .card .card-meta,
 body.dark-theme .modalConteudo,
 body.dark-theme .upload-box,
 body.dark-theme .doc-wrapper,
@@ -91,9 +90,11 @@ body.dark-theme .btn,
 body.dark-theme .card-btn,
 body.dark-theme .btn-adicionar,
 body.dark-theme .action-card {
-  background-color: rgba(255,255,255,0.06) !important;
   color: var(--text) !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+body.dark-theme .btnExpandir {
+  color: var(--mp-bg) !important;
 }
 
 /* Inputs e textareas */
@@ -135,8 +136,7 @@ body.dark-theme .modal {
 /* Pequenas melhorias de contraste para textos auxiliares */
 body.dark-theme .badge-name,
 body.dark-theme .badge-label,
-body.dark-theme .nav-card-label,
-body.dark-theme .subheader-title {
+body.dark-theme .nav-card-label {
   color: var(--text) !important;
 }
 
@@ -207,7 +207,7 @@ body.dark-theme .topbar .topbar-icon {
 .topoPagina .titulo {
   font-size: 20px;
   font-weight: 700;
-  color: var(--gray-600, #374151);
+  color: black;
 }
 
 /* Garante que o botão voltar fique fixo à esquerda, evitando sobreposição do título */
@@ -248,11 +248,6 @@ body.dark-theme .topoPagina .titulo {
   border: 1px solid transparent;
 }
 
-body.dark-theme .topo .btnVoltar,
-body.dark-theme .topoPagina .btnVoltar {
-  background: rgba(255,255,255,0.02);
-  border-color: rgba(255,255,255,0.04);
-}
 
 /* ── BUG FIXES PARA MODO ESCURO ── */
 

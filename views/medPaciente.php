@@ -110,10 +110,10 @@ verificarTipo(['medico']);
     <a href="repositorio.php?tipo=laudos&mensagem=laudo" class="opcao">Laudo Médico</a>
 
     <div class="contSidebar">
-      <a href="" class="config">
+      <a href="./ajuda_medico.php" class="config">
         <h3>Ajuda</h3>
       </a>
-      <a href="" class="config">
+      <a href="./configuracoes.php" class="config">
         <h3>Configurações</h3>
       </a>
     </div>

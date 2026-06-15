@@ -32,14 +32,14 @@ header {
 }
 
 .btnCasa {
-    font-size: 33px;
+    font-size: 33px !important;
 }
 
 
 /* menu hamburger */
 
 .menu-icon {
-    font-size: 33px;
+    font-size: 33px !important;
     cursor: pointer;
     transition: color 0.3s ease;
 }
@@ -131,7 +131,7 @@ main {
     align-items: center;
     justify-content: center;
     position: relative;
-    border-bottom: 3px solid #019c9a;
+    border-bottom: 3px solid #019c9a !important;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -143,9 +143,9 @@ main {
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: #007977;
+    color: #007977 !important;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 20px !important;
 }
 
 

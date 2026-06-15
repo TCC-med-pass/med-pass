@@ -47,7 +47,7 @@ verificarLogadoTipo();
 
                 <p>Esqueceu sua senha? <a href="recuperarSenha.php" class="ajuda"><strong>Recuperar Senha</strong></a></p>
                 <p>Não possui cadastro? <a href="btn_cadastro.php" class="ajuda"><strong>Fazer cadastro</strong></a></p>
-                <p>Precisa de ajuda? <a href="#" class="ajuda"><strong>Clique aqui Se precisar de Ajuda</strong></a></p>
+                <p>Precisa de ajuda? <a href="./ajuda_login.php" class="ajuda"><strong>Clique aqui Se precisar de Ajuda</strong></a></p>
 
                 <button type="submit" class="btn">Entrar</button>
             </form>
