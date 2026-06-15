@@ -9,13 +9,12 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./styles/accessibility_global.css" />
   <link rel="stylesheet" href="./styles/configuracoes.css" />
-
 </head>
 
 <body>
   <header id="header">
     <div class="container">
-      <a href="./pgMedico.php">
+      <a href="pgPaciente.php">
         <i class="fa-solid fa-house btnCasa"></i>
       </a>
     </div>
@@ -36,7 +35,7 @@
 
   <!-- SUBHEADER -->
   <div class="subheader">
-    <a class="back-btn" href="./login.php">
+    <a class="back-btn" href="#">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <div class="subheader-title">
@@ -77,7 +76,10 @@
       </div>
 
       <!-- ALTERAR DADOS -->
-
+      <button id="btnInfo" class="s-card card-alterar btnInfo">
+        <span class="s-card-label">Alterar Dados</span>
+        <i class="fa-solid fa-user-pen s-icon"></i>
+      </button>
 
       <!-- MODO ESCURO -->
       <div class="s-card card-dark" onclick="toggleDark()">
@@ -95,10 +97,10 @@
       </div>
 
       <!-- LOGOUT -->
-       <a href="../utils/logout.php" class="s-card card-logout">
+      <div class="s-card card-logout">
         <span class="s-card-label">Logout</span>
         <i class="fa-solid fa-right-from-bracket s-icon"></i>
-      </a>
+      </div>
 
     </div>
 

@@ -307,7 +307,7 @@ a.card-logout {
 }
 
 /* ─── Card FONTE ─── */
-.card-fonte { grid-column: 1/3; }
+.card-fonte { grid-column: 1/2; }
 
 .font-stages {
   display: flex;
