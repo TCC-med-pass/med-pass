@@ -330,6 +330,11 @@ function showDadosPaciente()
     $altura = $dados['altura'] ?? '';
     $peso = $dados['peso'] ?? '';
     $alergias = $dados['alergias'] ?? '';
+    $rua = $dados['rua'] ?? '';
+    $bairro = $dados['bairro'] ?? '';
+    $cidade = $dados['cidade'] ?? '';
+    $numeroCasa = $dados['numero_casa'] ?? '';
+    $tipo_sanguineo = $dados['tipo_sanguineo'] ?? '';
 
     echo "
         <form method='post'>
@@ -353,22 +358,22 @@ function showDadosPaciente()
         <h2>Endereço:</h2>
         
         <label for='rua'>Rua:</label>
-        <input type='text' name='rua' placeholder='Insira a rua do Paciente' aria-label='Insira a rua do Paciente'>
+        <input type='text' name='rua' placeholder='Insira a rua do Paciente' value='" . htmlspecialchars($rua, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira a rua do Paciente'>
 
         <label for='bairro'>Bairro:</label>
-        <input type='text' name='bairro' placeholder='Insira o bairro do Paciente' aria-label='Insira o bairro do Paciente'>
+        <input type='text' name='bairro' placeholder='Insira o bairro do Paciente' value='" . htmlspecialchars($bairro, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira o bairro do Paciente'>
 
         <label for='cidade'>Cidade:</label>
-        <input type='text' name='cidade' placeholder='Insira a cidade do Paciente' aria-label='Insira a cidade do Paciente'>
+        <input type='text' name='cidade' placeholder='Insira a cidade do Paciente' value='" . htmlspecialchars($cidade, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira a cidade do Paciente'>
 
         <label for='n_casa'>Número Casa:</label>
-        <input type='text' name='n_casa' placeholder='Insira o número de residência do Paciente' aria-label='Insira o número de residência do Paciente'>
+        <input type='text' name='n_casa' placeholder='Insira o número de residência do Paciente' value='" . htmlspecialchars($numeroCasa, ENT_QUOTES, 'UTF-8') . "' aria-label='Insira o número de residência do Paciente'>
 
 
         <h2>Tipo Sanguíneo</h2>
         
         <label for='tipo_sanguineo'>Tipo Sanguíneo:</label>
-        <input type='text' name='tipo_sanguineo' placeholder='Tipo sanguíneo do Paciente' aria-label='Insra o tipo sanguíneo do Paciente'>
+        <input type='text' name='tipo_sanguineo' placeholder='Tipo sanguíneo do Paciente' value='" . htmlspecialchars($tipo_sanguineo, ENT_QUOTES, 'UTF-8') . "' aria-label='Insra o tipo sanguíneo do Paciente'>
 
         <button type='submit' class='salvar'>Salvar</button>
         </form>
@@ -447,5 +452,17 @@ function renderHistoricoFam($historicos)
 
     </section>
 
+
+
 <?php
 }
+
+function linkAjuda(){
+if ($_SESSION['nivel'] === 'paciente') {
+    return "./ajuda_paciente.php";
+  }elseif ($_SESSION['nivel'] === 'medico') {
+    return "./ajuda_medico.php";
+}
+
+}
+ ?>

@@ -999,11 +999,16 @@ function dadosPaciente()
         $altura = $_POST['altura'];
         $peso = $_POST['peso'];
         $alergias = $_POST['alergias'];
+        $rua = $_POST['rua'];
+        $bairro = $_POST['bairro'];
+        $cidade = $_POST['cidade'];
+        $numeroCasa = $_POST['n_casa'];
+        $sangue = $_POST['tipo_sanguineo'];
         $id = $_SESSION['id_paciente'];
 
 
         if (empty($_SESSION['erro'])) {
-            updateDadosPaciente($pdo, $id, $carteira, $altura, $peso, $alergias);
+            updateDadosPaciente($pdo, $id, $carteira, $altura, $peso, $alergias, $rua, $bairro, $cidade, $numeroCasa, $sangue);
         }
     }
 }

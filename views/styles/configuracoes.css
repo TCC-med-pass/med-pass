@@ -381,7 +381,7 @@ a.card-logout {
 .moon-icon { font-size: 1.3em; opacity: .85; }
 
 /* ─── Card AJUDA ─── */
-.card-ajuda { grid-column: 2; }
+.card-ajuda { grid-column: 2; text-decoration: none;}
 .card-ajuda .s-icon { font-size: 2em; opacity: .85; }
 
 /* ─── Card LOGOUT (linha inteira) ─── */

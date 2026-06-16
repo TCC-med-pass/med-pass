@@ -4,6 +4,7 @@ require_once './components/UserComponents.php';
 verificarTipo(['paciente', 'medico']);
 MedicamentoUso();
 $link = showLinkNav();
+$ajudaLink = linkAjuda();
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +59,7 @@ $link = showLinkNav();
     <a href="<?= $link['atestado']; ?>" class="opcao">Atestados/Declaração</a>
     <a href="<?= $link['laudo']; ?>" class="opcao">Laudo Médico</a>
     <div class="contSidebar">
-      <a href="./ajuda_medico.php" class="config"><h3>Ajuda</h3></a>
+      <a href="<?= $ajudaLink ?>" class="config"><h3>Ajuda</h3></a>
       <a href="configuracoes.php" class="config"><h3>Configurações</h3></a>
     </div>
   </nav>

@@ -940,7 +940,7 @@ function getIdAequivoDataBase($pdo, $paciente_id, $tipo)
 
 function getDadosPaciente($pdo, $id)
 {
-    $sql = "SELECT paciente.alergias as alergias, paciente.numero_de_carteirinha as numero_de_carteirinha, paciente.altura as altura, paciente.peso AS peso FROM paciente WHERE paciente.id = ?";
+    $sql = "SELECT paciente.alergias as alergias, paciente.numero_de_carteirinha as numero_de_carteirinha, paciente.altura as altura, paciente.peso AS peso, paciente.rua AS rua, paciente.bairro AS bairro, paciente.cidade AS cidade, paciente.numero_casa AS numero_casa, paciente.tipo_sanguineo AS tipo_sanguineo FROM paciente WHERE paciente.id = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -949,16 +949,16 @@ function getDadosPaciente($pdo, $id)
 
 
 
-function updateDadosPaciente($pdo, $id, $carteira, $altura, $peso, $alergias)
+function updateDadosPaciente($pdo, $id, $carteira, $altura, $peso, $alergias, $rua, $bairro, $cidade, $numeroCasa, $sangue)
 {
     if (!$id || !is_numeric($id)) {
         $_SESSION['erro'][] = "ID inválido.";
         exit;
     }
     try {
-        $sql = "UPDATE paciente SET numero_de_carteirinha = ?, altura = ?, peso = ?, alergias = ? WHERE id = ?";
+        $sql = "UPDATE paciente SET numero_de_carteirinha = ?, altura = ?, peso = ?, alergias = ?, rua = ?, bairro = ?, cidade = ?, numero_casa = ?, tipo_sanguineo = ? WHERE id = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$carteira, $altura, $peso, $alergias, $id]);
+        $stmt->execute([$carteira, $altura, $peso, $alergias, $rua, $bairro, $cidade, $numeroCasa, $sangue, $id]);
         if ($stmt->rowCount() === 0) {
             throw new Exception("Acesso negado ou paciente não encontrada.");
         }

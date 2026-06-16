@@ -3,6 +3,8 @@
 require_once './components/UserComponents.php';
 
 require_once '../controllers/UserControll.php';
+verificarTipo(['paciente', 'medico']);
+ $ajudaLink = linkAjuda();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   salvarEndereco();
@@ -63,7 +65,7 @@ $cidade = showCidade();
 
   <!-- SUBHEADER -->
   <div class="subheader">
-    <a class="back-btn" href="#">
+    <a class="back-btn" href="./login.php">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <div class="subheader-title">
@@ -81,15 +83,20 @@ $cidade = showCidade();
     <div class="patient-info">
       <div class="patient-name"><?php echo $nome ?></div>
       <div class="patient-card-number">
-        Número da carterinha: <span><?php echo $carteirinha ?? 'xxxx' ?></span><br>
+        
+         
 
+        <?php
+        if($_SESSION['nivel'] =='paciente') {
+        echo" Número da carterinha: <span> " . ($carteirinha ?? 'xxxx') ." </span><br>
         Endereço cadastrado: <span>
-          <?php
-          echo  $rua['rua'] . ',    ';
-          echo   $numeroCasa['numero_casa'] . '     -     ';
-          echo   $bairro['bairro'] . ',     ';
-          echo  $cidade['cidade']
-          ?></span>
+                                 
+                                  Rua:  " .  $rua['rua'] . ";
+                                  Número:  " .  $numeroCasa['numero_casa'] . ";
+                                  Bairro:  " .  $bairro['bairro'] . ";
+                                  Cidade:  " .  $cidade['cidade'] . "
+                                  </span>";
+        }?>
       </div>
     </div>
 
@@ -128,16 +135,20 @@ $cidade = showCidade();
       </div>
 
       <!-- AJUDA -->
-      <div class="s-card card-ajuda">
+      <a href="<?= $ajudaLink ?>" alt="Botão de Ajuda" class="s-card card-ajuda">
+        <div class="s-card card-ajuda">
         <span class="s-card-label">Ajuda</span>
         <i class="fa-solid fa-circle-question s-icon"></i>
       </div>
+      </a>
 
       <!-- LOGOUT -->
-      <div class="s-card card-logout">
-        <span class="s-card-label">Logout</span>
-        <i class="fa-solid fa-right-from-bracket s-icon"></i>
-      </div>
+      <a href="../utils/logout.php" alt="Botão de Logout" class="s-card card-logout">
+        <div >
+          <span class="s-card-label">Logout</span>
+          <i class="fa-solid fa-right-from-bracket s-icon"></i>
+        </div>
+      </a>
 
     </div>
 
