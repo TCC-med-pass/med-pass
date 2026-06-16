@@ -1,3 +1,34 @@
+<?php 
+
+require_once './components/UserComponents.php';
+
+require_once '../controllers/UserControll.php';
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  salvarEndereco();
+
+  
+   
+}
+
+  $carteirinha = showNumCarterinha();
+  $nome = showNome();
+ 
+  $rua = showRua();
+
+  $numeroCasa = showNumeroCasa();
+  
+  $bairro = showBairro();
+  $cidade = showCidade();
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -46,13 +77,22 @@
 
   <main>
 
+    <?php mensagemErro() ?>
+    <?php mensagemSucesso() ?>
+
     <!-- Paciente -->
     <div class="patient-info">
-      <div class="patient-name">Ana Beatriz Pereira Costa</div>
+      <div class="patient-name"><?php echo $nome ?></div>
       <div class="patient-card-number">
-        Número da carterinha: <span>12345678-0</span><br>
+        Número da carterinha: <span><?php echo $carteirinha ?? 'xxxx' ?></span><br>
 
-        Endereço cadastrado: <span>Rua 2, 655- Bairro teste</span>
+        Endereço cadastrado: <span>
+                                <?php 
+                                  echo'Rua:  ' .  $rua['rua'];
+                                  echo "Número:  " .  $numeroCasa['numero_casa'];
+                                  echo 'Bairro:  ' .  $bairro['bairro'];
+                                  echo 'Cidade:  ' .  $cidade['cidade']
+                                  ?></span>
       </div>
     </div>
 
@@ -77,7 +117,7 @@
 
       <!-- ALTERAR DADOS -->
       <button id="btnInfo" class="s-card card-alterar btnInfo">
-        <span class="s-card-label">Alterar Dados</span>
+        <span class="s-card-label">Alterar Endereço</span>
         <i class="fa-solid fa-user-pen s-icon"></i>
       </button>
 
@@ -111,20 +151,20 @@
           <i class="fa-solid fa-x"></i>
         </button>
 
-        <h2>Editar Informações</h2>
+        <h2>Editar Endereço</h2>
 
         <form method='post'>
-          <label for='altura'>Altura:</label>
-          <input type='number' name='altura' placeholder='Insira a sua altura (ex: 1.70)' step='0.01' min='1' max='2.72' lang='en' value='' aria-label='Insira a sua altura (ex: 1.70)'>
+          <label for='rua'>Rua:</label>
+          <input type='text' name='rua' placeholder='Nome da Rua:'  value='<?php echo $rua['rua'] ?>' aria-label='Nome da Rua:'>
 
-          <label for='peso'>Peso:</label>
-          <input type='number' name='peso' placeholder='Insira o seu peso em Kg (Ex: 70)' step='0.01' min='2' max='300' lang='en' value='' aria-label='Insira o seu peso em Kg (Ex: 70)'>
+          <label for='numero'>Número da Casa:</label>
+          <input type='number' name='numeroCasa' placeholder='Número da Casa:' value='<?php  echo $numeroCasa['numero_casa'] ?>' aria-label='Número da Casa:'>
 
-          <label for='alergias'>Alergias:</label>
-          <input type='text' name='alergias' placeholder='Insira as suas alergias' value='' aria-label='Insira as suas alergias'>
+          <label for='bairro'>Bairro:</label>
+          <input type='text' name='bairro' placeholder='Bairro:' value='<?php echo $bairro['bairro'] ?>' aria-label='Bairro:'>
 
-          <label for='endereco'>Endereço:</label>
-          <input type='text' name='endereco' placeholder='Insira o seu endereço' value='' aria-label='Insira o seu endereço'>
+          <label for='cidade'>Cidade:</label>
+          <input type='text' name='cidade' placeholder='Cidade:' value='<?php  echo $cidade['cidade'] ?>' aria-label='Cidade:'>
 
           <button type='submit' class='salvar'>Salvar</button>
         </form>

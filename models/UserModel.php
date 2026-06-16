@@ -478,7 +478,6 @@ function setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doenca, $nivel)
 
         $_SESSION['sucesso'] = "Histórico adicionado com sucesso!";
         return true;
-
     } catch (PDOException $e) {
 
         $_SESSION['erro'] = "Erro ao adicionar histórico.";
@@ -490,7 +489,7 @@ function setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doenca, $nivel)
     }
 }
 
-function updateHistoricoFamiliar(    $pdo,    $id_historico,    $parentesco,    $doenca,    $nivel)
+function updateHistoricoFamiliar($pdo,    $id_historico,    $parentesco,    $doenca,    $nivel)
 {
     try {
 
@@ -505,20 +504,18 @@ function updateHistoricoFamiliar(    $pdo,    $id_historico,    $parentesco,    
 
         $stmt = $pdo->prepare($sql);
 
-       $stmt->execute([
-    $parentesco,
-    $doenca,
-    $nivel,
-    $id_historico
-]);
+        $stmt->execute([
+            $parentesco,
+            $doenca,
+            $nivel,
+            $id_historico
+        ]);
 
         $_SESSION['sucesso'] = "Histórico atualizado com sucesso!";
         return true;
-
     } catch (PDOException $e) {
-      $_SESSION['erro'] = "Não foi possível atualizar";
-
-}
+        $_SESSION['erro'] = "Não foi possível atualizar";
+    }
 }
 
 
@@ -963,4 +960,77 @@ function updateDadosPaciente($pdo, $id, $carteira, $altura, $peso, $alergias)
         $_SESSION['erro'][] = $e->getMessage();
         return false;
     }
+}
+
+
+
+
+
+function setEndereco($pdo, $rua, $numeroCasa, $bairro, $cidade, $paciente_id)
+{
+    try {
+        $sql = "
+    UPDATE paciente
+    SET
+        rua = ?,
+        numero_casa = ?,
+        bairro = ?,
+        cidade = ?
+    WHERE fk_usuario_id = ?
+";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$rua, $numeroCasa, $bairro, $cidade, $paciente_id]);
+     
+        $_SESSION['sucesso'] = "Endereço Editado com Sucesso";
+        return true;
+    } catch (Exception $e) {
+        $_SESSION['erro'][] = "Erro ao Edidar Endereço: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+
+function getRuaDatabase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT rua FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function getNumeroCasaDatabase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT numero_casa FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function getBairroDatabase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT bairro FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function getCidadeDatabase($pdo, $paciente_id)
+{
+
+    $sql = "SELECT cidade FROM paciente WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }

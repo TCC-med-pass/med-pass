@@ -1008,3 +1008,94 @@ function dadosPaciente()
         }
     }
 }
+
+
+
+
+
+
+function salvarEndereco()
+{
+
+    global $pdo;
+    if (!isset($_SESSION['id_usuario'])) {
+        die("Usuário não autenticado");
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $rua = $_POST['rua'] ?? null;
+        $numeroCasa = $_POST['numeroCasa'] ?? null;
+        $bairro = $_POST['bairro'] ?? null;
+        $cidade = $_POST['cidade'] ?? null;
+        $paciente_id = $_SESSION['id_usuario'];
+
+      
+        setEndereco($pdo, $rua, $numeroCasa, $bairro, $cidade, $paciente_id);
+                    
+        } else {
+            $_SESSION['erro'][] = "Server Error";
+        }
+}
+           
+
+
+function showRua()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+ 
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    return getRuaDataBase($pdo, $paciente_id,);
+}
+
+function showNumeroCasa()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+ 
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    return getNumeroCasaDataBase($pdo, $paciente_id,);
+}
+
+function showBairro()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+ 
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    return getBairroDataBase($pdo, $paciente_id,);
+}
+
+
+function showCidade()
+{
+    global $pdo;
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+ 
+
+    if (!$paciente_id) {
+        return null;
+    }
+
+
+    return getCidadeDataBase($pdo, $paciente_id,);
+}
