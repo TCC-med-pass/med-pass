@@ -21,6 +21,7 @@ function verificarTipo($niveisPermitidos)
         header('Location: login.php');
         exit();
     } else {
+
         $_SESSION['numero_carteirinha'] = showNumCarterinha();
     }
 
@@ -159,17 +160,17 @@ function salvarHistoricoFamiliar()
         $parentesco = $_POST['parentesco'] ?? null;
         $doença = $_POST['doença'] ?? null;
         $nivel = $_POST['nivel'] ?? null;
-        
 
-      
+
+
 
         setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doença, $nivel);
-       
     }
 }
 
-function  editarHistorico(){
-      global $pdo;
+function  editarHistorico()
+{
+    global $pdo;
     if (!isset($_SESSION['id_usuario'])) {
         die("Usuário não autenticado");
     }
@@ -181,11 +182,10 @@ function  editarHistorico(){
         $doença = $_POST['doença'] ?? null;
         $nivel = $_POST['nivel'] ?? null;
         $idHistorico = $_POST['id_historico'] ?? null;
-        
+
 
 
         updateHistoricoFamiliar($pdo, $idHistorico, $parentesco, $doença, $nivel);
-       
     }
 }
 
@@ -1029,14 +1029,13 @@ function salvarEndereco()
         $cidade = $_POST['cidade'] ?? null;
         $paciente_id = $_SESSION['id_usuario'];
 
-      
+
         setEndereco($pdo, $rua, $numeroCasa, $bairro, $cidade, $paciente_id);
-                    
-        } else {
-            $_SESSION['erro'][] = "Server Error";
-        }
+    } else {
+        $_SESSION['erro'][] = "Server Error";
+    }
 }
-           
+
 
 
 function showRua()
@@ -1044,7 +1043,7 @@ function showRua()
     global $pdo;
 
     $paciente_id = $_SESSION['id_usuario'] ?? null;
- 
+
 
     if (!$paciente_id) {
         return null;
@@ -1059,7 +1058,7 @@ function showNumeroCasa()
     global $pdo;
 
     $paciente_id = $_SESSION['id_usuario'] ?? null;
- 
+
 
     if (!$paciente_id) {
         return null;
@@ -1074,7 +1073,7 @@ function showBairro()
     global $pdo;
 
     $paciente_id = $_SESSION['id_usuario'] ?? null;
- 
+
 
     if (!$paciente_id) {
         return null;
@@ -1090,7 +1089,7 @@ function showCidade()
     global $pdo;
 
     $paciente_id = $_SESSION['id_usuario'] ?? null;
- 
+
 
     if (!$paciente_id) {
         return null;

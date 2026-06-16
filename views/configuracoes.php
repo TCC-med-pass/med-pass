@@ -1,25 +1,22 @@
-<?php 
+<?php
 
 require_once './components/UserComponents.php';
 
 require_once '../controllers/UserControll.php';
 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   salvarEndereco();
-
-  
-   
 }
 
-  $carteirinha = showNumCarterinha();
-  $nome = showNome();
- 
-  $rua = showRua();
+$carteirinha = showNumCarterinha();
+$nome = showNome();
 
-  $numeroCasa = showNumeroCasa();
-  
-  $bairro = showBairro();
-  $cidade = showCidade();
+$rua = showRua();
+
+$numeroCasa = showNumeroCasa();
+
+$bairro = showBairro();
+$cidade = showCidade();
 
 
 
@@ -87,12 +84,12 @@ require_once '../controllers/UserControll.php';
         Número da carterinha: <span><?php echo $carteirinha ?? 'xxxx' ?></span><br>
 
         Endereço cadastrado: <span>
-                                <?php 
-                                  echo'Rua:  ' .  $rua['rua'];
-                                  echo "Número:  " .  $numeroCasa['numero_casa'];
-                                  echo 'Bairro:  ' .  $bairro['bairro'];
-                                  echo 'Cidade:  ' .  $cidade['cidade']
-                                  ?></span>
+          <?php
+          echo  $rua['rua'] . ',    ';
+          echo   $numeroCasa['numero_casa'] . '     -     ';
+          echo   $bairro['bairro'] . ',     ';
+          echo  $cidade['cidade']
+          ?></span>
       </div>
     </div>
 
@@ -155,16 +152,16 @@ require_once '../controllers/UserControll.php';
 
         <form method='post'>
           <label for='rua'>Rua:</label>
-          <input type='text' name='rua' placeholder='Nome da Rua:'  value='<?php echo $rua['rua'] ?>' aria-label='Nome da Rua:'>
+          <input type='text' name='rua' placeholder='Nome da Rua:' value='<?php echo $rua['rua'] ?>' aria-label='Nome da Rua:'>
 
           <label for='numero'>Número da Casa:</label>
-          <input type='number' name='numeroCasa' placeholder='Número da Casa:' value='<?php  echo $numeroCasa['numero_casa'] ?>' aria-label='Número da Casa:'>
+          <input type='number' name='numeroCasa' placeholder='Número da Casa:' value='<?php echo $numeroCasa['numero_casa'] ?>' aria-label='Número da Casa:'>
 
           <label for='bairro'>Bairro:</label>
           <input type='text' name='bairro' placeholder='Bairro:' value='<?php echo $bairro['bairro'] ?>' aria-label='Bairro:'>
 
           <label for='cidade'>Cidade:</label>
-          <input type='text' name='cidade' placeholder='Cidade:' value='<?php  echo $cidade['cidade'] ?>' aria-label='Cidade:'>
+          <input type='text' name='cidade' placeholder='Cidade:' value='<?php echo $cidade['cidade'] ?>' aria-label='Cidade:'>
 
           <button type='submit' class='salvar'>Salvar</button>
         </form>

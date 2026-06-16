@@ -185,6 +185,10 @@ body.dark-theme .topbar .topbar-icon {
   color: rgba(255,255,255,0.9) !important;
 }
 
+body.dark-theme .modalConteudo h2 {
+  color: #f3f4f6 !important;
+}
+
 /* Pequena variação para o ícone do menu em telas pequenas */
 @media (max-width: 640px) {
   .topbar { padding: 10px; height: 64px; }

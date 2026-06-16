@@ -46,10 +46,15 @@ function setPaciente($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $telef
                     //  pega o ID do usuário criado
                     $usuario_id = $pdo->lastInsertId();
 
+
+
+
                     // insere na tabela paciente
                     $sql = "INSERT INTO paciente (fk_usuario_id, data_nascimento) VALUES (?, ?)";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute([$usuario_id, $bdate]);
+
+                    gerarNumCarteirinha($usuario_id);
 
                     $pdo->commit();
 
@@ -980,7 +985,7 @@ function setEndereco($pdo, $rua, $numeroCasa, $bairro, $cidade, $paciente_id)
 ";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$rua, $numeroCasa, $bairro, $cidade, $paciente_id]);
-     
+
         $_SESSION['sucesso'] = "Endereço Editado com Sucesso";
         return true;
     } catch (Exception $e) {
@@ -1033,4 +1038,22 @@ function getCidadeDatabase($pdo, $paciente_id)
     $stmt->execute([$paciente_id]);
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
+function gerarNumCarteirinha($usuario_id)
+{
+    global $pdo;
+
+    $numero = $usuario_id + 1839;
+
+    $sql = "UPDATE paciente
+            SET numero_de_carteirinha = ?
+            WHERE fk_usuario_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$numero, $usuario_id]);
+
+    return $numero;
 }
