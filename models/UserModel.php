@@ -1,5 +1,7 @@
 <?php
 
+
+
 function setPaciente($pdo, $nome, $email, $senha, $confirmar_senha, $cpf, $telefone, $genero, $nivel, $bdate)
 {
 

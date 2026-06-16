@@ -122,9 +122,8 @@ function validateUser()
         $senha = trim($_POST['senha']);
         $cpf = preg_replace('/[^0-9]/', '', trim($_POST['cpf']));
 
-        if (empty($_SESSION['erro'])) {
-            validar($pdo, $senha, $cpf);
-        }
+
+        validar($pdo, $senha, $cpf);
     }
 }
 
