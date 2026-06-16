@@ -389,3 +389,11 @@ main {
         transform: translateY(0);
     }
 }
+
+
+.optionHistorico{
+    height: 55px;
+    border: 1px solid #D1D1D1;
+    border-radius: 15px;
+    padding: 0 10px 0 10px;
+}

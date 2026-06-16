@@ -442,21 +442,47 @@ function getNumeroCarteirinha($pdo, $paciente_id)
     return null;
 }
 
-function getHistoricoFamiliarDataBase($pdo, $paciente_id)
+function getHistoricoFamiliarDataBase()
 {
-    $sql = "    SELECT id_historico, parentesco, doenca, nivel, descricao    FROM historico_familiar    WHERE fk_paciente_id = ?";
+    global $pdo;
+
+    $id_usuario = $_SESSION['id_usuario'] ?? null;
+
+    if (!$id_usuario) {
+        return [];
+    }
+
+    // Busca o ID do paciente
+    $stmt = $pdo->prepare("
+        SELECT id
+        FROM paciente
+        WHERE fk_usuario_id = ?
+    ");
+
+    $stmt->execute([$id_usuario]);
+
+    $paciente_id = $stmt->fetchColumn();
+
+    if (!$paciente_id) {
+        return [];
+    }
+
+    // Busca os históricos
+    $sql = "
+        SELECT
+            id_historico,
+            parentesco,
+            doenca,
+            nivel,
+            descricao
+        FROM historico_familiar
+        WHERE fk_paciente_id = ?
+    ";
 
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute([$paciente_id])) {
-
-        $historicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!empty($historicos)) {
-            return $historicos;
-        }
-
-        return [];
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     return [];
@@ -464,19 +490,20 @@ function getHistoricoFamiliarDataBase($pdo, $paciente_id)
 
 
 
-function setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doenca, $nivel)
+function setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doenca, $nivel, $descricao)
 {
     try {
 
         $sql = "
             INSERT INTO historico_familiar
-            (parentesco, doenca, fk_paciente_id, nivel)
-            VALUES (?, ?, ?, ?)
+            (descricao, parentesco, doenca, fk_paciente_id, nivel)
+            VALUES (?, ?, ?, ?, ?)
         ";
 
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([
+            $descricao,
             $parentesco,
             $doenca,
             $paciente_id,
@@ -487,22 +514,23 @@ function setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doenca, $nivel)
         return true;
     } catch (PDOException $e) {
 
-        $_SESSION['erro'] = "Erro ao adicionar histórico.";
+        // $_SESSION['erro'] = "Erro ao adicionar histórico.";
 
         // Opcional para debug:
-        // $_SESSION['erro'] = $e->getMessage();
+         $_SESSION['erro'] = $e->getMessage();
 
         return false;
     }
 }
 
-function updateHistoricoFamiliar($pdo,    $id_historico,    $parentesco,    $doenca,    $nivel)
+function updateHistoricoFamiliar($pdo,    $id_historico,    $parentesco,    $doenca,    $nivel, $descricao)
 {
     try {
 
         $sql = "
             UPDATE historico_familiar
             SET
+                descricao = ?,
                 parentesco = ?,
                 doenca = ?,
                 nivel = ?
@@ -512,6 +540,7 @@ function updateHistoricoFamiliar($pdo,    $id_historico,    $parentesco,    $doe
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute([
+            $descricao,
             $parentesco,
             $doenca,
             $nivel,
@@ -522,6 +551,8 @@ function updateHistoricoFamiliar($pdo,    $id_historico,    $parentesco,    $doe
         return true;
     } catch (PDOException $e) {
         $_SESSION['erro'] = "Não foi possível atualizar";
+
+       
     }
 }
 
@@ -1058,4 +1089,65 @@ function gerarNumCarteirinha($usuario_id)
     $stmt->execute([$numero, $usuario_id]);
 
     return $numero;
+}
+
+
+
+function getDescricaoDataBase($paciente_id){
+     global $pdo;
+
+    
+
+    $sql = "SELECT descricao FROM historico_familiar
+            WHERE fk_paciente_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);   
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function getNivelDataBase($paciente_id){
+     global $pdo;
+
+    
+
+    $sql = "SELECT nivel FROM historico_familiar
+            WHERE fk_paciente_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);   
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
+function getDoencaDataBase($paciente_id){
+     global $pdo;
+
+    
+
+    $sql = "SELECT doenca FROM historico_familiar
+            WHERE fk_paciente_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);   
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+function getParentescoDataBase($paciente_id){
+     global $pdo;
+
+    
+
+    $sql = "SELECT parentesco FROM historico_familiar
+            WHERE fk_paciente_id = ?";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$paciente_id]);   
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }

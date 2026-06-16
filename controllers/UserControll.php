@@ -147,24 +147,42 @@ function medicamento($id, $tipo)
 
 function salvarHistoricoFamiliar()
 {
-
     global $pdo;
+
     if (!isset($_SESSION['id_usuario'])) {
         die("Usuário não autenticado");
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id_usuario = $_SESSION['id_usuario'];
 
-        $paciente_id = $_SESSION['id_usuario'];
-        $parentesco = $_POST['parentesco'] ?? null;
-        $doença = $_POST['doença'] ?? null;
-        $nivel = $_POST['nivel'] ?? null;
+    // Busca o ID do paciente relacionado ao usuário logado
+    $stmt = $pdo->prepare("
+        SELECT id
+        FROM paciente
+        WHERE fk_usuario_id = ?
+    ");
 
+    $stmt->execute([$id_usuario]);
 
+    $paciente_id = $stmt->fetchColumn();
 
-
-        setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doença, $nivel);
+    if (!$paciente_id) {
+        die("Paciente não encontrado.");
     }
+
+    $parentesco = $_POST['parentesco'] ?? null;
+    $doenca = $_POST['doença'] ?? null; // sem acento
+    $nivel = $_POST['nivel'] ?? null;
+    $descricao = $_POST['descricao'] ?? null;
+
+    return setHistoricoFamiliar(
+        $pdo,
+        $paciente_id,
+        $parentesco,
+        $doenca,
+        $nivel,
+        $descricao
+    );
 }
 
 function  editarHistorico()
@@ -176,15 +194,16 @@ function  editarHistorico()
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $paciente_id = $_SESSION['id_usuario'];
+        
         $parentesco = $_POST['parentesco'] ?? null;
         $doença = $_POST['doença'] ?? null;
         $nivel = $_POST['nivel'] ?? null;
+        $descricao = $_POST['descricao'] ?? null;
         $idHistorico = $_POST['id_historico'] ?? null;
 
 
 
-        updateHistoricoFamiliar($pdo, $idHistorico, $parentesco, $doença, $nivel);
+        updateHistoricoFamiliar($pdo, $idHistorico, $parentesco, $doença, $nivel, $descricao);
     }
 }
 
@@ -540,15 +559,7 @@ function showNumCarterinha()
 
 function showHistoricoFamiliar()
 {
-    global $pdo;
-
-    $paciente_id = $_SESSION['id_usuario'] ?? null;
-
-    if (!$paciente_id) {
-        return [];
-    }
-
-    return getHistoricoFamiliarDataBase($pdo, $paciente_id);
+    return getHistoricoFamiliarDataBase();
 }
 
 
@@ -1101,4 +1112,42 @@ function showCidade()
 
 
     return getCidadeDataBase($pdo, $paciente_id,);
+}
+
+
+function showDescricao()
+{
+
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    getDescricaoDataBase($paciente_id,);
+}
+
+
+function showNivel()
+{
+
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    getNivelDataBase($paciente_id);
+}
+
+
+function showParentesco()
+{
+
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    getParentescoDataBase($paciente_id);
+}
+
+function showDoenca()
+{
+
+    $paciente_id = $_SESSION['id_usuario'] ?? null;
+
+    getDoencaDataBase($paciente_id);
 }
