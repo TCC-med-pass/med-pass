@@ -7,6 +7,11 @@ $numero_de_carteirinha = showNumCarterinha();
 
 $historicos = showHistoricoFamiliar();
 
+$descricao = showDescricao();
+$nivel = showNivel();
+$parentesco = showParentesco();
+$doenca = showDoenca();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -130,9 +135,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2>Editar doença</h2>
 
                     <form method="post">
-                        <input type="text" name="parentesco" placeholder="Editar o parentesco" aria-label="Editar a doenca" value="" required /> <!-- Seria interessante fazer igual o popup do médico, q apareça a doença antes de editar como valor atual desse input -->
+                        <input type="text" name="parentesco" placeholder="Editar o parentesco" aria-label="Editar a doenca" value="" /> <!-- Seria interessante fazer igual o popup do médico, q apareça a doença antes de editar como valor atual desse input -->
                         <input type="text" name="doença" placeholder="Editar a doença" aria-label="Editar a doenca" value="" required />
-                        <input type="text" name="descricao" placeholder="Editar a descrição" aria-label="Editar a descrição" value="" required />
+                        <input type="text" name="descricao" placeholder="Editar a descrição" aria-label="Editar a descrição" value="" />
                         <input type="text" name="nivel" placeholder="Editar o nível" aria-label="Editar a doenca" value="" required />
                         <input type="hidden" name="id_historico" id="id_historico">
                         <button name="editarHistorico" type="submit" class="salvar">Salvar</button>
