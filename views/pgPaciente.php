@@ -2,6 +2,7 @@
 require_once './components/UserComponents.php';
 require_once '../controllers/UserControll.php';
 verificarTipo(['paciente']);
+verificarNovaSenha();
 
 
 

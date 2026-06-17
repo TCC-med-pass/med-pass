@@ -5,6 +5,13 @@ verificarTipo(['paciente', 'medico']);
 MedicamentoUso();
 $link = showLinkNav();
 $ajudaLink = linkAjuda();
+
+if($_SESSION['nivel'] === 'paciente') {
+  $voltar = "./pgPaciente.php";
+} elseif ($_SESSION['nivel'] === 'medico') {
+  $voltar = "./medPaciente.php";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +73,7 @@ $ajudaLink = linkAjuda();
 
   <!-- Sub-header -->
   <div class="subheader">
-    <a href="./login.php" class="back-btn">
+    <a href="<?= $voltar ?>" class="back-btn">
       <i class="fa-solid fa-chevron-left"></i> Voltar
     </a>
     <span class="subheader-title">Medicamentos em Uso</span>

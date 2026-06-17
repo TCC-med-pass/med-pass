@@ -51,7 +51,6 @@ $sql = "CREATE TABLE IF NOT EXISTS paciente(
     alergias VARCHAR(255),
     tipo_sanguineo VARCHAR(3),
     numero_de_carteirinha VARCHAR(25),
-    historico_familiar TEXT,
     data_nascimento DATE NOT NULL,
     rua VARCHAR(50),
     numero_casa VARCHAR(10),
@@ -64,6 +63,20 @@ $sql = "CREATE TABLE IF NOT EXISTS paciente(
 
 $conn->query($sql);
 
+// =============================
+// TABELA HISTORICO FAMILIAR
+// =============================
+
+$sql = "CREATE TABLE IF NOT EXISTS historico_familiar(
+ id_historico int not null PRIMARY KEY auto_increment,
+        descricao TEXT not null,
+        parentesco VARCHAR(50) null,
+        doenca VARCHAR(100) null,
+        nivel enum ('leve', 'grave', 'medio'),
+        fk_paciente_id int not null
+    )";
+
+$conn->query($sql);
 
 // =============================
 // TABELA MEDICO
@@ -211,6 +224,15 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 ");
 
+$conn->query("
+ALTER TABLE historico_familiar 
+ADD CONSTRAINT fk_historico_paciente 
+FOREIGN KEY (fk_paciente_id) 
+REFERENCES paciente(id) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE
+");
+
 $mensagens[] = "Tabelas criadas/verificadas com sucesso.";
 
 $conn->close();
@@ -218,79 +240,80 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Códigos do Banco</title>
+    <title>Códigos do Banco</title>
 
-<style>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg,#1e3c72,#2a5298);
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            width: 450px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
 
-.container{
-    background:white;
-    padding:40px;
-    border-radius:10px;
-    width:450px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-h1{
-    text-align:center;
-    margin-bottom:20px;
-}
+        .msg {
+            background: #f5f5f5;
+            padding: 10px;
+            border-left: 4px solid #2a5298;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
 
-.msg{
-    background:#f5f5f5;
-    padding:10px;
-    border-left:4px solid #2a5298;
-    margin-bottom:10px;
-    border-radius:5px;
-}
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background: #2a5298;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
 
-a{
-    display:inline-block;
-    margin-top:20px;
-    text-decoration:none;
-    background:#2a5298;
-    color:white;
-    padding:10px 20px;
-    border-radius:6px;
-}
-
-a:hover{
-    background:#1e3c72;
-}
-
-</style>
+        a:hover {
+            background: #1e3c72;
+        }
+    </style>
 
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-<h1>Status do Banco</h1>
+        <h1>Status do Banco</h1>
 
-<?php
-foreach($mensagens as $msg){
-    echo "<div class='msg'>$msg</div>";
-}
-?>
+        <?php
+        foreach ($mensagens as $msg) {
+            echo "<div class='msg'>$msg</div>";
+        }
+        ?>
 
-<br>
+        <br>
 
-<a href="index.php">⬅ Voltar</a>
+        <a href="index.php">⬅ Voltar</a>
 
-</div>
+    </div>
 
 </body>
+
 </html>

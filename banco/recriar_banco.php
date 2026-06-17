@@ -55,7 +55,6 @@ $conn->query("CREATE TABLE paciente(
     alergias VARCHAR(255),
     tipo_sanguineo VARCHAR(3),
     numero_de_carteirinha VARCHAR(25),
-    historico_familiar TEXT,
     data_nascimento DATE NOT NULL,
     rua VARCHAR(50),
     numero_casa VARCHAR(10),
@@ -65,6 +64,17 @@ $conn->query("CREATE TABLE paciente(
     peso FLOAT,
     contato_emergencia NUMERIC(11)
 )");
+
+// historico_familiar
+$conn->query("CREATE TABLE historico_familiar(
+ id_historico int not null PRIMARY KEY auto_increment,
+        descricao TEXT not null,
+        parentesco VARCHAR(50) null,
+        doenca VARCHAR(100) null,
+        nivel enum ('leve', 'grave', 'medio'),
+        fk_paciente_id int not null
+    )");
+
 
 // medico
 $conn->query("CREATE TABLE medico(
@@ -177,6 +187,15 @@ FOREIGN KEY (fk_medico)
 REFERENCES medico(id)
 ON DELETE CASCADE
 ON UPDATE CASCADE");
+
+$conn->query("ALTER TABLE historico_familiar 
+ADD CONSTRAINT fk_historico_paciente 
+FOREIGN KEY (fk_paciente_id) 
+REFERENCES paciente(id) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE
+");
+
 
 $mensagens[] = "Tabelas recriadas com sucesso.";
 

@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <form method="post">
                         <input type="text" name="parentesco" placeholder="O grau de parentesco do paciente que foi diagnosticado" aria-label="Digite o grau de parentesco do paciente que foi diagnosticado" required />
-                        <input type="text" name="doença" placeholder="Digite aqui a doença" aria-label="Digite a doença" required />
+                        <input type="text" name="doenca" placeholder="Digite aqui a doença" aria-label="Digite a doença" required />
                         <input type="text" name="descricao" placeholder="Digite aqui a descrição" aria-label="Digite a descrição" required />
                         <select class="optionHistorico" name="nivel" required>
                                         <option value="leve">
@@ -147,9 +147,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2>Editar doença</h2>
 
                     <form method="post">
-                        <input type="text" name="parentesco" placeholder="Editar o parentesco" aria-label="Editar a doenca" value="" /> <!-- Seria interessante fazer igual o popup do médico, q apareça a doença antes de editar como valor atual desse input -->
-                        <input type="text" name="doença" placeholder="Editar a doença" aria-label="Editar a doenca" value=""  />
-                        <input type="text" name="descricao" placeholder="Editar a descrição" aria-label="Editar a descrição" value="" />
+                        <input type="text" name="parentesco" placeholder="Editar o parentesco" aria-label="Editar a doenca" /> <!-- Seria interessante fazer igual o popup do médico, q apareça a doença antes de editar como valor atual desse input -->
+                        <input type="text" name="doenca" placeholder="Editar a doença" aria-label="Editar a doenca"  />
+                        <input type="text" name="descricao" placeholder="Editar a descrição" aria-label="Editar a descrição" />
                            <select class="optionHistorico" name="nivel">
                                         <option value="leve">
                                             Leve

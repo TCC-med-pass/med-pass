@@ -349,3 +349,65 @@ main {
     align-items: center;
     box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
 }
+#sidebar.active {
+    transform: translateX(0);
+    z-index: 999;
+}
+#sidebar {
+    position: fixed;
+    top: 15vh;
+    right: -0;
+    width: 25vw;
+    height: calc(100vh - 15vh);
+    background: #007977;
+    padding: 5px;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+
+#sidebar.active {
+    transform: translateX(0);
+}
+
+
+#sidebar a {
+    display: block;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+
+#sidebar h1, h3 {
+    color: #007977;
+}
+
+
+.contSidebar {
+    width: 100%;
+    min-height: 10vh;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.config {
+    color: black;
+}
+
+
+.opcao {
+    color: white;
+}

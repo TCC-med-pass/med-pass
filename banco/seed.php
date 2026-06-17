@@ -20,48 +20,93 @@ $senha = password_hash("123456", PASSWORD_DEFAULT);
 $sql = "INSERT INTO usuarios
 (nome, genero, email, cpf, senha, nivel, telefone)
 VALUES
-('Joyce Ramos','F','joyce@email.com','55246582809','$senha','paciente','11981907326'),
-('Carlos Silva','M','carlos@email.com','12345678900','$senha','paciente','11987654321'),
-('Maria Oliveira','F','maria@email.com','98765432100','$senha','paciente','11976543210'),
-('João Santos','M','joao@email.com','45612378900','$senha','medico','11965432109'),
-('Erick Moraes','M','erick@email.com','78912345600','$senha','medico','11982436669'),
-('Ana Souza','F','ana@email.com','15975345600','$senha','medico','11954321098'),
-('Pedro Almeida','M','pedro@email.com','25836914700','$senha','paciente','11981110001'),
-('Marina Costa','F','marina@email.com','95135725800','$senha','paciente','11981110002'),
-('Lucas Pereira','M','lucas@email.com','35715925800','$senha','paciente','11981110003'),
-('Juliana Martins','F','juliana@email.com','65498732100','$senha','paciente','11981110004')
+('João Silva','M','joao@email.com','32432799844','$senha','paciente','11999999999'),
+('Maria Souza','F','maria@email.com','45074133890','$senha','medico','11988888888')
 ";
 
 $conn->query($sql);
 
 // =============================
-// PACIENTES (ATUALIZADO)
+// PACIENTE
 // =============================
 
 $sql = "INSERT INTO paciente
-(fk_usuario_id, alergias, tipo_sanguineo, numero_de_carteirinha, historico_familiar, data_nascimento, rua, numero_casa, bairro, cidade, altura, peso, contato_emergencia)
+(
+    fk_usuario_id,
+    alergias,
+    tipo_sanguineo,
+    numero_de_carteirinha,
+    data_nascimento,
+    rua,
+    numero_casa,
+    bairro,
+    cidade,
+    altura,
+    peso,
+    contato_emergencia
+)
+
 VALUES
-(1,'Nenhuma','O+','12345','Sem histórico relevante','1999-02-01','Av Covabra','690','Centro','Salto',1.60,65,'11981016027'),
-(2,'Poeira','A+','12346','Hipertensão na família','1998-05-10','Rua das Flores','120','Centro','Campinas',1.75,72,'11988887777'),
-(3,'Lactose','B+','12347','Diabetes familiar','2001-08-21','Av Brasil','450','Jardim','Indaiatuba',1.65,60,'11977776666'),
-(7,'Nenhuma','O-','12348','Sem histórico','1997-03-15','Rua Goiás','55','Centro','Sorocaba',1.72,70,'11981112222'),
-(8,'Glúten','AB+','12349','Problemas cardíacos','1996-11-21','Av Paulista','900','Bela Vista','São Paulo',1.62,58,'11983334444'),
-(9,'Nenhuma','A-','12350','Sem histórico','1995-07-18','Rua XV','100','Centro','Jundiaí',1.80,85,'11985556666'),
-(10,'Medicamento X','B-','12351','Alergias recorrentes','2000-01-05','Av Independência','500','Centro','Ribeirão Preto',1.70,68,'11987778888')
+(
+    1,
+    'Dipirona',
+    'O+',
+    '123',
+    '2000-05-10',
+    'Rua das Flores',
+    '120',
+    'Centro',
+    'São Paulo',
+    1.75,
+    70.5,
+    11977777777
+)
 ";
 
 $conn->query($sql);
 
 // =============================
-// MEDICOS
+// HISTORICO FAMILIAR
+// =============================
+
+$sql = "INSERT INTO historico_familiar
+(
+    descricao,
+    parentesco,
+    doenca,
+    nivel,
+    fk_paciente_id
+)
+
+VALUES
+(
+    'Histórico de diabetes na família',
+    'Pai',
+    'Diabetes',
+    'medio',
+    1
+)
+";
+
+$conn->query($sql);
+
+// =============================
+// MEDICO
 // =============================
 
 $sql = "INSERT INTO medico
-(fk_usuario_id, crm, especialidade)
+(
+    fk_usuario_id,
+    crm,
+    especialidade
+)
+
 VALUES
-(4,'CRM098765','Dermatologia'),
-(5,'CRM123456','Cardiologia'),
-(6,'CRM654321','Clínico Geral')
+(
+    2,
+    'SP123456',
+    'Cardiologia'
+)
 ";
 
 $conn->query($sql);
@@ -71,54 +116,189 @@ $conn->query($sql);
 // =============================
 
 $sql = "INSERT INTO arquivos
-(nome, caminho, descricao, anexo, tipo, data_emissao, data_validade, status, fk_paciente_id, fk_medico_id)
+(
+    nome,
+    caminho,
+    descricao,
+    anexo,
+    tipo,
+    data_emissao,
+    data_validade,
+    status,
+    fk_paciente_id,
+    fk_medico_id
+)
+
 VALUES
-('Exame de Sangue','../../documento/Joyce_Ramos/receitaUm.pdf','Exame de rotina',NULL,'receitas','2025-01-10','2026-01-10','ativo',1,1),
-('Raio X','/arquivos/raiox.pdf','Raio X do tórax',NULL,'PDF','2025-02-15','2026-02-15','ativo',2,2),
-('Ultrassom','/arquivos/ultrassom.pdf','Ultrassom abdominal',NULL,'PDF','2025-03-20','2026-03-20','ativo',3,3),
-('Tomografia','/arquivos/tomografia.pdf','Tomografia craniana',NULL,'PDF','2025-04-10','2026-04-10','ativo',4,1),
-('Hemograma','/arquivos/hemograma.pdf','Hemograma completo',NULL,'PDF','2025-04-15','2026-04-15','ativo',5,2)
+
+(
+    'exame1',
+    'joao1/testeArquivo_1.pdf',
+    'teste exame',
+    NULL,
+    'exame',
+    '2026-05-22',
+    '2026-05-22',
+    'ativo',
+    1,
+    1
+),
+
+(
+    'laudo1',
+    'joao1/testeArquivo_2.pdf',
+    'teste laudo',
+    NULL,
+    'laudo',
+    '2026-05-22',
+    '2026-05-22',
+    'ativo',
+    1,
+    1
+),
+
+(
+    'receita1',
+    'joao1/testeArquivo_3.pdf',
+    'teste receita',
+    NULL,
+    'receitas',
+    '2026-05-22',
+    '2026-05-22',
+    'ativo',
+    1,
+    1
+),
+
+(
+    'cirurgia1',
+    'joao1/testeArquivo_4.pdf',
+    'teste cirurgia',
+    NULL,
+    'cirurgia',
+    '2026-05-22',
+    '2026-05-22',
+    'ativo',
+    1,
+    1
+),
+
+(
+    'prontuario1',
+    'joao1/testeArquivo_5.pdf',
+    'teste prontuario',
+    NULL,
+    'prontuario',
+    '2026-05-22',
+    '2026-05-22',
+    'ativo',
+    1,
+    1
+),
+
+(
+    'atestado1',
+    'joao1/testeArquivo_6.pdf',
+    'teste atestado',
+    NULL,
+    'atestado',
+    '2026-05-22',
+    '2026-05-22',
+    'ativo',
+    1,
+    1
+)
 ";
 
 $conn->query($sql);
 
 // =============================
-// MEDICAMENTOS
+// MEDICAMENTOS EM USO
 // =============================
 
 $sql = "INSERT INTO medicamento_em_uso
-(nome, dosagem, frequencia, data_inicio, data_fim, observacao, fk_medico_id, fk_paciente_id)
+(
+    nome,
+    dosagem,
+    frequencia,
+    data_inicio,
+    data_fim,
+    observacao,
+    fk_medico_id,
+    fk_paciente_id
+)
+
 VALUES
-('Losartana','50 mg','2x ao dia','2025-03-01','2025-09-01','Pressão alta',1,1),
-('Paracetamol','1 comprimido','a cada 8 horas','2025-03-05','2025-03-10','Dor de cabeça',2,2),
-('Dipirona','20 gotas','a cada 6 horas','2025-03-08','2025-03-24','Febre',3,3),
-('Ibuprofeno','400 mg','se necessário','2025-04-01','2025-04-07','Inflamação',1,4),
-('Omeprazol','1 cápsula','1x ao dia (jejum)','2025-04-05','2025-05-05','Gastrite',2,5)
+
+(
+    'Losartana',
+    '50 mg',
+    '2x ao dia',
+    '2026-05-01',
+    '2026-09-01',
+    'Pressão alta',
+    1,
+    1
+),
+
+(
+    'Paracetamol',
+    '1 comprimido',
+    'a cada 8 horas',
+    '2026-05-10',
+    '2026-05-15',
+    'Dor de cabeça',
+    1,
+    1
+)
 ";
 
 $conn->query($sql);
 
 // =============================
-// PROBLEMAS DE SAÚDE (NOVO)
+// PROBLEMAS DE SAÚDE
 // =============================
 
 $sql = "INSERT INTO problema_de_saude
-(nome, status, tipo, data, fk_paciente, fk_medico)
+(
+    nome,
+    status,
+    tipo,
+    data,
+    fk_paciente,
+    fk_medico
+)
+
 VALUES
-('Hipertensão','controlado','grave','2025-01-10',1,1),
-('Gripe','curado','leve','2025-02-15',2,2),
-('Diabetes','em tratamento','medio','2025-03-20',3,3),
-('Enxaqueca','recorrente','leve','2025-04-01',4,1),
-('Gastrite','tratamento','medio','2025-04-05',5,2)
+
+(
+    'Hipertensão',
+    'controlado',
+    'medio',
+    '2026-05-10',
+    1,
+    1
+),
+
+(
+    'Gripe',
+    'curado',
+    'leve',
+    '2026-05-15',
+    1,
+    1
+)
 ";
 
 $conn->query($sql);
 
 $mensagens[] = "Dados inseridos com sucesso.";
 
+
 $conn->close();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

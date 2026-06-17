@@ -150,7 +150,7 @@ function salvarHistoricoFamiliar()
     global $pdo;
 
     if (!isset($_SESSION['id_usuario'])) {
-        die("Usuário não autenticado");
+        $_SESSION['erro'][] = "Paciente não encontrado.";;
     }
 
     $id_usuario = $_SESSION['id_usuario'];
@@ -167,43 +167,48 @@ function salvarHistoricoFamiliar()
     $paciente_id = $stmt->fetchColumn();
 
     if (!$paciente_id) {
-        die("Paciente não encontrado.");
+        $_SESSION['erro'][] = "Paciente não encontrado.";
+        header("Location: ../views/pgPaciente.php");
+        exit;
     }
 
     $parentesco = $_POST['parentesco'] ?? null;
-    $doenca = $_POST['doença'] ?? null; // sem acento
+    $doença = $_POST['doenca'] ?? null; // sem acento
     $nivel = $_POST['nivel'] ?? null;
     $descricao = $_POST['descricao'] ?? null;
 
-    return setHistoricoFamiliar(
-        $pdo,
-        $paciente_id,
-        $parentesco,
-        $doenca,
-        $nivel,
-        $descricao
-    );
+    setHistoricoFamiliar($pdo, $paciente_id, $parentesco, $doença, $nivel, $descricao);
+
+    $_SESSION['sucesso'] = "Histórico familiar adicionado com sucesso!";
+    header("Location: ../views/historicoFamiliar.php");
+    exit;
 }
 
 function  editarHistorico()
 {
     global $pdo;
     if (!isset($_SESSION['id_usuario'])) {
-        die("Usuário não autenticado");
+        $_SESSION['erro'][] = "Usuário não autenticado";
+        header("Location: ../views/pgPaciente.php");
+        exit;
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         
         $parentesco = $_POST['parentesco'] ?? null;
-        $doença = $_POST['doença'] ?? null;
+        $doenca = $_POST['doenca'] ?? null;
         $nivel = $_POST['nivel'] ?? null;
         $descricao = $_POST['descricao'] ?? null;
         $idHistorico = $_POST['id_historico'] ?? null;
 
 
 
-        updateHistoricoFamiliar($pdo, $idHistorico, $parentesco, $doença, $nivel, $descricao);
+        updateHistoricoFamiliar($pdo, $idHistorico, $parentesco, $doenca, $nivel, $descricao);
+
+        $_SESSION['sucesso'] = "Histórico familiar editado com sucesso!";
+        header("Location: ../views/historicoFamiliar.php");
+        exit;
     }
 }
 
@@ -783,6 +788,7 @@ function mudarSenha()
         $resultado = updateUsuario($pdo, $usuario['id'], $hash);
         if ($resultado === true) {
             $_SESSION['sucesso'] = "Um email de recuperação de senha foi enviado para o seu endereço de email cadastrado.";
+            $_SESSION['senhaNova'] = "true";
         }
         enviarEmail($usuario['email'], $novaSenha);
     }
@@ -967,6 +973,7 @@ function editarSenha()
             $resultado = updateUsuario($pdo, $usuario, $hash);
             if ($resultado === true) {
                 $_SESSION['sucesso'] = "Senha atualizada com sucesso.";
+                $_SESSION['senhaNova'] = "false";
                 header("Location: login.php");
                 exit();
             } else {
@@ -1150,4 +1157,15 @@ function showDoenca()
     $paciente_id = $_SESSION['id_usuario'] ?? null;
 
     getDoencaDataBase($paciente_id);
+}
+
+function verificarNovaSenha()
+{
+    if (!empty($_SESSION['senhaNova'])) {
+        if($_SESSION['senhaNova'] == "true"){
+        header("Location: mudarSenha.php");
+        exit();
+    }
+    }
+    
 }

@@ -3,6 +3,7 @@ require_once '../controllers/UserControll.php';
 require_once './components/UserComponents.php';
 verificarTipo(['medico']);
 informacaoMedica();
+verificarNovaSenha();
 //echo $_SESSION['id_usuario'];
 ?>
 <!DOCTYPE html>

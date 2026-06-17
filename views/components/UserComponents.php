@@ -442,8 +442,13 @@ function renderHistoricoFam($historicos)
                 <div class="footer">
                     <button
                         class="editar"
-                        data-id="<?= $historico['id_historico'] ?>">
-                        Editar</button>
+                        data-id="<?= $historico['id_historico'] ?>"
+                        data-parentesco="<?= htmlspecialchars($historico['parentesco'], ENT_QUOTES) ?>"
+                        data-doenca="<?= htmlspecialchars($historico['doenca'], ENT_QUOTES) ?>"
+                        data-descricao="<?= htmlspecialchars($historico['descricao'], ENT_QUOTES) ?>"
+                        data-nivel="<?= htmlspecialchars(strtolower($historico['nivel']), ENT_QUOTES) ?>">
+                        Editar
+                    </button>
                 </div>
 
             </div>
@@ -457,12 +462,12 @@ function renderHistoricoFam($historicos)
 <?php
 }
 
-function linkAjuda(){
-if ($_SESSION['nivel'] === 'paciente') {
-    return "./ajuda_paciente.php";
-  }elseif ($_SESSION['nivel'] === 'medico') {
-    return "./ajuda_medico.php";
+function linkAjuda()
+{
+    if ($_SESSION['nivel'] === 'paciente') {
+        return "./ajuda_paciente.php";
+    } elseif ($_SESSION['nivel'] === 'medico') {
+        return "./ajuda_medico.php";
+    }
 }
-
-}
- ?>
+?>
