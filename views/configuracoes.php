@@ -20,6 +20,11 @@ $numeroCasa = showNumeroCasa();
 $bairro = showBairro();
 $cidade = showCidade();
 
+if ($_SESSION['nivel'] == 'medico') {
+  $cssMedico = "grid-column: span 2;";
+}else{
+  $cssMedico = "";
+}
 
 
 
@@ -104,7 +109,7 @@ $cidade = showCidade();
     <div class="settings-grid">
 
       <!-- FONTE -->
-      <div class="s-card card-fonte" onclick="handleFontCardClick(event)">
+      <div class="s-card card-fonte" style="<?= $cssMedico ?>" onclick="handleFontCardClick(event)">
         <span class="s-card-label">Fonte</span>
         <div class="font-stages" id="font-stages">
           <button class="font-stage-btn" data-stage="small" onclick="setFontStage('small',  event)">
@@ -120,10 +125,14 @@ $cidade = showCidade();
       </div>
 
       <!-- ALTERAR DADOS -->
-      <button id="btnInfo" class="s-card card-alterar btnInfo">
+      <?php
+      if ($_SESSION['nivel'] === 'paciente') {
+        echo '<button id="btnInfo" class="s-card card-alterar btnInfo">
         <span class="s-card-label">Alterar Endereço</span>
         <i class="fa-solid fa-user-pen s-icon"></i>
-      </button>
+      </button>';
+      }
+       ?>
 
       <!-- MODO ESCURO -->
       <div class="s-card card-dark" onclick="toggleDark()">
